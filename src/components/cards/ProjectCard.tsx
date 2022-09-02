@@ -20,12 +20,12 @@ export default function ProjectCard({ name, href, imageUrl, description, year }:
                     layout="fill"
                     objectFit="cover"
                 />
-                <div className="p-6 min-h-full flex flex-col justify-center bg-white/90 backdrop-blur-sm relative top-[calc(100%-1.2rem)] group-hover:top-0 motion-safe:duration-500">
-                    <span className="absolute top-0 right-5 italic text-sm font-semibold align-top text-left text-gray-900">
+                <div className="p-6 min-h-full flex flex-col justify-center bg-white/90 dark:bg-black/90 backdrop-blur-sm relative top-[calc(100%-1.2rem)] group-hover:top-0 motion-safe:duration-500">
+                    <span className="absolute top-0 right-5 italic text-sm font-semibold align-top text-left text-gray-900 dark:text-white">
                         {year}
                     </span>
-                    <h3 className="text-lg text-gray-700 pt-6">{name}</h3>
-                    <p className="text-sm text-gray-600 pt-2 pb-4">
+                    <h3 className="text-lg text-gray-700 dark:text-white pt-6">{name}</h3>
+                    <p className="text-sm text-gray-600 dark:text-slate-300  pt-2 pb-4">
                         {description}
                     </p>
                 </div>
