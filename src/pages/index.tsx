@@ -65,12 +65,12 @@ const Home: NextPage = () => {
                 </section>
                 <section
                     id="about"
-                    className="flex flex-col items-center justify-center h-96 p-8 bg-violet-200 dark:bg-violet-900"
+                    className="flex flex-col items-center justify-center h-96 p-8 bg-violet-200 dark:bg-slate-900"
                 >
                     <div className="container mx-auto">
-                        <h2 className="text-4xl font-semibold">Who am I?</h2>
-                        <p className={`my-2 mx-4 ${textStyles.terminal}`}>
-                            I{"'"}m a 17 year old self-taught developer from
+                        <h2 className={`text-4xl font-semibold text-center ${textStyles.terminal}`}>Who am I?</h2>
+                        <p className={`text-lg text-center my-2 mx-4`}>
+                            I{"'"}m a 18 year old self-taught developer from
                             Wisconsin, USA. I{"'"}m currently working on a few
                             projects, including this website, a Discord bot, and
                             a Minecraft server.
