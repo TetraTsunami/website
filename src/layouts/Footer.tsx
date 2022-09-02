@@ -1,0 +1,54 @@
+import { faCodepen, faDiscord, faGithub, faTwitch, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import IconButtonRowLg from "../components/IconButtonRowLg";
+import NowPlayingSm from "../components/NowPlayingSm";
+import textStyles from "../styles/text.module.scss";
+
+export default function Footer() {
+    return (
+        <footer className="bg-gray-900 text-white py-4">
+            <div className="container mx-auto flex flex-row justify-around items-center px-4 flex-wrap lg:justify-between">
+                <NowPlayingSm />
+                <p
+                    className={`my-2 mx-4 ${textStyles.terminal} [--terminal-color:#a78bfa]`}
+                >
+                    Let{"'"}s build something together!
+                </p>
+                <IconButtonRowLg
+                    buttons={[
+                        {
+                            icon: faEnvelope,
+                            href: "mailto:tsuni@tsuni.dev",
+                            title: "tsuni@tsuni.dev",
+                        },
+                        {
+                            icon: faDiscord,
+                            href: "https://discord.gg/j7yUFW9ERu",
+                            title: "Tsuni#0001",
+                        },
+                        {
+                            icon: faGithub,
+                            href: "https://github.com/TetraTsunami",
+                            title: "Github",
+                        },
+                        {
+                            icon: faCodepen,
+                            href: "https://codepen.io/TetraTsunami",
+                            title: "Codepen",
+                        },
+                        {
+                            icon: faTwitter,
+                            href: "https://twitter.com/TetraJump",
+                            title: "Twitter",
+                        },
+                        {
+                            icon: faTwitch,
+                            href: "https://www.twitch.tv/tetrajump",
+                            title: "Twitch",
+                        },
+                    ]}
+                />
+            </div>
+        </footer>
+    );
+}

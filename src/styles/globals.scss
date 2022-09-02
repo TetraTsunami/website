@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.visible-hidden {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+    &:focus {
+        clip: auto;
+        height: auto;
+        overflow: auto;
+        position: absolute;
+        width: auto;
+    }
+}
+
+header {
+    transition: box-shadow 0.2s ease-out;
+    z-index: 100;
+    &.scrolled {
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    }
+}
+
+#__next {
+    position: relative;
+}
