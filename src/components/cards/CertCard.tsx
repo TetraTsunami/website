@@ -33,7 +33,7 @@ export default function CertCard({
                 >
                     <FontAwesomeIcon
                         icon={faCodepen}
-                        className="p-4 bg-violet-300 border-4 rounded-full hover:outline outline-4 outline-violet-400 hover:bg-violet-400"
+                        className="p-4 bg-violet-300 text-black border-4 rounded-full hover:outline outline-4 outline-violet-400 hover:bg-violet-400"
                         size={"xl" as SizeProp}
                     />
                     <p className="visible-hidden">Codepen collection</p>
