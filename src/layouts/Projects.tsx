@@ -11,7 +11,7 @@ export default function Projects() {
                 name="Mark Neumann for Congress"
                 href="https://markneumannforcongress.com/"
                 imageUrl={mnfc2}
-                description="A progressive web app for the entire U.S. Congress"
+                description="A Wordpress site for a local political campaign"
                 year="2022"
             />
             <GridDivider name="FreeCodeCamp Certificates" />
