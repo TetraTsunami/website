@@ -1,6 +1,7 @@
 import { SizeProp } from "@fortawesome/fontawesome-svg-core";
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 import useSWR from "swr";
 
 async function fetcher<JSON = any>(
@@ -30,15 +31,20 @@ export default function NowPlayingText() {
     if (error) return <div>Error</div>;
     if (!data) return <div className="loading">Loading...</div>;
     return (
-        <div className="m-2 mx-4">
-            <FontAwesomeIcon
-                icon={faChevronCircleRight}
-                className="inline text-orange-400"
-                size={"lg" as SizeProp}
-            />
-            <span className="pl-2 text-gray-400">
-                <span className="text-white">{activity.title || "Not Playing"}</span> – Plex
-            </span>
-        </div>
+        <Link href="/music" passHref className="m-2 mx-4">
+            <a className="hover:underline">
+                <FontAwesomeIcon
+                    icon={faChevronCircleRight}
+                    className="inline text-orange-400"
+                    size={"lg" as SizeProp}
+                />
+                <span className="pl-2 text-gray-400">
+                    <span className="text-white">
+                        {activity.title || "Not Playing"}
+                    </span>{" "}
+                    – Plex
+                </span>
+            </a>
+        </Link>
     );
 }

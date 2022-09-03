@@ -25,22 +25,22 @@ export default function NowPlayingDuration() {
     const { data, error, mutate} = useSWR("/api/nowplaying", fetcher);
     const [elapsed, setElapsed] = useState(0);
     const [lastUpdated, setLastUpdated] = useState(0);
-    const [animationDuration, setAnimationDuration] = useState(0);
+    const [transitionDuration, setTransitionDuration] = useState(0);
     const activity = data as Activity;
 
     useEffect(() => {
         const interval = setInterval(() => {
             // Updating the duration every second
             if (activity.timestamp > lastUpdated) {
-                setAnimationDuration(0);
+                setTransitionDuration(0);
                 setElapsed(+activity.elapsed);
                 setLastUpdated(+activity.timestamp);
             } else if (elapsed > activity.duration) {
                 // The duration has ended, so we need to refresh the data
-                setAnimationDuration(0);
+                setTransitionDuration(0);
                 mutate("/api/nowplaying");
             } else {
-                setAnimationDuration(1000);
+                setTransitionDuration(1000);
                 setElapsed((prevState) => +prevState + 1000);
             }
         }, 1000);
@@ -55,7 +55,7 @@ export default function NowPlayingDuration() {
             <div
                 className="rounded-full bg-green-400 absolute left-0 top-0 bottom-0 ease-linear origin-left"
                 style={{
-                    animationDuration: `${animationDuration}ms`,
+                    transitionDuration: `${transitionDuration}ms`,
                     transitionProperty: "width",
                     width: `${((elapsed / activity.duration) * 100).toFixed(2)}%`,
                 }}
