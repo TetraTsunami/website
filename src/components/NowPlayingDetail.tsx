@@ -1,6 +1,7 @@
 import { faChevronCircleRight, faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useSWR from "swr";
+import NowPlayingDuration from "./NowPlayingDuration";
 
 async function fetcher<JSON = any>(
     input: RequestInfo,
@@ -19,9 +20,10 @@ interface Activity {
     artist: string;
     imageUrl: string;
     guid: string;
+    timestamp: number;
 }
 
-export default function NowPlayingLg() {
+export default function NowPlayingDetail() {
     const { data, error } = useSWR("/api/nowplaying", fetcher);
     const activity = data as Activity;
     
@@ -42,10 +44,7 @@ export default function NowPlayingLg() {
             <p>{activity.artist}</p>
             <p>{activity.parent}</p>
             <FontAwesomeIcon icon={activity.isPlaying ? faPlay : faPause} />
-            <progress
-                value={Math.round(activity.elapsed / activity.duration * 100)}
-                max="100"
-            ></progress>
+            <NowPlayingDuration />
         </div>
     );
 }

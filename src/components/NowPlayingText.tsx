@@ -20,9 +20,10 @@ interface Activity {
     artist: string;
     imageUrl: string;
     guid: string;
+    timestamp: number;
 }
 
-export default function NowPlayingSm() {
+export default function NowPlayingText() {
     const { data, error } = useSWR("/api/nowplaying", fetcher);
     const activity = data as Activity;
     

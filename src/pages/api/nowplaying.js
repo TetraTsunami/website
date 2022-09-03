@@ -29,7 +29,8 @@ export default async function handler(req, res) {
             "/pms_image_proxy?img=" +
             session.thumb +
             "&width=100&height=100",
-        guid = session.guid;
+        guid = session.guid,
+        timestamp = Date.now();
 
     return res.status(200).json({
         isPlaying,
@@ -40,5 +41,6 @@ export default async function handler(req, res) {
         artist,
         imageUrl,
         guid,
+        timestamp,
     });
 }
