@@ -4,13 +4,15 @@ import styles from "./background.module.scss";
 export default function Background() {
     const [scrollY, setScroll] = useState(0);
     useEffect(() => {
+        let id: number
         function simpleParallax() {
+            id = requestAnimationFrame(simpleParallax)
             setScroll(window.scrollY);
         }
-        document.addEventListener("scroll", simpleParallax);
+        id = requestAnimationFrame(simpleParallax)
 
         return function cleanup() {
-            document.removeEventListener("scroll", simpleParallax);
+            cancelAnimationFrame(id)
         };
     });
     

@@ -24,15 +24,13 @@ export default function Header() {
     return (
         <header className="backdrop-blur-md bg-white dark:bg-gray-900 text-white py-4 fixed top-0 left-0 right-0">
             <div className="container mx-auto flex flex-row justify-between items-center h-12 px-4">
-                <h1 className="text-2xl text-black dark:text-white">
+                <h1 className="text-2xl flex-grow text-black dark:text-white">
                     TetraTsunami
                 </h1>
                 <nav>
                     <ul className="flex flex-row items-center justify-around">
                         <li className="mx-4 text-black dark:text-white">
-                            <a href="#about">
-                                About
-                            </a>
+                            <a href="#about">About</a>
                         </li>
                         <li className="mx-4 text-black dark:text-white">
                             <a href="#projects">Projects</a>

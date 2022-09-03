@@ -36,12 +36,12 @@ const Home: NextPage = () => {
                     </h2>
                     <h1 className="text-8xl font-extrabold text-transparent">
                         <span
-                            className={`bg-clip-text bg-gradient-to-t from-violet-500 to-violet-700 ${textStyles["animateFadeUp-5"]}`}
+                            className={`bg-clip-text bg-gradient-to-b from-violet-500 to-violet-700 ${textStyles["animateFadeUp-5"]}`}
                         >
                             I{"'"}m
                         </span>{" "}
                         <span
-                            className={`bg-clip-text bg-gradient-to-t from-violet-500 to-violet-700 ${textStyles["animateFadeUp-6"]}`}
+                            className={`bg-clip-text bg-gradient-to-b from-violet-500 to-violet-700 ${textStyles["animateFadeUp-6"]}`}
                         >
                             Tsuni!
                         </span>

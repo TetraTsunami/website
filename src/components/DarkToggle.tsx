@@ -24,7 +24,7 @@ export default function DarkToggle() {
     return (
         <div className="flex justify-center items-center">
             <button
-                className="w-9 h-9 p-2 rounded-md flex items-center justify-center 
+                className="w-9 h-9 p-2 m-2 rounded-md flex items-center justify-center 
                 bg-gray-200 text-black 
                 dark:bg-gray-700 dark:text-white
                 transition-colors
