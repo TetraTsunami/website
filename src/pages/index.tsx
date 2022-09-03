@@ -3,7 +3,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Script from "next/script";
-import IconButtonRowSm from "../components/IconButtonRowSm";
+import IconButtonRow2 from "../components/IconButtonRow2";
 import Projects from "../layouts/Projects";
 import textStyles from "../styles/text.module.scss";
 
@@ -47,7 +47,7 @@ const Home: NextPage = () => {
                         </span>
                     </h1>
 
-                    <IconButtonRowSm
+                    <IconButtonRow2
                         buttons={[
                             {
                                 icon: faEnvelope,

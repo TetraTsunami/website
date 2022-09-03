@@ -1,20 +1,20 @@
 import { faCodepen, faDiscord, faGithub, faTwitch, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import IconButtonRowLg from "../components/IconButtonRowLg";
-import NowPlayingSm from "../components/NowPlayingSm";
+import IconButtonRow1 from "../components/IconButtonRow1";
+import NowPlayingText from "../components/NowPlayingText";
 import textStyles from "../styles/text.module.scss";
 
 export default function Footer() {
     return (
         <footer className="bg-gray-900 text-white py-4">
             <div className="container mx-auto flex flex-row justify-around items-center px-4 flex-wrap lg:justify-between">
-                <NowPlayingSm />
+                <NowPlayingText />
                 <p
                     className={`my-2 mx-4 ${textStyles.terminal} [--terminal-color:#a78bfa]`}
                 >
                     Let{"'"}s build something together!
                 </p>
-                <IconButtonRowLg
+                <IconButtonRow1
                     buttons={[
                         {
                             icon: faEnvelope,
