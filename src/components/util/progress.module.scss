@@ -1,0 +1,17 @@
+.indeterminate {
+    width: 50%;
+    animation: indeterminate 1.5s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+    transform: none;
+}
+
+@keyframes indeterminate {
+    0% {
+        transform: translateX(-100%);
+        width: 15%;
+    }
+    100% {
+        transform: translateX(200%);
+        width: 50%;
+    }
+
+}
