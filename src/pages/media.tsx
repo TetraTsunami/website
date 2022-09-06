@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import NowPlayingDetail from "../components/NowPlayingDetail";
 
-const Music: NextPage = () => {
+const Media: NextPage = () => {
     return (
         <section className="flex flex-col items-center justify-center h-screen p-8 container mx-auto">
             <NowPlayingDetail />
@@ -9,4 +9,4 @@ const Music: NextPage = () => {
     );
 };
 
-export default Music;
+export default Media;
