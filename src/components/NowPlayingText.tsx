@@ -1,15 +1,20 @@
 import { SizeProp } from "@fortawesome/fontawesome-svg-core";
-import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
+import {
+    faChevronCircleRight,
+    faMusic
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import useSWR from "swr";
+import Error from "./util/Error";
+import Loading from "./util/Loading";
 
 async function fetcher<JSON = any>(
     input: RequestInfo,
     init?: RequestInit
 ): Promise<JSON> {
-    const res = await fetch(input, init)
-    return res.json()
+    const res = await fetch(input, init);
+    return res.json();
 }
 
 interface Activity {
@@ -27,11 +32,11 @@ interface Activity {
 export default function NowPlayingText() {
     const { data, error } = useSWR("/api/nowplaying", fetcher);
     const activity = data as Activity;
-    
-    if (error) return <div>Error</div>;
-    if (!data) return <div className="loading">Loading...</div>;
+
+    if (error) return <Error className="w-96" />;
+    if (!data) return <Loading icon={faMusic} className="w-96" />;
     return (
-        <Link href="/music" passHref className="m-2 mx-4">
+        <Link href="/media" passHref className="m-2 mx-4">
             <a className="hover:underline">
                 <FontAwesomeIcon
                     icon={faChevronCircleRight}
