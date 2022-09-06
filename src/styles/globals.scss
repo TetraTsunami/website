@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    scroll-behavior: smooth;
+}
+
 .visible-hidden {
     clip: rect(1px, 1px, 1px, 1px);
     height: 1px;
