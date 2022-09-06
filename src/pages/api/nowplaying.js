@@ -3,6 +3,7 @@ const baseUrl = process.env.TAUTULLI_URL || "http://localhost:8181",
     plexUser = process.env.PLEX_USER || "";
 
 export default async function handler(req, res) {
+    const timestamp = Date.now();
     const response = await getActivity();
 
     if (response.status > 400) {
@@ -29,8 +30,7 @@ export default async function handler(req, res) {
             "/pms_image_proxy?img=" +
             session.thumb +
             "&width=100&height=100",
-        guid = session.guid,
-        timestamp = Date.now();
+        guid = session.guid;
 
     return res.status(200).json({
         isPlaying,
