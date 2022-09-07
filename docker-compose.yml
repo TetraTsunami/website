@@ -2,6 +2,13 @@ version: '3.7'
 
 services:
   app:
+   image: nextjs-tsunidev-prod
    build: .
    expose:
-     - 80
+     - 3000
+   networks:
+    - "web"
+
+networks:
+  web:
+    external: true
