@@ -17,7 +17,7 @@ export default function Loading({
         >
             <FontAwesomeIcon
                 icon={icon}
-                className="animate-pulse animate text-4xl m-2 text-gray-500"
+                className="animate-pulse text-3xl m-2 text-gray-500"
             />
         </div>
     );

@@ -115,8 +115,8 @@ export default function NowPlayingDetail() {
                 />
                 <StyledProgress1
                     value={elapsed}
-                    max={activity.duration}
-                    indeterminate={(!elapsed || isValidating) ? true : false}
+                    max={activity.duration || 1}
+                    indeterminate={(isValidating) ? true : false}
                 />
             </div>
         </div>
