@@ -23,7 +23,7 @@ export default function CertCard({
                     width="1140"
                     height="886"
                     layout="responsive"
-                    className="rounded-md"
+                    className="rounded-md bg-pink-200 dark:bg-gray-900"
                 />
             </a>
             {collectionUrl && (
