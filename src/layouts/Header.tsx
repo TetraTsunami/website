@@ -1,6 +1,18 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import DarkToggle from "../components/DarkToggle";
+
+function PageLink({ name, href }: { name: string; href: string }) {
+    const router = useRouter();
+    const isActive = router.pathname === href;
+
+    return (
+        <Link href={href} passHref>
+            <a className={`hover:bg-gray-600 p-3 rounded-xl ${isActive ? "bg-gray-600/25" : ""}`}>{name}</a>
+        </Link>
+    );
+}
 
 export default function Header() {
     useEffect(() => {
@@ -33,19 +45,10 @@ export default function Header() {
                 <nav>
                     <ul className="flex flex-row items-center justify-around">
                         <li className="mx-4">
-                            <Link href="/#about" passHref>
-                                <a className="hover:underline">About</a>
-                            </Link>
+                            <PageLink name="Home" href="/" />
                         </li>
                         <li className="mx-4">
-                            <Link href="/#projects" passHref>
-                                <a className="hover:underline">Projects</a>
-                            </Link>
-                        </li>
-                        <li className="mx-4">
-                            <Link href="/media" passHref>
-                                <a className="hover:underline">Media</a>
-                            </Link>
+                            <PageLink name="Media" href="/media" />
                         </li>
                     </ul>
                 </nav>
