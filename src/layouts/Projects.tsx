@@ -1,12 +1,27 @@
 import CertCard from "../components/cards/CertCard";
 import ProjectCard from "../components/cards/ProjectCard";
 import GridDivider from "../components/util/GridDivider";
-import { fcc_frontend, fcc_js, fcc_webdesign, mnfc2 } from "../images";
+import {
+    cricket_chat,
+    fcc_frontend,
+    fcc_js,
+    fcc_webdesign,
+    mnfc2,
+    port_website
+} from "../images";
 
 export default function Projects() {
     return (
-        <div className="grid gap-3 pt-3 mt-3 text-center grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 w-full">
-            <GridDivider name="Websites" />
+        <div className="grid gap-6 pt-3 mt-3 text-center grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 w-full content-evenly">
+            <GridDivider name="Projects" />
+            <ProjectCard
+                name="Cricket Bot"
+                href="https://github.com/TetraTsunami/cricket-bot"
+                imageUrl={cricket_chat}
+                description="A fun little Discord bot with a variety of unique functions (such as image manipulation, pinging Minecraft servers, and more)."
+                year="2021"
+            />
+
             <ProjectCard
                 name="Mark Neumann for Congress"
                 href="https://markneumannforcongress.com/"
@@ -14,7 +29,14 @@ export default function Projects() {
                 description="A Wordpress site for a local political campaign"
                 year="2022"
             />
-            <GridDivider name="FreeCodeCamp Certificates" />
+            <ProjectCard
+                name="Portfolio Website"
+                href="https://github.com/TetraTsunami/website"
+                imageUrl={port_website}
+                description="The website you're currently on! Built with Next.js, Tailwind CSS, and TypeScript."
+                year="2022"
+            />
+            <GridDivider name="Certifications" />
             <CertCard
                 name="Front End Web Development"
                 certUrl="https://www.freecodecamp.org/certification/Tsuni/responsive-web-design"
