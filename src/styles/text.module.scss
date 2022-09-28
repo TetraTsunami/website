@@ -73,3 +73,10 @@
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
 }
+
+.gradientTitleText span {
+  background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(rgb(139, 92, 246),
+      rgb(109, 40, 217))
+}
