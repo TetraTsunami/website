@@ -9,7 +9,13 @@ function PageLink({ name, href }: { name: string; href: string }) {
 
     return (
         <Link href={href} passHref>
-            <a className={`hover:bg-gray-600 p-3 rounded-xl ${isActive ? "bg-gray-600/25" : ""}`}>{name}</a>
+            <a
+                className={`hover:bg-gray-300 dark:hover:bg-gray-600 p-3 rounded-xl transition-colors ${
+                    isActive ? "bg-gray-400/25" : ""
+                }`}
+            >
+                {name}
+            </a>
         </Link>
     );
 }
@@ -35,13 +41,14 @@ export default function Header() {
     });
 
     return (
-        <header className="backdrop-blur-md bg-white dark:bg-gray-900 text-white py-4 fixed top-0 left-0 right-0">
+        <header className="backdrop-blur-md bg-white dark:bg-gray-900 text-white p-3 fixed top-0 left-0 right-0">
             <div className="container mx-auto flex flex-row justify-between items-center h-12 px-4 text-black dark:text-white">
                 <Link href="/" passHref>
-                    <a className="hover:underline text-2xl flex-grow">
+                    <a className="hover:underline px-4 text-2xl">
                         TetraTsunami
                     </a>
                 </Link>
+                <div className="flex-grow" />
                 <nav>
                     <ul className="flex flex-row items-center justify-around">
                         <li className="mx-4">

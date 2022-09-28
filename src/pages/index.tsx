@@ -12,11 +12,6 @@ const Home: NextPage = () => {
         <>
             <Head>
                 <title>Tsuni!</title>
-                <meta
-                    name="viewport"
-                    content="initial-scale=1.0, width=device-width"
-                />
-                <link rel="icon" href="/favicon.ico" />
             </Head>
 
             <Script src="https://net.tsuni.dev/js/pls.js" />
@@ -34,14 +29,14 @@ const Home: NextPage = () => {
                             world!
                         </span>
                     </h2>
-                    <h1 className="text-8xl font-extrabold text-transparent">
+                    <h1 className={`text-8xl font-extrabold text-transparent ${textStyles.gradientTitleText}`}>
                         <span
-                            className={`bg-clip-text bg-gradient-to-b from-violet-500 to-violet-700 ${textStyles["animateFadeUp-5"]}`}
+                            className={textStyles["animateFadeUp-5"]}
                         >
                             I{"'"}m
                         </span>{" "}
                         <span
-                            className={`bg-clip-text bg-gradient-to-b from-violet-500 to-violet-700 ${textStyles["animateFadeUp-6"]}`}
+                            className={textStyles["animateFadeUp-6"]}
                         >
                             Tsuni!
                         </span>
@@ -68,7 +63,11 @@ const Home: NextPage = () => {
                     className="flex flex-col items-center justify-center h-96 p-8 bg-violet-200 dark:bg-slate-900"
                 >
                     <div className="container mx-auto">
-                        <h2 className={`text-4xl font-semibold text-center ${textStyles.terminal}`}>Who am I?</h2>
+                        <h2
+                            className={`text-4xl font-semibold text-center ${textStyles.terminal}`}
+                        >
+                            Who am I?
+                        </h2>
                         <p className={`text-lg text-center my-2 mx-4`}>
                             I{"'"}m a 18 year old self-taught developer from
                             Wisconsin, USA. I{"'"}m currently working on a few
