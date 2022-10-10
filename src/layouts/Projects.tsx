@@ -41,7 +41,7 @@ export default function Projects() {
                 name="Front End Web Development"
                 certUrl="https://www.freecodecamp.org/certification/Tsuni/responsive-web-design"
                 collectionUrl="https://codepen.io/collection/rxMyMz"
-                imageUrl={fcc_frontend}
+                imageUrl={fcc_webdesign}
             />
             <CertCard
                 name="JavaScript Algorithms and Data Structures"
@@ -52,7 +52,7 @@ export default function Projects() {
                 name="Front End Development Libraries"
                 certUrl="https://www.freecodecamp.org/certification/Tsuni/front-end-development-libraries"
                 collectionUrl="https://codepen.io/collection/zxdedJ"
-                imageUrl={fcc_webdesign}
+                imageUrl={fcc_frontend}
             />
         </div>
     );
