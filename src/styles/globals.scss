@@ -4,6 +4,10 @@
 
 html {
     scroll-behavior: smooth;
+
+    &.noAnimate {
+        scroll-behavior: auto;
+    }
 }
 
 body {
@@ -54,6 +58,5 @@ header {
 }
 
 .noAnimate * {
-    scroll-behavior: auto;
     animation-duration: 0s !important;
 }
