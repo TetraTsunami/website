@@ -9,6 +9,9 @@ module.exports = {
             fontFamily: {
                 sans: ["RubikVariable", ...defaultTheme.fontFamily.sans],
             },
+            animation: {
+                "bounce-slow": "bounce 2s infinite",
+            },
         },
     },
     plugins: [],

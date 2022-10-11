@@ -1,8 +1,8 @@
 import { faDiscord } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { NextPage } from "next";
 import Head from "next/head";
-import Script from "next/script";
 import IconButtonRow2 from "../components/IconButtonRow2";
 import Projects from "../layouts/Projects";
 import textStyles from "../styles/text.module.scss";
@@ -17,7 +17,7 @@ const Home: NextPage = () => {
                 <section
                     id="home"
                     className="flex flex-col items-center justify-center h-screen p-8
-                    container mx-auto"
+                    container mx-auto relative text-center"
                 >
                     <h2 className="text-4xl font-semibold">
                         <span className={textStyles["animateFadeUp-1"]}>
@@ -55,6 +55,9 @@ const Home: NextPage = () => {
                         ]}
                         startingFade={9}
                     />
+                    <a id="scroll-hint" href="#about" className="absolute bottom-0 mb-8 p-2 animate-bounce-slow">
+                        <FontAwesomeIcon icon={faChevronDown} />
+                    </a>
                 </section>
                 <section
                     id="about"
@@ -78,12 +81,12 @@ const Home: NextPage = () => {
                     id="projects"
                     className="flex flex-col items-center justify-center p-8 my-32 container mx-auto"
                 >
-                    <h1
-                        className={`text-3xl md:text-4xl leading-normal font-extrabold text-gray-700 dark:text-slate-200
+                    <h2
+                        className={`text-3xl md:text-4xl leading-normal font-semibold text-gray-700 dark:text-slate-200
                             ${textStyles.terminal}`}
                     >
                         Check out my projects!
-                    </h1>
+                    </h2>
                     <Projects />
                 </section>
             </main>
