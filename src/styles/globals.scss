@@ -6,6 +6,23 @@ html {
     scroll-behavior: smooth;
 }
 
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+section {
+    overflow-wrap: break-word;
+    scroll-margin-top: 3rem;
+}
+
 .visible-hidden {
     clip: rect(1px, 1px, 1px, 1px);
     height: 1px;
@@ -13,6 +30,7 @@ html {
     position: absolute;
     white-space: nowrap;
     width: 1px;
+
     &:focus {
         clip: auto;
         height: auto;
@@ -25,6 +43,7 @@ html {
 header {
     transition: box-shadow 0.2s ease-out;
     z-index: 100;
+
     &.scrolled {
         box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
     }
