@@ -13,8 +13,6 @@ const Home: NextPage = () => {
             <Head>
                 <title>Tsuni!</title>
             </Head>
-
-            <Script src="https://net.tsuni.dev/js/pls.js" />
             <main className="text-black dark:text-white">
                 <section
                     id="home"
