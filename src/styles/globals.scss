@@ -33,3 +33,8 @@ header {
 #__next {
     position: relative;
 }
+
+.noAnimate * {
+    scroll-behavior: auto;
+    animation-duration: 0s !important;
+}

@@ -3,7 +3,7 @@ import Script from "next/script";
 
 export default function Document() {
     return (
-        <Html lang="en">
+        <Html lang="en" id="html" className="noAnimate">
             <Head>
                 <meta
                     name="viewport"
@@ -13,6 +13,13 @@ export default function Document() {
             </Head>
             <body>
                 <Script src="/theme.js" strategy="beforeInteractive" />
+                <Script
+                    src="https://net.tsuni.dev/js/pls.js"
+                    strategy="afterInteractive"
+                />
+                <Script id="remove-loading" strategy="afterInteractive">
+                    {`document.documentElement.classList.remove('noAnimate')`}
+                </Script>
                 <Main />
                 <NextScript />
             </body>
