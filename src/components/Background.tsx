@@ -21,11 +21,11 @@ export default function Background() {
             <div className={`absolute inset-0 dark:opacity-0 transition-opacity bg-gradient-to-r from-pink-200 to-violet-300`} />
 
             <div
-                style={{ backgroundPositionY: `${scrollY / 4}px` }}
-                className={`w-full h-full absolute transition-opacity opacity-30 dark:opacity-80 ${styles.camo}`}
+                style={{ ["--scrollY" as any]: `${Math.round(scrollY / 4) % 376}px` }}
+                className={`transition-opacity opacity-30 dark:opacity-80 ${styles.camo}`}
             />
             <div
-                style={{ backgroundPositionY: `${scrollY / 2}px` }}
+                style={{ ["--scrollY" as any]: `${Math.round(scrollY / 2) % 376}px` }}
                 className={`w-full h-full absolute dark:opacity-50 ${styles.dots}`}
             />
         </div>

@@ -4,10 +4,16 @@
 
 .dots {
     background-repeat: repeat;
+    transform: translateY(var(--scrollY));
     background: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23746887' fill-opacity='0.15' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 .camo {
+    width: calc(100% + 376px);
+    height: calc(100% + 376px);
+    position: absolute;
+    right: 0;
+    top: 0;
     background-repeat: repeat;
     background: url("/images/bg-camo.png");
     animation: 20s flow-background-camo linear infinite;
@@ -15,10 +21,10 @@
 
 @keyframes flow-background-camo {
     0% {
-        background-position-x: 0px;
+        transform: translateX(0px) translateY(var(--scrollY));
     }
 
     100% {
-        background-position-x: 376px;
+        transform: translateX(376px) translateY(var(--scrollY));
     }
 }
