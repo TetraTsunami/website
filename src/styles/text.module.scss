@@ -30,7 +30,7 @@
   }
 }
 
-@for $i from 0 through 5 {
+@for $i from 0 through 6 {
   .pastelTextHover-#{$i} {
     transition: color 0.2s ease-in-out;
 

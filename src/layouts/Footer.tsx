@@ -1,4 +1,4 @@
-import { faCodepen, faDiscord, faGithub, faTwitch, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faCodepen, faDiscord, faGithub, faMastodon, faTwitch, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import IconButtonRow1 from "../components/IconButtonRow1";
 import NowPlayingText from "../components/NowPlayingText";
@@ -24,7 +24,7 @@ export default function Footer() {
                         {
                             icon: faDiscord,
                             href: "https://discord.gg/j7yUFW9ERu",
-                            title: "Tsuni#0001",
+                            title: "Tsuni#0849",
                         },
                         {
                             icon: faGithub,
@@ -40,6 +40,12 @@ export default function Footer() {
                             icon: faTwitter,
                             href: "https://twitter.com/TetraJump",
                             title: "Twitter",
+                        },
+                        {
+                            icon: faMastodon,
+                            rel: "me",
+                            href: "https://social.vivaldi.net/@tsuni",
+                            title: "Mastodon"
                         },
                         {
                             icon: faTwitch,

@@ -6,6 +6,7 @@ import textStyles from "../styles/text.module.scss";
 
 interface IconButtonRowProps {
     icon: IconDefinition;
+    rel?: string;
     href: string;
     title: string;
 }
@@ -33,6 +34,7 @@ export default function IconButtonRowLg({
                 <li key={index} className="relative text-center">
                     <Tippy content={button.title} singleton={target}>
                         <a
+                            rel={button.rel}
                             href={button.href}
                             className={`px-3 py-2 ${
                                 textStyles["pastelTextHover-" + index]
