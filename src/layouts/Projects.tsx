@@ -3,6 +3,7 @@ import ProjectCard from "../components/cards/ProjectCard";
 import GridDivider from "../components/util/GridDivider";
 import {
     cricket_chat,
+    fcc_datavis,
     fcc_frontend,
     fcc_js,
     fcc_webdesign,
@@ -53,6 +54,12 @@ export default function Projects() {
                 certUrl="https://www.freecodecamp.org/certification/Tsuni/front-end-development-libraries"
                 collectionUrl="https://codepen.io/collection/zxdedJ"
                 imageUrl={fcc_frontend}
+            />
+            <CertCard
+                name="Data Visualization"
+                certUrl="https://www.freecodecamp.org/certification/Tsuni/data-visualization"
+                collectionUrl="https://codepen.io/collection/GoOPLo"
+                imageUrl={fcc_datavis}
             />
         </div>
     );
