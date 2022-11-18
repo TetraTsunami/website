@@ -17,11 +17,11 @@ export default function ProjectCard({ name, href, imageUrl, description, year }:
                     alt={name}
                     layout="fill"
                     objectFit="cover"
-                    className="bg-pink-200 dark:bg-gray-900"
+                    className="bg-pink-200 dark:bg-gray-900 group-hover:scale-105 duration-1000"
                 />
                 <div
-                    className="py-6 h-full w-4/5 mx-auto group-hover:w-full group-hover:px-6 flex flex-col justify-center 
-                bg-white/50 group-hover:bg-white/90 dark:bg-black/50 dark:group-hover:bg-black/90
+                    className="py-6 h-full mx-auto group-hover:w-full group-hover:px-6 flex flex-col justify-center 
+                bg-white/75 group-hover:bg-white/90 dark:bg-black/75 dark:group-hover:bg-black/90
                 shadow-lg relative top-full -translate-y-5 group-hover:-translate-y-full rounded-lg will-change-transform motion-safe:duration-500"
                 >
                     <span className="absolute top-0 right-5 italic text-sm font-semibold align-top text-left text-gray-900 dark:text-white">
