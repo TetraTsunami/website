@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import HistoryGrid from "../components/HistoryGrid";
 import NowPlayingDetail from "../components/NowPlayingDetail";
 import textStyles from "../styles/text.module.scss";
 
@@ -37,6 +38,10 @@ const Media: NextPage = () => {
                 <section className="flex flex-col items-center justify-center p-8 container mx-auto">
                     <h2 className="text-4xl mb-8">Now Playing</h2>
                     <NowPlayingDetail />
+                </section>
+                <section className="flex flex-col items-center justify-center p-8 container mx-auto">
+                    <h2 className="text-4xl mb-8">Recently Played</h2>
+                    <HistoryGrid />
                 </section>
             </main>
         </>
