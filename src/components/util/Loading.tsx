@@ -12,12 +12,12 @@ export default function Loading({
         <div
             className={
                 (className || "w-full h-full") +
-                " bg-gray-300 flex justify-center items-center rounded-xl"
+                " flex justify-center items-center rounded-xl"
             }
         >
             <FontAwesomeIcon
                 icon={icon}
-                className="animate-pulse text-3xl m-2 text-gray-500"
+                className="text-3xl animate-spin m-2 text-gray-500/50"
             />
         </div>
     );

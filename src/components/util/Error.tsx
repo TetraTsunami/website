@@ -6,7 +6,7 @@ export default function Error({ className }: { className?: string }) {
         <div
             className={
                 (className || "w-full h-full") +
-                " bg-red-300 flex justify-center items-center rounded-xl"
+                " bg-red-300/50 flex justify-center items-center rounded-xl"
             }
         >
             <FontAwesomeIcon

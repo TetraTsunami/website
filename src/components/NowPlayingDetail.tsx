@@ -65,14 +65,14 @@ export default function NowPlayingDetail() {
     
     if (error) return <Error className="w-96 h-48" />;
     if (!data)
-        return <Loading icon={faMusic} className="w-96 h-64 rounded-xl" />;
+        return <Loading icon={faMusic} className="w-96 h-48 rounded-xl" />;
     
     if (elapsed > +activity.duration && !isValidating) {
         // The duration has ended, so we need to refresh the data
         mutate();
     }
     return (
-        <div className="w-96 h-48 dark:text-white">
+        <div className="w-96 h-48 dark:text-white animate-fade-up">
             <div className="mb-2 clear-both">
                 <FontAwesomeIcon
                     icon={faChevronCircleRight}
@@ -99,7 +99,7 @@ export default function NowPlayingDetail() {
                     <FontAwesomeIcon icon={faPause} />
                 </div>
             )}
-            <div className="max-h-24 overflow-auto scrollbar">
+            <div className="min-h-24 max-h-26 overflow-auto">
                 <h1 className="text-lg">{activity.title || "Not Playing"}</h1>
                 <p className="text-gray-600 dark:text-gray-400">
                     {activity.artist || ""}
