@@ -9,7 +9,7 @@ interface IconButtonRowProps {
     href: string;
     title: string;
 }
-
+const fadeUpDelay = (i: number) => ({ animationDelay: i * 0.1 + 0.3 + "s" });
 export default function IconButtonRowLg({
     buttons,
     startingFade
@@ -38,10 +38,9 @@ export default function IconButtonRowLg({
                         <a
                             href={button.href}
                             className={`px-3 py-2 ${
-                                textStyles[
-                                    "animateFadeUp-" + (index + startingFade)
-                                ]
-                            }`}
+                                textStyles["animateFadeUp"]
+                                }`}
+                            style={fadeUpDelay(index + startingFade)}
                         >
                             <FontAwesomeIcon
                                 icon={button.icon}

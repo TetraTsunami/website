@@ -7,6 +7,7 @@ import IconButtonRow2 from "../components/IconButtonRow2";
 import Projects from "../layouts/Projects";
 import textStyles from "../styles/text.module.scss";
 
+const fadeUpDelay = (i: number) => ({ animationDelay: i * 0.1 + 0.3 + "s"})
 const Home: NextPage = () => {
     return (
         <>
@@ -20,21 +21,21 @@ const Home: NextPage = () => {
                     container mx-auto relative text-center"
                 >
                     <h2 className="text-4xl font-semibold">
-                        <span className={textStyles["animateFadeUp-1"]}>
+                        <span className={textStyles["animateFadeUp"]} style={fadeUpDelay(0)}>
                             Hello
                         </span>{" "}
-                        <span className={textStyles["animateFadeUp-2"]}>
+                        <span className={textStyles["animateFadeUp"]} style={fadeUpDelay(1)}>
                             world!
                         </span>
                     </h2>
                     <h1 className={`text-8xl font-extrabold text-transparent ${textStyles.gradientTitleText}`}>
                         <span
-                            className={textStyles["animateFadeUp-5"]}
+                            className={textStyles["animateFadeUp"]} style={fadeUpDelay(5)}
                         >
                             I{"'"}m
                         </span>{" "}
                         <span
-                            className={textStyles["animateFadeUp-6"]}
+                            className={textStyles["animateFadeUp"]} style={fadeUpDelay(6)}
                         >
                             Tsuni!
                         </span>

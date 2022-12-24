@@ -52,13 +52,14 @@
   }
 }
 
-@for $i from 0 through 19 {
-  .animateFadeUp-#{$i} {
-    opacity: 0;
-    display: inline-block;
-    animation: fadeUp 0.3s cubic-bezier(.34, 0, .44, 1.76) #{$i * 0.1 + 0.3}s forwards;
-  }
+// @for $i from 0 through 19 {
+.animateFadeUp {
+  opacity: 0;
+  display: inline-block;
+  animation: fadeUp 0.3s cubic-bezier(.34, 0, .44, 1.76) forwards;
 }
+
+// } #{$i * 0.1 + 0.3}s
 
 @keyframes fadeUp {
   from {
