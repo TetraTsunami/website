@@ -95,7 +95,7 @@ export default function NowPlayingDetail() {
                     />
                 </picture>
             ) : (
-                <div className="float-left bg-gray-400 w-24 h-24 mr-2 flex justify-center items-center rounded-lg">
+                <div className="float-left bg-violet-300/50 w-24 h-24 mr-2 flex justify-center items-center rounded-lg">
                     <FontAwesomeIcon icon={faPause} />
                 </div>
             )}
@@ -116,7 +116,7 @@ export default function NowPlayingDetail() {
                 <StyledProgress1
                     value={elapsed}
                     max={activity.duration || 1}
-                    indeterminate={(isValidating) ? true : false}
+                    indeterminate={isValidating ? true : false}
                 />
             </div>
         </div>

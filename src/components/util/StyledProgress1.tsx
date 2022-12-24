@@ -18,9 +18,9 @@ export default function StyledProgress1({
     };
 
     return (
-        <div className="rounded-full h-1 w-full bg-gray-500 dark:bg-black relative overflow-hidden">
+        <div className="rounded-full h-1 w-full bg-gray-300/50 dark:bg-black/50 relative overflow-hidden">
             <div
-                className={`rounded-full bg-white dark:bg-violet-300 absolute left-0 top-0 bottom-0 ease-linear origin-left transition-transform ${
+                className={`rounded-full bg-purple-400 dark:bg-violet-300 absolute left-0 top-0 bottom-0 ease-linear origin-left transition-transform ${
                     indeterminate ? styles.indeterminate : undefined
                 }`}
                 style={indeterminate ? undefined : style}
