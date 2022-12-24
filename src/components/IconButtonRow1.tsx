@@ -36,9 +36,9 @@ export default function IconButtonRowLg({
                         <a
                             rel={button.rel}
                             href={button.href}
-                            className={`px-3 py-2 ${
-                                textStyles["pastelTextHover-" + index]
-                            }`}
+                            className={`px-3 py-2 ${textStyles["pastelTextHover"]
+                                }`}
+                            style={{ "--data-degree": index * 360/buttons.length} as React.CSSProperties}
                         >
                             <FontAwesomeIcon
                                 icon={button.icon}
