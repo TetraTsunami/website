@@ -51,16 +51,16 @@ export default function NowPlayingText() {
                                 />
                             </picture>
                             <div className="flex flex-col my-2 h-20 text-left flex-shrink whitespace-nowrap overflow-hidden">
-                                <h1 className="text-md overflow-hidden overflow-ellipsis">
+                                <h1 className="text-md min-w-0 overflow-hidden overflow-ellipsis ">
                                     {item.parent}
                                 </h1>
-                                <p className="text-sm text-gray-600 dark:text-gray-400 overflow-hidden overflow-ellipsis">
+                                <p className="text-sm min-w-0 text-gray-600 dark:text-gray-400 overflow-hidden overflow-ellipsis">
                                     {item.artist}
                                 </p>
                             </div>
                             <div className="flex-grow" />
-                            <div className="justify-self-end h-7 w-7 m-2 rounded-lg bg-violet-400 flex justify-center items-center">
-                                <p>{duplicateAlbumCount}</p>
+                            <div className="h-7 aspect-square m-2 rounded-lg bg-violet-400 flex justify-center items-center">
+                                {duplicateAlbumCount}
                             </div>
                         </div>
                     );
@@ -90,10 +90,10 @@ export default function NowPlayingText() {
                                 <h1 className="text-md overflow-hidden overflow-ellipsis">
                                     {item.title}
                                 </h1>
-                                <p className="text-sm text-gray-600 dark:text-gray-400 overflow-hidden overflow-ellipsis">
+                                <p className="text-sm text-gray-600 dark:text-gray-400 min-w-0 overflow-hidden overflow-ellipsis">
                                     {item.artist}
                                 </p>
-                                <p className="text-sm text-gray-500 w-full  overflow-hidden overflow-ellipsis">
+                                <p className="text-sm text-gray-500 min-w-0 overflow-hidden overflow-ellipsis">
                                     {item.parent}
                                 </p>
                             </div>
