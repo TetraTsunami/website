@@ -36,8 +36,8 @@ export default function NowPlayingText() {
     if (error) return <Error className="w-96" />;
     if (!data) return <Loading icon={faMusic} className="w-96" />;
     return (
-        <Link href="/media" passHref className="m-2 mx-4">
-            <a className="hover:underline">
+        <Link href="/media" passHref>
+            <a className="hover:underline m-2 mx-4 flex">
                 <FontAwesomeIcon
                     icon={faChevronCircleRight}
                     className="inline text-orange-400"

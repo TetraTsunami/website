@@ -32,6 +32,20 @@ module.exports = {
         plugin(({ matchUtilities, theme }) => {
             matchUtilities(
                 {
+                    "grid-cols-flow": (value) => {
+                        return {
+                            "grid-template-columns": `repeat(auto-fill, minmax(${value}, 1fr))`,
+                        };
+                    },
+                },
+                {
+                    values: theme("width"),
+                }
+            );
+        }),
+        plugin(({ matchUtilities, theme }) => {
+            matchUtilities(
+                {
                     "animation-delay": (value) => {
                         return {
                             "animation-delay": value,
@@ -43,28 +57,31 @@ module.exports = {
                 }
             );
         }),
-        plugin(({ matchUtilities, theme }) => {
-            matchUtilities(
-                {
-                    "animation-fill": (value) => {
-                        return {
-                            "animation-fill-mode": value,
-                        };
+        plugin(
+            ({ matchUtilities, theme }) => {
+                matchUtilities(
+                    {
+                        "animation-fill": (value) => {
+                            return {
+                                "animation-fill-mode": value,
+                            };
+                        },
+                    },
+                    {
+                        values: theme("animationFillMode"),
+                    }
+                );
+            },
+            {
+                theme: {
+                    animationFillMode: {
+                        none: "none",
+                        forward: "forwards",
+                        backward: "backwards",
+                        both: "both",
                     },
                 },
-                {
-                    values: theme('animationFillMode'),
-                }
-            );
-        }, {
-            theme: {
-                animationFillMode: {
-                    'none': 'none',
-                    'forward': 'forwards',
-                    'backward': 'backwards',
-                    'both': 'both',
-                }
             }
-        }),
+        ),
     ],
 };
