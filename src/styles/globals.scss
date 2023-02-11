@@ -66,3 +66,7 @@ header {
 .noAnimate * {
     animation-duration: 0s !important;
 }
+
+:focus-visible {
+    @apply outline outline-2 outline-purple-400;
+}

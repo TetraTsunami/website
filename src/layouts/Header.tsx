@@ -2,8 +2,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import DarkToggle from "../components/DarkToggle";
+import NowPlayingIcon from "../components/NowPlayingIcon";
 
-function PageLink({ name, href }: { name: string; href: string }) {
+function PageLink({ name, href, children }: { name: string; href: string; children?: any }) {
     const router = useRouter();
     const isActive = router.pathname === href;
 
@@ -14,6 +15,7 @@ function PageLink({ name, href }: { name: string; href: string }) {
                     isActive ? "bg-gray-400/25" : ""
                 }`}
             >
+                {children}
                 {name}
             </a>
         </Link>
@@ -55,7 +57,10 @@ export default function Header() {
                             <PageLink name="Home" href="/" />
                         </li>
                         <li className="m-5">
-                            <PageLink name="Media" href="/media" />
+                            
+                            <PageLink name="Media" href="/media">
+                                <NowPlayingIcon />
+                            </PageLink>
                         </li>
                     </ul>
                 </nav>
