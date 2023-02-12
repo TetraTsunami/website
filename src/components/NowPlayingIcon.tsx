@@ -29,9 +29,9 @@ export default function NowPlayingIcon() {
     const { data, error } = useSWR("/api/nowplaying", fetcher);
     const activity = data as Activity;
 
-    if (error) return;
-    if (!data) return;
-    if (!activity.isPlaying) return;
+    if (error) return <></>;
+    if (!data) return <></>;
+    if (!activity.isPlaying) return <></>;
     return (
         <FontAwesomeIcon
             icon={faPlay}

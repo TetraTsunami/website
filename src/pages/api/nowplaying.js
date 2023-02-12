@@ -23,7 +23,7 @@ export default async function handler(req, res) {
         elapsed = session.view_offset,
         duration = session.duration,
         title = session.title,
-        artist = session.original_title || session.grandparent_title || "", // original_title and grandparent_title's values fluctuate depending on the type of media and its organization. Original_title is usually more descriptive.
+        artist = session.grandparent_title || "", // original_title and grandparent_title's values fluctuate depending on the type of media and its organization.
         parent = session.parent_title,
         imageUrl =
             baseUrl +
