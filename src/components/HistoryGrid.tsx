@@ -36,9 +36,7 @@ export default function NowPlayingText() {
                             key={item.title}
                             className="dark:bg-gray-900/75 bg-gray-200/50 rounded-lg border-t-white/20 border-t-2 flex animate-fade-up animation-fill-backward"
                             style={{
-                                animationDelay: `${
-                                    (index - (index % 2)) * 0.05
-                                }s`,
+                                animationDelay: `${totalNonDuplicate * 0.05}s`,
                             }}
                         >
                             <picture className="float-left m-2 flex-shrink-0">
@@ -72,9 +70,7 @@ export default function NowPlayingText() {
                             key={item.title}
                             className="dark:bg-gray-900/75 bg-gray-200/50 rounded-lg border-t-white/20 border-t-2 flex animate-fade-up animation-fill-backward"
                             style={{
-                                animationDelay: `${
-                                    (index - (index % 2)) * 0.05
-                                }s`,
+                                animationDelay: `${totalNonDuplicate * 0.05}s`,
                             }}
                         >
                             <picture className="float-left m-2 flex-shrink-0">
