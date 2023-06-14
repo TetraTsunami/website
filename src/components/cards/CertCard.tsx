@@ -15,7 +15,7 @@ export default function CertCard({
     imageUrl: string | StaticImageData;
 }) {
     return (
-        <div className="relative group hover:z-10 border-4 border-grey-300 rounded-xl w-full hover:outline outline-4 outline-violet-600 shadow-xl transition-transform duration-200 hover:scale-105">
+        <div className="relative group hover:z-10 border-4 border-grey-300 rounded-xl w-full focus-within:outline hover:outline outline-4 outline-violet-600 shadow-xl transition-transform duration-200 hover:scale-105">
             <a href={certUrl}>
                 <Image
                     src={imageUrl}
@@ -23,13 +23,18 @@ export default function CertCard({
                     width="1140"
                     height="886"
                     layout="responsive"
-                    className="rounded-md bg-pink-200 dark:bg-gray-900"
+                    className="rounded-md bg-pink-200 dark:bg-gray-900 object-cover"
                 />
             </a>
+            <div className="absolute bottom-0 left-0 right-0  bg-white/75 dark:bg-black/75 shadow-lg text-ellipsis overflow-hidden whitespace-nowrap">
+                <span className="text-sm text-gray-900 dark:text-white">
+                    {name}
+                </span>
+            </div>
             {collectionUrl && (
                 <a
                     href={collectionUrl}
-                    className="absolute bottom-3 right-3 rounded-full shadow-xl"
+                    className="absolute bottom-6 right-3 rounded-full shadow-xl"
                 >
                     <FontAwesomeIcon
                         icon={faCodepen}

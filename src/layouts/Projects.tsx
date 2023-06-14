@@ -3,11 +3,13 @@ import ProjectCard from "../components/cards/ProjectCard";
 import GridDivider from "../components/util/GridDivider";
 import {
     cricket_chat,
+    fcc_backend,
     fcc_datavis,
     fcc_frontend,
     fcc_js,
     fcc_webdesign,
     mnfc2,
+    pcep_entry,
     port_website
 } from "../images";
 
@@ -60,6 +62,16 @@ export default function Projects() {
                 certUrl="https://www.freecodecamp.org/certification/Tsuni/data-visualization"
                 collectionUrl="https://codepen.io/collection/GoOPLo"
                 imageUrl={fcc_datavis}
+            />
+            <CertCard
+                name="Back End Development and APIs"
+                certUrl="https://www.freecodecamp.org/certification/Tsuni/back-end-development-and-apis"
+                imageUrl={fcc_backend}
+            />
+            <CertCard
+                name="Entry-Level Python Programmer"
+                certUrl="https://verify.openedg.org/?id=EncZ.NczL.Z1mc"
+                imageUrl={pcep_entry}
             />
         </div>
     );
