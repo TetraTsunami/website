@@ -27,7 +27,7 @@ export default function Projects() {
 
             <ProjectCard
                 name="Mark Neumann for Congress"
-                href="https://markneumannforcongress.com/"
+                href="https://web.archive.org/web/20221201032246/http://markneumannforcongress.com/"
                 imageUrl={mnfc2}
                 description="A Wordpress site for a local political campaign"
                 year="2022"
