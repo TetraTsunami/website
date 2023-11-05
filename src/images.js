@@ -7,4 +7,4 @@ export { default as mnfc2 } from "../public/images/mnfc2.jpg";
 export { default as port_website } from "../public/images/port_website.png";
 export { default as fcc_backend } from "../public/images/fcc_cert_backend.png";
 export { default as pcep_entry } from "../public/images/pcep_entry.png";
-
+export { default as logo } from "../public/images/reallogo.png";
