@@ -1,4 +1,4 @@
-import { faDiscord } from "@fortawesome/free-brands-svg-icons";
+import {faDiscord, faGithub} from "@fortawesome/free-brands-svg-icons";
 import { faChevronDown, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { NextPage } from "next";
@@ -49,9 +49,9 @@ const Home: NextPage = () => {
                                 title: "tsuni@tsuni.dev",
                             },
                             {
-                                icon: faDiscord,
-                                href: "https://discord.gg/j7yUFW9ERu",
-                                title: "Tsuni#0001",
+                                icon: faGithub,
+                                href: "https://github.com/TetraTsunami",
+                                title: "TetraTsunami",
                             },
                         ]}
                         startingFade={9}

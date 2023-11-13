@@ -10,7 +10,8 @@ import {
     fcc_webdesign,
     mnfc2,
     pcep_entry,
-    port_website
+    port_website,
+    cheese,
 } from "../images";
 
 export default function Projects() {
@@ -38,6 +39,13 @@ export default function Projects() {
                 imageUrl={port_website}
                 description="The website you're currently on! Built with Next.js, Tailwind CSS, and TypeScript."
                 year="2022"
+            />
+            <ProjectCard
+                name="The Gouda Times"
+                href="https://gouda.tsuni.dev"
+                imageUrl={cheese}
+                description="A website with cheesey articles based on the New York Times. My project for CheeseHacks 2023, a hackathon hosted by UW-Madison."
+                year="2023"
             />
             <GridDivider name="Certifications" />
             <CertCard

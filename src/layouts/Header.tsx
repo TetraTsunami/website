@@ -68,7 +68,7 @@ export default function Header() {
                         <li className="m-5">
                             <PageLink name="Home" href="/" />
                         </li>
-                        <li className="m-5">
+                        <li className="m-5 w-max">
                             <PageLink name="Media" href="/media">
                                 <NowPlayingIcon />
                             </PageLink>
