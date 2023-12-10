@@ -1,8 +1,8 @@
-/** @type {import('tailwindcss').Config} */
-const defaultTheme = require("tailwindcss/defaultTheme");
-const plugin = require("tailwindcss/plugin");
+import type { Config } from 'tailwindcss'
+import defaultTheme from "tailwindcss/defaultTheme";
+import plugin from "tailwindcss/plugin";
 
-module.exports = {
+const config: Config = {
     content: ["./src/**/*.{js,ts,jsx,tsx}"],
     darkMode: "class",
     theme: {
@@ -29,10 +29,10 @@ module.exports = {
         },
     },
     plugins: [
-        plugin(({ matchUtilities, theme }) => {
+        plugin(({ matchUtilities, theme }: { matchUtilities: any, theme: any}) => {
             matchUtilities(
                 {
-                    "grid-cols-flow": (value) => {
+                    "grid-cols-flow": (value: any) => {
                         return {
                             "grid-template-columns": `repeat(auto-fill, minmax(${value}, 1fr))`,
                         };
@@ -43,10 +43,10 @@ module.exports = {
                 }
             );
         }),
-        plugin(({ matchUtilities, theme }) => {
+        plugin(({ matchUtilities, theme }: { matchUtilities: any, theme: any}) => {
             matchUtilities(
                 {
-                    "animation-delay": (value) => {
+                    "animation-delay": (value: any) => {
                         return {
                             "animation-delay": value,
                         };
@@ -58,10 +58,10 @@ module.exports = {
             );
         }),
         plugin(
-            ({ matchUtilities, theme }) => {
+            ({ matchUtilities, theme }: { matchUtilities: any, theme: any}) => {
                 matchUtilities(
                     {
-                        "animation-fill": (value) => {
+                        "animation-fill": (value: any) => {
                             return {
                                 "animation-fill-mode": value,
                             };
@@ -85,3 +85,4 @@ module.exports = {
         ),
     ],
 };
+export default config;

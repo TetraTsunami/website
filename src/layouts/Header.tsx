@@ -19,15 +19,11 @@ function PageLink({
     const isActive = router.pathname === href;
 
     return (
-        <Link href={href} passHref>
-            <a
-                className={`hover:bg-gray-300 dark:hover:bg-gray-600 p-3 rounded-xl transition-colors ${
-                    isActive ? "bg-gray-400/25" : ""
-                }`}
-            >
-                {children}
-                {name}
-            </a>
+        <Link href={href} className={`hover:bg-gray-300 dark:hover:bg-gray-600 p-3 rounded-xl transition-colors ${
+            isActive ? "bg-gray-400/25" : ""
+        }`} passHref>
+            {children}
+            {name}
         </Link>
     );
 }
@@ -55,11 +51,9 @@ export default function Header() {
     return (
         <header className="backdrop-blur-md bg-white dark:bg-gray-900 text-white p-3 fixed top-0 left-0 right-0">
             <div className="container mx-auto flex flex-row flex-wrap sm:flex-nowrap justify-between items-center pt-4 sm:h-12 sm:pt-0 px-4 text-black dark:text-white">
-                <div className="h-full p-0 w-full">
+                <div className="p-0">
                     <Link href="/" passHref>
-                        <a className="hover:underline">
-                            <img src="/images/reallogo.png" alt="Tsuni logo" className="h-full"/>
-                        </a>
+                        <Image src={logo} alt="Tsuni logo" className="max-w-[50%]" />
                     </Link>
                 </div>
                 <div className="flex-grow" />
