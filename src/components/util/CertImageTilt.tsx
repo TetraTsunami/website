@@ -1,4 +1,4 @@
-import Image, { StaticImageData } from 'next/image';
+import Image, { StaticImageData } from "next/legacy/image";
 import ReactTilt from 'react-universal-tilt';
 
 export default function CertImageTilt({

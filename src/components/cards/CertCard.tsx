@@ -1,7 +1,7 @@
 import { SizeProp } from "@fortawesome/fontawesome-svg-core";
 import { faCodepen } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image, { StaticImageData } from "next/image";
+import Image, { StaticImageData } from "next/legacy/image";
 
 export default function CertCard({
     name,

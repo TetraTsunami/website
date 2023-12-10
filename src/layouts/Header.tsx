@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import DarkToggle from "../components/DarkToggle";
 import NowPlayingIcon from "../components/NowPlayingIcon";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { logo } from "../images";
 
 function PageLink({
