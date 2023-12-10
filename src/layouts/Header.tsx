@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import DarkToggle from "../components/DarkToggle";
 import NowPlayingIcon from "../components/NowPlayingIcon";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { logo } from "../images";
 
 function PageLink({
@@ -19,7 +19,7 @@ function PageLink({
     const isActive = router.pathname === href;
 
     return (
-        <Link href={href} className={`hover:bg-gray-300 dark:hover:bg-gray-600 p-3 rounded-xl transition-colors ${
+        <Link href={href} className={`hover:bg-gray-300 dark:hover:bg-gray-600 h-9 p-2 rounded-md transition-colors ${
             isActive ? "bg-gray-400/25" : ""
         }`} passHref>
             {children}
@@ -49,20 +49,27 @@ export default function Header() {
     });
 
     return (
-        <header className="backdrop-blur-md bg-white dark:bg-gray-900 text-white p-3 fixed top-0 left-0 right-0">
-            <div className="container mx-auto flex flex-row flex-wrap sm:flex-nowrap justify-between items-center pt-4 sm:h-12 sm:pt-0 px-4 text-black dark:text-white">
-                <div className="p-0">
+        <header className="backdrop-blur-md bg-white dark:bg-gray-900 text-white p-3 fixed top-0 left-0 right-0 h-fit">
+            <div className="container h-fit mx-auto flex flex-row justify-between items-center
+            flex-wrap sm:flex-nowrap 
+            pt-0 px-4
+            text-black dark:text-white">
+                <div className="p-0 h-full">
                     <Link href="/" passHref>
-                        <Image src={logo} alt="Tsuni logo" className="max-w-[50%]" />
+                        <Image
+                            src={logo}
+                            alt="Tsuni logo"
+                            className="h-12 w-auto aspect-auto"
+                            />
                     </Link>
                 </div>
                 <div className="flex-grow" />
                 <nav>
                     <ul className="flex flex-row items-center justify-around">
-                        <li className="m-5">
+                        <li className="m-2">
                             <PageLink name="Home" href="/" />
                         </li>
-                        <li className="m-5 w-max">
+                        <li className="m-2 w-max">
                             <PageLink name="Media" href="/media">
                                 <NowPlayingIcon />
                             </PageLink>

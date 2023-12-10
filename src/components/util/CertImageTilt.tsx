@@ -1,4 +1,4 @@
-import Image, { StaticImageData } from "next/legacy/image";
+import Image, { StaticImageData } from "next/image";
 import ReactTilt from 'react-universal-tilt';
 
 export default function CertImageTilt({
@@ -24,9 +24,12 @@ export default function CertImageTilt({
                 alt={name}
                 width="1140"
                 height="886"
-                layout="responsive"
                 className="rounded-md"
-            />
+                sizes="100vw"
+                style={{
+                    width: "100%",
+                    height: "auto"
+                }} />
         </ReactTilt>
     );
 }

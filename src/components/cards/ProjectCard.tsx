@@ -1,4 +1,4 @@
-import Image, { StaticImageData } from "next/legacy/image";
+import Image, { StaticImageData } from "next/image";
 
 type ProjectCardProps = {
     name: string;
@@ -21,10 +21,9 @@ export default function ProjectCard({
                 <Image
                     src={imageUrl}
                     alt={name}
-                    layout="fill"
-                    objectFit="cover"
-                    className="bg-pink-200 dark:bg-gray-900 group-hover:scale-105 duration-1000"
-                />
+                    className="bg-pink-200 dark:bg-gray-900 group-hover:scale-105 duration-1000 object-cover"
+                    fill
+                    sizes="100vw" />
                 <div
                     className="py-6 h-full mx-auto w-full px-6 flex flex-col justify-center 
                 bg-white/75 group-hover:bg-white/90 dark:bg-black/75 dark:group-hover:bg-black/90

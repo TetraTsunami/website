@@ -22,18 +22,16 @@ export default function DarkToggle() {
     }
 
     return (
-        <div className="flex justify-center items-center">
-            <button
-                className="w-9 h-9 p-2 m-4 rounded-md flex items-center justify-center 
-                bg-gray-200 text-black 
-                dark:bg-gray-700 dark:text-white
-                transition-colors
-                hover:outline outline-2 outline-violet-400"
-                onClick={toggleDark}
-            >
-                <FontAwesomeIcon icon={isDark ? faMoon : faSun} />
-                <p className="visible-hidden">Toggle dark mode</p>
-            </button>
-        </div>
+        <button
+            className="w-9 h-9 p-2 m-2 rounded-md flex items-center justify-center 
+            bg-gray-200 text-black 
+            dark:bg-gray-700 dark:text-white
+            transition-colors
+            hover:outline outline-2 outline-violet-400"
+            onClick={toggleDark}
+        >
+            <FontAwesomeIcon icon={isDark ? faMoon : faSun} />
+            <p className="visible-hidden">Toggle dark mode</p>
+        </button>
     );
 }
