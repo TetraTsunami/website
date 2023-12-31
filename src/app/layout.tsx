@@ -29,7 +29,9 @@ export default function RootLayout({
     return (
         <html lang="en" className={rubik.className}>
             <body className="text-content">
-                <Script src="/theme.js" strategy="beforeInteractive" />
+                {/*we need sync scripts so that the theme is loaded before the page is rendered*/}
+                {/*eslint-disable-next-line @next/next/no-sync-scripts*/ }
+                <script src="/theme.js" />
                 <Script id="remove-loading" strategy="afterInteractive">
                     {`document.documentElement.classList.remove('noAnimate')`}
                 </Script>
