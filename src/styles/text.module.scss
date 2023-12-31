@@ -1,9 +1,9 @@
 .terminal {
   position: relative;
-  --terminal-color: #7c3aed;
+  --terminal-color: theme('colors.violet.400');
 
   &:after {
-    content: ' |';
+    content: '|';
     font-weight: bolder;
     color: var(--terminal-color);
     animation: blink-caret step-end 1.5s infinite;
@@ -78,6 +78,6 @@
 .gradientTitleText span {
   background-clip: text;
   color: transparent;
-  background-image: linear-gradient(rgb(139, 92, 246),
-      rgb(109, 40, 217))
+  background-image: linear-gradient(theme('colors.violet.400'),
+      theme('colors.violet.500'));
 }

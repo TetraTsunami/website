@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    :root {
+        --color-bkg: 250deg 100% 98%; // violet-200
+        --color-content: 222deg 47% 11%; // slate-900
+        --color-accent: 255deg 92% 76%; // violet-400
+        &.dark {
+            --color-bkg: 222deg 47% 11%; // slate-900
+            --color-content: 210deg 40% 96%; //slate-100
+            --color-accent: 258deg 90% 66%; // violet-500
+        }
+    }
+}
+
 html {
     scroll-behavior: smooth;
 

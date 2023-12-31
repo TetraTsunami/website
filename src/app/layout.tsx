@@ -1,13 +1,13 @@
 import Background from "@/components/Background";
 import Footer from "@/layouts/Footer";
 import Header from "@/layouts/Header";
+import "@/styles/globals.scss";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import type { Viewport } from "next";
 import { Metadata } from "next";
-import { Rubik } from 'next/font/google';
+import { rubik } from "@/fonts/fonts";
 import Script from "next/script";
-import "@/styles/globals.scss";
 config.autoAddCss = false;
 
 export const metadata: Metadata = {
@@ -21,11 +21,6 @@ export const viewport: Viewport = {
     width: "device-width",
 };
 
-const rubik = Rubik({
-    subsets: ['latin'],
-    display: 'swap',
-  })
-
 export default function RootLayout({
     children,
 }: {
@@ -33,7 +28,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className={rubik.className}>
-            <body>
+            <body className="text-content">
                 <Script src="/theme.js" strategy="beforeInteractive" />
                 <Script id="remove-loading" strategy="afterInteractive">
                     {`document.documentElement.classList.remove('noAnimate')`}
