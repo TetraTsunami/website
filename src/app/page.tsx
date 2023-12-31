@@ -1,9 +1,9 @@
 import {faGithub} from "@fortawesome/free-brands-svg-icons";
 import { faChevronDown, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import IconButtonRow2 from "../components/IconButtonRow2";
-import Projects from "../layouts/Projects";
-import textStyles from "../styles/text.module.scss";
+import IconButtonRow2 from "@/components/IconButtonRow2";
+import Projects from "@/layouts/Projects";
+import textStyles from "@/styles/text.module.scss";
 
 const fadeUpDelay = (i: number) => ({ animationDelay: i * 0.1 + 0.3 + "s"})
 
