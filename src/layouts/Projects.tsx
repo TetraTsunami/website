@@ -9,7 +9,6 @@ import {
     fcc_js,
     fcc_webdesign,
     mnfc2,
-    pcep_entry,
     port_website,
     cheese,
 } from "../images";
@@ -55,7 +54,7 @@ export default function Projects() {
                 imageUrl={fcc_webdesign}
             />
             <CertCard
-                name="JavaScript Algorithms and Data Structures"
+                name="JS Algorithms and Data Structures"
                 certUrl="https://www.freecodecamp.org/certification/Tsuni/javascript-algorithms-and-data-structures"
                 imageUrl={fcc_js}
             />
@@ -75,11 +74,6 @@ export default function Projects() {
                 name="Back End Development and APIs"
                 certUrl="https://www.freecodecamp.org/certification/Tsuni/back-end-development-and-apis"
                 imageUrl={fcc_backend}
-            />
-            <CertCard
-                name="Entry-Level Python Programmer"
-                certUrl="https://verify.openedg.org/?id=EncZ.NczL.Z1mc"
-                imageUrl={pcep_entry}
             />
         </div>
     );

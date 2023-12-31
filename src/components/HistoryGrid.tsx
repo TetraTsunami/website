@@ -35,7 +35,7 @@ export default function NowPlayingText() {
                     return (
                         <div
                             key={item.title}
-                            className="flex animate-fade-up rounded-lg border-t-2 border-t-white/20 bg-gray-200/50 animation-fill-backward dark:bg-gray-900/75"
+                            className="flex animate-fade-up rounded-lg border-t-2 border-t-white/20 bg-bkg/75 animation-fill-backward"
                             style={{
                                 animationDelay: `${totalNonDuplicate * 0.05}s`,
                             }}
@@ -69,7 +69,7 @@ export default function NowPlayingText() {
                     return (
                         <div
                             key={item.title}
-                            className="flex animate-fade-up rounded-lg border-t-2 border-t-white/20 bg-gray-200/50 animation-fill-backward dark:bg-gray-900/75"
+                            className="flex animate-fade-up rounded-lg bg-bkg/80 shadow-i-sm animation-fill-backward"
                             style={{
                                 animationDelay: `${totalNonDuplicate * 0.05}s`,
                             }}

@@ -1,35 +1,45 @@
-import {faGithub} from "@fortawesome/free-brands-svg-icons";
-import { faChevronDown, faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import IconButtonRow2 from "@/components/IconButtonRow2";
 import Projects from "@/layouts/Projects";
 import textStyles from "@/styles/text.module.scss";
+import { neon } from "@/fonts/fonts";
 
-const fadeUpDelay = (i: number) => ({ animationDelay: i * 0.1 + 0.3 + "s"})
+const fadeUpDelay = (i: number) => ({ animationDelay: i * 0.1 + 0.3 + "s" });
 
 export default async function Home() {
     return (
-        <main className="text-black dark:text-white">
+        <main>
             <section
                 id="home"
-                className="container relative mx-auto flex h-screen flex-col items-center justify-center p-8 text-center"
+                className="container relative mx-auto mt-16 flex h-[70vh] flex-col items-center justify-center p-8 text-center"
             >
                 <h2 className="text-4xl font-semibold">
-                    <span className={textStyles["animateFadeUp"]} style={fadeUpDelay(0)}>
+                    <span
+                        className={textStyles["animateFadeUp"]}
+                        style={fadeUpDelay(0)}
+                    >
                         Hello
                     </span>{" "}
-                    <span className={textStyles["animateFadeUp"]} style={fadeUpDelay(1)}>
+                    <span
+                        className={textStyles["animateFadeUp"]}
+                        style={fadeUpDelay(1)}
+                    >
                         world!
                     </span>
                 </h2>
-                <h1 className={`text-8xl font-extrabold text-transparent ${textStyles.gradientTitleText}`}>
+                <h1
+                    className={`text-8xl font-extrabold text-transparent ${textStyles.gradientTitleText}`}
+                >
                     <span
-                        className={textStyles["animateFadeUp"]} style={fadeUpDelay(5)}
+                        className={textStyles["animateFadeUp"]}
+                        style={fadeUpDelay(5)}
                     >
                         I{"'"}m
                     </span>{" "}
                     <span
-                        className={textStyles["animateFadeUp"]} style={fadeUpDelay(6)}
+                        className={textStyles["animateFadeUp"]}
+                        style={fadeUpDelay(6)}
                     >
                         Tsuni!
                     </span>
@@ -39,8 +49,8 @@ export default async function Home() {
                     buttons={[
                         {
                             icon: faEnvelope,
-                            href: "mailto:tsuni@tsuni.dev",
-                            title: "tsuni@tsuni.dev",
+                            href: "mailto:tsuni@[this domain]",
+                            title: "tsuni@[this domain]",
                         },
                         {
                             icon: faGithub,
@@ -50,40 +60,35 @@ export default async function Home() {
                     ]}
                     startingFade={9}
                 />
-                <a id="scroll-hint" href="#about" className="absolute bottom-0 mb-8 animate-bounce-slow p-2">
-                    <FontAwesomeIcon icon={faChevronDown} />
-                </a>
             </section>
-            <section
-                id="about"
-                className="flex h-96 flex-col items-center justify-center bg-violet-200 p-8 dark:bg-slate-900"
-            >
-                <div className="container mx-auto">
+            <div className="container mx-auto mb-16 flex animate-fade-up flex-col gap-32 rounded-3xl bg-bkg/55 px-8 py-32 shadow-i-lg backdrop-blur-sm transition-colors animation-delay-700 animation-fill-backward">
+                <section id="about">
                     <h2
-                        className={`text-4xl font-semibold text-center ${textStyles.terminal}`}
+                        className={`text-3xl md:text-4xl font-semibold text-center ${textStyles.terminal} ${neon.className}`}
                     >
-                        Who am I?
+                        whois Tsuni
                     </h2>
-                    <p className={`mx-4 my-2 text-center text-lg`}>
-                        I{"'"}m a 18 year old self-taught developer from
-                        Wisconsin, USA. I{"'"}m currently working on a few
-                        projects, including this website, a Discord bot, and
-                        a Minecraft server.
+                    <p className="mx-auto my-2 max-w-prose text-center text-lg">
+                        Heya! I{"'"}m Tsuni, a 19 year old developer from Wisconsin, USA.
+                        I{"'"}m currently studying Computer Science,
+                        Statistics, and Game Design in my freshman year at
+                        UW-Madison. I{"'"}m a fan of hiking, mountain
+                        biking, programming, selfhosting, and games (both video and board flavors).
                     </p>
-                </div>
-            </section>
-            <section
-                id="projects"
-                className="container mx-auto my-32 flex flex-col items-center justify-center p-8"
-            >
-                <h2
-                    className={`text-3xl md:text-4xl leading-normal font-semibold text-gray-700 dark:text-slate-200
-                        ${textStyles.terminal}`}
+                </section>
+                <section
+                    id="projects"
+                    className="container mx-auto flex flex-col items-center justify-center"
                 >
-                    Check out my projects!
-                </h2>
-                <Projects />
-            </section>
+                    <h2
+                        className={`text-3xl md:text-4xl leading-normal font-semibold text-content
+                            ${textStyles.terminal} ${neon.className}`}
+                    >
+                        ls projects
+                    </h2>
+                    <Projects />
+                </section>
+            </div>
         </main>
     );
 }

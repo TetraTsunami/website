@@ -49,8 +49,8 @@ export default function Header() {
     });
 
     return (
-        <header className="fixed left-0 right-0 top-0 h-fit bg-white p-3 text-white backdrop-blur-md dark:bg-gray-900">
-            <div className="container mx-auto flex h-fit flex-row flex-wrap items-center justify-between px-4 pt-0 text-black sm:flex-nowrap dark:text-white">
+        <header className="fixed left-0 right-0 top-0 bg-bkg px-3 py-2 text-white backdrop-blur-md">
+            <div className="container mx-auto flex flex-row flex-wrap items-center justify-between px-4 pt-0 text-black sm:flex-nowrap dark:text-white">
                 <div className="h-full p-0">
                     <Link href="/" passHref>
                         <Image

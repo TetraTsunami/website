@@ -49,7 +49,9 @@ const Media: NextPage = () => {
                 <h2 className="mb-8 animate-fade-up text-4xl animation-delay-500 animation-fill-backward">
                     Now Playing
                 </h2>
-                <NowPlayingDetail />
+                <div className="mx-auto rounded-3xl bg-bkg/55 p-8 shadow-i-lg backdrop-blur-sm transition-colors">
+                    <NowPlayingDetail />
+                </div>
             </section>
             <section className="container mx-auto flex flex-col items-center justify-center p-8">
                 <h2 className="mb-8 animate-fade-up text-4xl animation-delay-700 animation-fill-backward">
