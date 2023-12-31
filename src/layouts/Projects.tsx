@@ -16,7 +16,7 @@ import {
 
 export default function Projects() {
     return (
-        <div className="grid gap-6 pt-3 mt-3 text-center grid-cols-flow-64 w-full content-evenly">
+        <div className="mt-3 grid w-full content-evenly gap-6 pt-3 text-center grid-cols-flow-64">
             <GridDivider name="Projects" />
             <ProjectCard
                 name="Cricket Bot"

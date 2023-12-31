@@ -6,8 +6,8 @@ import textStyles from "../styles/text.module.scss";
 
 export default function Footer() {
     return (
-        <footer className="bg-gray-900 text-white py-4">
-            <div className="container mx-auto flex flex-row justify-around items-center px-4 flex-wrap lg:justify-between">
+        <footer className="bg-gray-900 py-4 text-white">
+            <div className="container mx-auto flex flex-row flex-wrap items-center justify-around px-4 lg:justify-between">
                 <NowPlayingText />
                 <p
                     className={`my-2 mx-4 ${textStyles.terminal} [--terminal-color:#a78bfa]`}

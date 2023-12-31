@@ -64,23 +64,23 @@ export default function NowPlayingDetail() {
     }, [activity, data, lastUpdated]);
 
     
-    if (error) return <Error className="w-96 h-48" />;
+    if (error) return <Error className="h-48 w-96" />;
     if (!data)
-        return <Loading icon={faMusic} className="w-96 h-48 rounded-xl" />;
+        return <Loading icon={faMusic} className="h-48 w-96 rounded-xl" />;
     
     if (elapsed > +activity.duration && !isValidating) {
         // The duration has ended, so we need to refresh the data
         mutate();
     }
     return (
-        <div className="w-96 h-48 dark:text-white animate-fade-up">
-            <div className="mb-2 clear-both">
+        <div className="h-48 w-96 animate-fade-up dark:text-white">
+            <div className="clear-both mb-2">
                 <FontAwesomeIcon
                     icon={faChevronCircleRight}
                     size={"lg" as SizeProp}
                     className="text-orange-400"
                 />
-                <p className="inline text-gray-600 dark:text-gray-400 my-2">
+                <p className="my-2 inline text-gray-600 dark:text-gray-400">
                     {" "}
                     – Plex
                 </p>
@@ -92,24 +92,24 @@ export default function NowPlayingDetail() {
                         alt={activity.title}
                         width={96}
                         height={96}
-                        className="rounded-lg aspect-square object-cover bg-violet-300"
+                        className="aspect-square rounded-lg bg-violet-300 object-cover"
                     />
                 </picture>
             ) : (
-                <div className="float-left bg-violet-300/50 w-24 h-24 mr-2 flex justify-center items-center rounded-lg">
+                <div className="float-left mr-2 flex h-24 w-24 items-center justify-center rounded-lg bg-violet-300/50">
                     <FontAwesomeIcon icon={faPause} />
                 </div>
             )}
-            <div className="min-h-24 max-h-26 overflow-auto">
+            <div className="max-h-26 min-h-24 overflow-auto">
                 <h1 className="text-lg">{activity.title || "Not Playing"}</h1>
                 <p className="text-gray-600 dark:text-gray-400">
                     {activity.artist || ""}
                 </p>
-                <p className="text-sm overflow-clip text-gray-600 dark:text-gray-400">
+                <p className="overflow-clip text-sm text-gray-600 dark:text-gray-400">
                     {activity.parent || ""}
                 </p>
             </div>
-            <div className="pt-2 clear-both flex items-center">
+            <div className="clear-both flex items-center pt-2">
                 <FontAwesomeIcon
                     icon={activity.isPlaying ? faPlay : faPause}
                     className="mr-2"

@@ -25,7 +25,7 @@ export default function IconButtonRowLg({
     //     name: string,
     // }
     return (
-        <ul className="flex flex-row justify-between items-center my-2 mx-4">
+        <ul className="mx-4 my-2 flex flex-row items-center justify-between">
             <Tippy
                 singleton={source}
                 theme="material"

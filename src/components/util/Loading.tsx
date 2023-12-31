@@ -17,7 +17,7 @@ export default function Loading({
         >
             <FontAwesomeIcon
                 icon={icon}
-                className="text-3xl animate-spin m-2 text-gray-500/50"
+                className="m-2 animate-spin text-3xl text-gray-500/50"
             />
         </div>
     );

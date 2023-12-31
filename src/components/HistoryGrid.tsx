@@ -23,7 +23,7 @@ export default function NowPlayingText() {
     let totalNonDuplicate = 0;
     let duplicateAlbumCount = 0;
     return (
-        <div className="grid w-full max-w-4xl grid-cols-1 gap-6 pt-3 mt-3 text-center sm:grid-cols-2 content-evenly">
+        <div className="mt-3 grid w-full max-w-4xl grid-cols-1 content-evenly gap-6 pt-3 text-center sm:grid-cols-2">
             {history.data.map((item: any, index: number) => {
                 if (totalNonDuplicate >= 20) return;
                 else if (history.data[index + 1]?.parent === item.parent) {
@@ -35,30 +35,30 @@ export default function NowPlayingText() {
                     return (
                         <div
                             key={item.title}
-                            className="flex border-t-2 rounded-lg dark:bg-gray-900/75 bg-gray-200/50 border-t-white/20 animate-fade-up animation-fill-backward"
+                            className="flex animate-fade-up rounded-lg border-t-2 border-t-white/20 bg-gray-200/50 animation-fill-backward dark:bg-gray-900/75"
                             style={{
                                 animationDelay: `${totalNonDuplicate * 0.05}s`,
                             }}
                         >
-                            <picture className="flex-shrink-0 float-left m-2">
+                            <picture className="float-left m-2 flex-shrink-0">
                                 <img
                                     src={item.imageUrl}
                                     alt={item.title}
                                     width={80}
                                     height={80}
-                                    className="object-cover rounded-lg aspect-square bg-violet-300"
+                                    className="aspect-square rounded-lg bg-violet-300 object-cover"
                                 />
                             </picture>
-                            <div className="flex flex-col flex-shrink h-20 my-2 overflow-hidden text-left whitespace-nowrap">
-                                <h1 className="min-w-0 overflow-hidden text-md overflow-ellipsis ">
+                            <div className="my-2 flex h-20 flex-shrink flex-col overflow-hidden whitespace-nowrap text-left">
+                                <h1 className="text-md min-w-0 overflow-hidden overflow-ellipsis">
                                     {item.parent}
                                 </h1>
-                                <p className="min-w-0 overflow-hidden text-sm text-gray-600 dark:text-gray-400 overflow-ellipsis">
+                                <p className="min-w-0 overflow-hidden overflow-ellipsis text-sm text-gray-600 dark:text-gray-400">
                                     {item.artist}
                                 </p>
                             </div>
                             <div className="flex-grow" />
-                            <div className="flex items-center justify-center m-2 rounded-lg h-7 aspect-square bg-violet-400">
+                            <div className="m-2 flex aspect-square h-7 items-center justify-center rounded-lg bg-violet-400">
                                 {duplicateAlbumCount}
                             </div>
                         </div>
@@ -69,28 +69,28 @@ export default function NowPlayingText() {
                     return (
                         <div
                             key={item.title}
-                            className="flex border-t-2 rounded-lg dark:bg-gray-900/75 bg-gray-200/50 border-t-white/20 animate-fade-up animation-fill-backward"
+                            className="flex animate-fade-up rounded-lg border-t-2 border-t-white/20 bg-gray-200/50 animation-fill-backward dark:bg-gray-900/75"
                             style={{
                                 animationDelay: `${totalNonDuplicate * 0.05}s`,
                             }}
                         >
-                            <picture className="flex-shrink-0 float-left m-2">
+                            <picture className="float-left m-2 flex-shrink-0">
                                 <img
                                     src={item.imageUrl}
                                     alt={item.title}
                                     width={80}
                                     height={80}
-                                    className="object-cover rounded-lg aspect-square bg-violet-300"
+                                    className="aspect-square rounded-lg bg-violet-300 object-cover"
                                 />
                             </picture>
-                            <div className="flex flex-col flex-shrink h-20 my-2 overflow-hidden text-left whitespace-nowrap">
-                                <h1 className="overflow-hidden text-md overflow-ellipsis">
+                            <div className="my-2 flex h-20 flex-shrink flex-col overflow-hidden whitespace-nowrap text-left">
+                                <h1 className="text-md overflow-hidden overflow-ellipsis">
                                     {item.title}
                                 </h1>
-                                <p className="min-w-0 overflow-hidden text-sm text-gray-600 dark:text-gray-400 overflow-ellipsis">
+                                <p className="min-w-0 overflow-hidden overflow-ellipsis text-sm text-gray-600 dark:text-gray-400">
                                     {item.artist}
                                 </p>
-                                <p className="min-w-0 overflow-hidden text-sm text-gray-500 overflow-ellipsis">
+                                <p className="min-w-0 overflow-hidden overflow-ellipsis text-sm text-gray-500">
                                     {item.parent}
                                 </p>
                             </div>

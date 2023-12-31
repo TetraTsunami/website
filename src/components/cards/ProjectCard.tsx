@@ -16,19 +16,18 @@ export default function ProjectCard({
     year,
 }: ProjectCardProps) {
     return (
-        <section className="relative w-full overflow-hidden transition-transform duration-200 border-4 shadow-lg group border-grey-300 rounded-xl hover:outline outline-4 outline-violet-600 h-52 hover:scale-105">
-            <a href={href}>
+        <a href={href} className="border-grey-300 group relative block aspect-[4/3] h-52 overflow-hidden rounded-xl border-4 shadow-lg outline-4 outline-violet-600 transition-transform duration-200 hover:scale-105 hover:outline">
                 <Image
                     src={imageUrl}
                     alt={name}
-                    className="object-cover duration-1000 bg-pink-200 dark:bg-gray-900 group-hover:scale-105"
+                    className="bg-pink-200 object-cover duration-1000 group-hover:scale-105 dark:bg-gray-900"
                     fill
                     sizes="530px"
                 />
                 <div
-                    className="relative flex flex-col justify-center w-full h-full px-6 py-6 mx-auto -translate-y-5 rounded-lg shadow-lg bg-white/75 group-hover:bg-white/90 dark:bg-black/75 dark:group-hover:bg-black/90 top-full group-hover:-translate-y-full will-change-transform motion-safe:duration-500"
+                    className="relative top-full mx-auto flex h-full w-full -translate-y-5 flex-col justify-center rounded-lg bg-white/75 px-6 py-6 shadow-lg will-change-transform group-hover:-translate-y-full group-hover:bg-white/90 motion-safe:duration-500 dark:bg-black/75 dark:group-hover:bg-black/90"
                 >
-                    <span className="absolute top-0 text-sm italic font-semibold text-left text-gray-900 align-top right-5 dark:text-white">
+                    <span className="absolute right-5 top-0 text-left align-top text-sm font-semibold italic text-gray-900 dark:text-white">
                         {year}
                     </span>
                     <h3 className="pt-6 text-lg text-gray-700 dark:text-white">
@@ -38,7 +37,6 @@ export default function ProjectCard({
                         {description}
                     </p>
                 </div>
-            </a>
-        </section>
+        </a>
     );
 }

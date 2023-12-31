@@ -8,7 +8,7 @@ const Media: NextPage = () => {
     return (
         <main className="min-h-screen dark:text-white">
             <section
-                className="container px-8 pt-32 pb-16 mx-auto"
+                className="container mx-auto px-8 pb-16 pt-32"
             >
                 <h2
                     className={`text-6xl text-center font-bold ${textStyles.gradientTitleText}`}
@@ -45,14 +45,14 @@ const Media: NextPage = () => {
                     </span>
                 </h2>
             </section>
-            <section className="container flex flex-col items-center justify-center p-8 mx-auto">
-                <h2 className="mb-8 text-4xl animate-fade-up animation-delay-500 animation-fill-backward">
+            <section className="container mx-auto flex flex-col items-center justify-center p-8">
+                <h2 className="mb-8 animate-fade-up text-4xl animation-delay-500 animation-fill-backward">
                     Now Playing
                 </h2>
                 <NowPlayingDetail />
             </section>
-            <section className="container flex flex-col items-center justify-center p-8 mx-auto">
-                <h2 className="mb-8 text-4xl animate-fade-up animation-delay-700 animation-fill-backward">
+            <section className="container mx-auto flex flex-col items-center justify-center p-8">
+                <h2 className="mb-8 animate-fade-up text-4xl animation-delay-700 animation-fill-backward">
                     Recently Played
                 </h2>
                 <HistoryGrid />

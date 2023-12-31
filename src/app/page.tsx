@@ -12,7 +12,7 @@ export default async function Home() {
         <main className="text-black dark:text-white">
             <section
                 id="home"
-                className="container relative flex flex-col items-center justify-center h-screen p-8 mx-auto text-center"
+                className="container relative mx-auto flex h-screen flex-col items-center justify-center p-8 text-center"
             >
                 <h2 className="text-4xl font-semibold">
                     <span className={textStyles["animateFadeUp"]} style={fadeUpDelay(0)}>
@@ -50,13 +50,13 @@ export default async function Home() {
                     ]}
                     startingFade={9}
                 />
-                <a id="scroll-hint" href="#about" className="absolute bottom-0 p-2 mb-8 animate-bounce-slow">
+                <a id="scroll-hint" href="#about" className="absolute bottom-0 mb-8 animate-bounce-slow p-2">
                     <FontAwesomeIcon icon={faChevronDown} />
                 </a>
             </section>
             <section
                 id="about"
-                className="flex flex-col items-center justify-center p-8 h-96 bg-violet-200 dark:bg-slate-900"
+                className="flex h-96 flex-col items-center justify-center bg-violet-200 p-8 dark:bg-slate-900"
             >
                 <div className="container mx-auto">
                     <h2
@@ -64,7 +64,7 @@ export default async function Home() {
                     >
                         Who am I?
                     </h2>
-                    <p className={`text-lg text-center my-2 mx-4`}>
+                    <p className={`mx-4 my-2 text-center text-lg`}>
                         I{"'"}m a 18 year old self-taught developer from
                         Wisconsin, USA. I{"'"}m currently working on a few
                         projects, including this website, a Discord bot, and
@@ -74,7 +74,7 @@ export default async function Home() {
             </section>
             <section
                 id="projects"
-                className="container flex flex-col items-center justify-center p-8 mx-auto my-32"
+                className="container mx-auto my-32 flex flex-col items-center justify-center p-8"
             >
                 <h2
                     className={`text-3xl md:text-4xl leading-normal font-semibold text-gray-700 dark:text-slate-200

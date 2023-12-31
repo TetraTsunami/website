@@ -11,7 +11,7 @@ export default function Error({ className }: { className?: string }) {
         >
             <FontAwesomeIcon
                 icon={faTriangleExclamation}
-                className="text-3xl m-2 text-red-500"
+                className="m-2 text-3xl text-red-500"
             />
         </div>
     );

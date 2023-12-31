@@ -49,17 +49,14 @@ export default function Header() {
     });
 
     return (
-        <header className="backdrop-blur-md bg-white dark:bg-gray-900 text-white p-3 fixed top-0 left-0 right-0 h-fit">
-            <div className="container h-fit mx-auto flex flex-row justify-between items-center
-            flex-wrap sm:flex-nowrap 
-            pt-0 px-4
-            text-black dark:text-white">
-                <div className="p-0 h-full">
+        <header className="fixed left-0 right-0 top-0 h-fit bg-white p-3 text-white backdrop-blur-md dark:bg-gray-900">
+            <div className="container mx-auto flex h-fit flex-row flex-wrap items-center justify-between px-4 pt-0 text-black sm:flex-nowrap dark:text-white">
+                <div className="h-full p-0">
                     <Link href="/" passHref>
                         <Image
                             src={logo}
                             alt="Tsuni logo"
-                            className="h-12 w-auto aspect-auto"
+                            className="aspect-auto h-12 w-auto"
                             />
                     </Link>
                 </div>

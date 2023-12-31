@@ -24,11 +24,7 @@ export default function DarkToggle() {
 
     return (
         <button
-            className="w-9 h-9 p-2 m-2 rounded-md flex items-center justify-center 
-            bg-gray-200 text-black 
-            dark:bg-gray-700 dark:text-white
-            transition-colors
-            hover:outline outline-2 outline-violet-400"
+            className="m-2 flex h-9 w-9 items-center justify-center rounded-md bg-gray-200 p-2 text-black outline-2 outline-violet-400 transition-colors hover:outline dark:bg-gray-700 dark:text-white"
             onClick={toggleDark}
         >
             <FontAwesomeIcon icon={isDark ? faMoon : faSun} />
