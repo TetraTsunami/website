@@ -1,3 +1,4 @@
+"use client"
 import { SizeProp } from "@fortawesome/fontawesome-svg-core";
 import {
     faChevronCircleRight,
@@ -36,20 +37,18 @@ export default function NowPlayingText() {
     if (error) return <Error className="w-96" />;
     if (!data) return <Loading icon={faMusic} className="w-96" />;
     return (
-        <Link href="/media" passHref>
-            <a className="hover:underline m-2 mx-4 flex">
-                <FontAwesomeIcon
-                    icon={faChevronCircleRight}
-                    className="inline text-orange-400"
-                    size={"lg" as SizeProp}
-                />
-                <span className="pl-2 text-gray-400">
-                    <span className="text-white">
-                        {activity.title || "Not Playing"}
-                    </span>{" "}
-                    – Plex
-                </span>
-            </a>
+        <Link className="flex m-2 mx-4 hover:underline" href="/media" passHref>
+            <FontAwesomeIcon
+                icon={faChevronCircleRight}
+                className="inline text-orange-400"
+                size={"lg" as SizeProp}
+            />
+            <span className="pl-2 text-gray-400">
+                <span className="text-white">
+                    {activity.title || "Not Playing"}
+                </span>{" "}
+                – Plex
+            </span>
         </Link>
     );
 }

@@ -1,3 +1,4 @@
+"use client"
 import { SizeProp } from "@fortawesome/fontawesome-svg-core";
 import {
     faChevronCircleRight,
@@ -60,7 +61,7 @@ export default function NowPlayingDetail() {
             updateElapsed();
         }, 1000);
         return () => clearInterval(interval);
-    }, [activity]);
+    }, [activity, data, lastUpdated]);
 
     
     if (error) return <Error className="w-96 h-48" />;

@@ -59,12 +59,13 @@ header {
     }
 }
 
-#__next {
+body, #__next {
     position: relative;
 }
 
 .noAnimate * {
     animation-duration: 0s !important;
+    transition-duration: 0s !important;
 }
 
 :focus-visible {

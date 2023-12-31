@@ -15,16 +15,16 @@ export default function CertCard({
     imageUrl: string | StaticImageData;
 }) {
     return (
-        <div className="relative group hover:z-10 border-4 border-grey-300 rounded-xl overflow-clip w-full focus-within:outline hover:outline outline-4 outline-violet-600 shadow-xl transition-transform duration-200 hover:scale-105">
+        <div className="relative w-full transition-transform duration-200 border-4 shadow-xl group hover:z-10 border-grey-300 rounded-xl overflow-clip focus-within:outline hover:outline outline-4 outline-violet-600 hover:scale-105">
             <a href={certUrl}>
                 <Image
                     src={imageUrl}
                     alt={name}
                     width="1140"
                     height="886"
-                    className="rounded-md w-full h-full bg-pink-200 dark:bg-gray-900 object-cover"
-                    sizes="100vw"/>
-                <div className="absolute bottom-0 left-0 right-0  bg-white/75 dark:bg-black/75 shadow-lg text-ellipsis whitespace-nowrap">
+                    className="object-cover w-full h-full bg-pink-200 rounded-md dark:bg-gray-900"
+                    sizes="530px"/>
+                <div className="absolute bottom-0 left-0 right-0 shadow-lg bg-white/75 dark:bg-black/75 text-ellipsis whitespace-nowrap">
                     <span className="text-sm text-gray-900 dark:text-white">
                         {name}
                     </span>
@@ -33,11 +33,11 @@ export default function CertCard({
             {collectionUrl && (
                 <a
                     href={collectionUrl}
-                    className="absolute bottom-6 right-3 rounded-full shadow-xl"
+                    className="absolute rounded-full shadow-xl bottom-6 right-3"
                 >
                     <FontAwesomeIcon
                         icon={faCodepen}
-                        className="p-4 bg-violet-300 text-black border-4 rounded-full hover:outline outline-4 duration-200 transition-transform group-hover:scale-105 group-hover:hover:scale-110 outline-violet-600"
+                        className="p-4 text-black transition-transform duration-200 border-4 rounded-full bg-violet-300 hover:outline outline-4 group-hover:scale-105 group-hover:hover:scale-110 outline-violet-600"
                         size={"xl" as SizeProp}
                     />
                     <p className="visible-hidden">Codepen collection</p>

@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import styles from "./background.module.scss";
 
@@ -17,7 +18,7 @@ export default function Background() {
     });
     
     return (
-        <div className="absolute inset-0 -z-10 overflow-hidden bg-gradient-to-r from-purple-900 to-gray-800">
+        <div className="absolute inset-0 overflow-hidden -z-10 bg-gradient-to-r from-purple-900 to-gray-800">
             <div className={`absolute inset-0 dark:opacity-0 transition-opacity bg-gradient-to-r from-pink-200 to-violet-300`} />
 
             <div

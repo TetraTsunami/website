@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -9,19 +13,33 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "noUncheckedIndexedAccess": true
+    "noUncheckedIndexedAccess": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
   },
   "include": [
     "next-env.d.ts",
-    "next-auth.d.ts",
+    "next.config.mjs",
     "**/*.ts",
     "**/*.tsx",
-    "**/*.js"
-, "lib/tautulli.js"  ],
-  "exclude": ["node_modules"]
+    "**/*.js",
+    ".next/types/**/*.ts",
+    "src/lib/tautulli.js",
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

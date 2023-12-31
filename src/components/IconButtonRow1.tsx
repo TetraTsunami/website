@@ -1,3 +1,4 @@
+"use client"
 import { IconDefinition, SizeProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Tippy, { useSingleton } from "@tippyjs/react";

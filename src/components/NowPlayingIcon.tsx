@@ -1,4 +1,4 @@
-import { SizeProp } from "@fortawesome/fontawesome-svg-core";
+"use client"
 import {
     faPlay
 } from "@fortawesome/free-solid-svg-icons";
@@ -35,8 +35,7 @@ export default function NowPlayingIcon() {
     return (
         <FontAwesomeIcon
             icon={faPlay}
-            className="inline text-violet-400 mx-2 animate-pulse"
-            size={"md" as SizeProp}
+            className="inline mx-2 text-violet-400 animate-pulse"
         />
     );
 }

@@ -20,6 +20,6 @@ function getInitialColorMode() {
 (function initTheme() {
     var theme = getInitialColorMode();
     if (theme === "dark") {
-        document.querySelector("html").classList.add("dark");
+        document.querySelector("html").classList.add("dark", "noAnimate");
     }
 })();

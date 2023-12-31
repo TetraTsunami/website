@@ -1,10 +1,11 @@
+"use client";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useEffect } from "react";
 import DarkToggle from "../components/DarkToggle";
 import NowPlayingIcon from "../components/NowPlayingIcon";
 import Image from "next/image";
 import { logo } from "../images";
+import { usePathname } from "next/navigation";
 
 function PageLink({
     name,
@@ -15,8 +16,7 @@ function PageLink({
     href: string;
     children?: any;
 }) {
-    const router = useRouter();
-    const isActive = router.pathname === href;
+    const isActive = usePathname() === href;
 
     return (
         <Link href={href} className={`hover:bg-gray-300 dark:hover:bg-gray-600 h-9 p-2 rounded-md transition-colors ${
