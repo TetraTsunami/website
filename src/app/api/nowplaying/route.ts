@@ -3,8 +3,8 @@ const baseUrl = process.env.TAUTULLI_URL || "http://localhost:8181",
     plexUser = process.env.PLEX_USER || "";
 
 export const GET = async () => {
-    const timestamp = Date.now();
     const response = await getActivity();
+    const timestamp = Date.now();
 
     if (response.status > 400) {
         return Response.json({ isPlaying: false });
