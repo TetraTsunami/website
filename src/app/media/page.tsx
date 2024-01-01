@@ -6,7 +6,7 @@ import textStyles from "@/styles/text.module.scss";
 const fadeUpDelay = (i: number) => ({ animationDelay: i * 0.1 + 0.3 + "s" });
 const Media: NextPage = () => {
     return (
-        <main className="min-h-screen dark:text-white">
+        <main className="min-h-screen">
             <section
                 className="container mx-auto px-8 pb-16 pt-32"
             >

@@ -5,8 +5,8 @@ import NowPlayingText from "../components/NowPlayingText";
 
 export default function Footer() {
     return (
-        <footer className="bg-slate-900 py-4 text-white">
-            <div className="container mx-auto flex flex-row flex-wrap items-center justify-around px-4 lg:justify-between">
+        <footer className="bg-slate-900 px-3 py-2 text-white">
+            <div className="container mx-auto flex h-12 flex-row flex-wrap items-center justify-around lg:justify-between">
                 <NowPlayingText />
                 <IconButtonRow1
                     buttons={[
