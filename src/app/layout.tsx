@@ -28,7 +28,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className={rubik.className}>
-            <body className="text-content">
+            <body className="bg-bkg text-content">
                 {/*we need sync scripts so that the theme is loaded before the page is rendered*/}
                 {/*eslint-disable-next-line @next/next/no-sync-scripts*/ }
                 <script src="/theme.js" />

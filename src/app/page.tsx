@@ -9,10 +9,10 @@ const fadeUpDelay = (i: number) => ({ animationDelay: i * 0.1 + 0.3 + "s" });
 
 export default async function Home() {
     return (
-        <main>
+        <main className="pb-8 pt-16">
             <section
                 id="home"
-                className="container relative mx-auto mt-16 flex h-[70vh] flex-col items-center justify-center p-8 text-center"
+                className="container relative mx-auto flex h-[70vh] flex-col items-center justify-center p-8 text-center"
             >
                 <h2 className="text-4xl font-semibold">
                     <span
@@ -61,7 +61,7 @@ export default async function Home() {
                     startingFade={9}
                 />
             </section>
-            <div className="container mx-auto mb-16 flex animate-fade-up flex-col gap-32 rounded-3xl bg-bkg/55 px-8 py-32 shadow-i-lg backdrop-blur-sm transition-colors animation-delay-700 animation-fill-backward">
+            <div className="container mx-auto flex animate-fade-up flex-col gap-32 rounded-3xl bg-bkg/55 px-8 py-32 shadow-i-lg backdrop-blur-sm transition-colors animation-delay-700 animation-fill-backward">
                 <section id="about">
                     <h2
                         className={`text-3xl md:text-4xl font-semibold text-center ${textStyles.terminal} ${neon.className}`}
