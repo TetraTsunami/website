@@ -22,10 +22,11 @@ export default function ProjectCard({
                 alt={`Screenshot of ${name}`}
                 className="bg-bkg object-cover duration-1000 group-hover:scale-105"
                 fill
-                sizes="(max-width: 600px) 530px, 310px"
+                sizes="(max-width: 600px) 100vw, (max-width 1024px) 66vw, 33vw"
+                quality={85}
                 placeholder="blur"
             />
-            <div
+            {/* <div
                 className="relative top-full mx-auto flex h-full w-full -translate-y-5 flex-col justify-center rounded-lg bg-bkg/75 px-6 py-6 shadow-lg will-change-transform group-hover:-translate-y-full group-hover:bg-bkg/90 motion-safe:duration-200"
             >
                 <span className="absolute right-5 top-0 text-left align-top text-sm font-semibold italic text-slate-900 dark:text-white">
@@ -37,7 +38,7 @@ export default function ProjectCard({
                 <p className="py-2 text-sm text-gray-600 dark:text-slate-300">
                     {description}
                 </p>
-            </div>
+            </div> */}
         </a>
     );
 }

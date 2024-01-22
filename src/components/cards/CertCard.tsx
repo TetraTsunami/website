@@ -17,15 +17,14 @@ export default function CertCard({
     return (
         <div className="relative">
             
-            <div className="border-grey-300 group relative w-full overflow-clip rounded-xl border-4 border-content/80 shadow-xl outline-4 outline-accent transition-transform duration-200 focus-within:outline hover:outline">
+            <div className="border-grey-300 hover:outlinex group relative h-56 w-full overflow-clip rounded-xl border-4 border-content/80 shadow-xl outline-4 outline-accent transition-transform duration-200 focus-within:outline">
                 <a href={certUrl}>
                     <Image
                         src={imageUrl}
                         alt={name}
-                        width="1140"
-                        height="886"
+                        fill
                         className="h-full w-full rounded-md bg-bkg object-cover"
-                        sizes="530px"/>
+                        sizes="(max-width: 600px) 100vw, (max-width 1024px) 66vw, 33vw" />
                     <div className="absolute bottom-0 left-0 right-0 text-ellipsis whitespace-nowrap bg-bkg/75 shadow-lg">
                         <span className="text-sm text-slate-900 dark:text-white">
                             {name}
