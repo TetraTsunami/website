@@ -1,5 +1,3 @@
-import "./layout.scss";
-
 export default function PostLayout({
     children,
 }: {

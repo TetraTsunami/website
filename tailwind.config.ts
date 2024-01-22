@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 import defaultTheme from "tailwindcss/defaultTheme";
 import plugin from "tailwindcss/plugin";
+import typography from "@tailwindcss/typography"
 
 const gridColsFlowPlugin = plugin(
     ({ matchUtilities, theme }: { matchUtilities: any; theme: any }) => {
@@ -69,7 +70,8 @@ const config: Config = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["RubikVariable", ...defaultTheme.fontFamily.sans],
+                sans: ["var(--font-rubik)", ...defaultTheme.fontFamily.sans],
+                mono: ["var(--font-neon)", ...defaultTheme.fontFamily.mono],
             },
             keyframes: {
                 "fade-up": {
@@ -99,7 +101,7 @@ const config: Config = {
             },
         },
     },
-    plugins: [gridColsFlowPlugin, animationDelayPlugin, animationFillPlugin],
+    plugins: [gridColsFlowPlugin, animationDelayPlugin, animationFillPlugin, typography],
 };
 
 export default config;
