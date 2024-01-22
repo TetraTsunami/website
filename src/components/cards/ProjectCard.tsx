@@ -19,10 +19,11 @@ export default function ProjectCard({
         <a href={href} className="border-grey-300 group relative block h-52 w-full overflow-hidden rounded-xl border-4 shadow-lg outline-4 outline-violet-600 transition-transform duration-200 hover:scale-105 hover:outline">
             <Image
                 src={imageUrl}
-                alt={name}
+                alt={`Screenshot of ${name}`}
                 className="bg-bkg object-cover duration-1000 group-hover:scale-105"
                 fill
-                sizes="530px"
+                sizes="(max-width: 600px) 530px, 310px"
+                placeholder="blur"
             />
             <div
                 className="relative top-full mx-auto flex h-full w-full -translate-y-5 flex-col justify-center rounded-lg bg-bkg/75 px-6 py-6 shadow-lg will-change-transform group-hover:-translate-y-full group-hover:bg-bkg/90 motion-safe:duration-200"
