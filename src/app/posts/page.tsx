@@ -5,7 +5,7 @@ import Link from "next/link"
 const PostPreview = (data: PostData & { slug: string } ) => {
   return (
     <Link href={`/posts/${data.slug}`}>
-      <img src={data.excerptImageUrl} alt={data.excerptImageAlt} width={200} height={200} />
+      <Image src={data.excerptImageUrl} alt={data.excerptImageAlt} width={200} height={200} />
       <h2>{data.title}</h2>
       <p>{data.date}</p>
       <p>{data.excerpt}</p>
