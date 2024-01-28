@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
-import HistoryGrid from "@/components/HistoryGrid";
-import NowPlayingDetail from "@/components/NowPlayingDetail";
 import textStyles from "@/styles/text.module.scss";
+import NPComboGrid from "@/components/NPComboGrid";
 
 const fadeUpDelay = (i: number) => ({ animationDelay: i * 0.1 + 0.3 + "s" });
 const Media: NextPage = () => {
@@ -46,18 +45,7 @@ const Media: NextPage = () => {
                 </h2>
             </section>
             <section className="container mx-auto flex flex-col items-center justify-center px-2 sm:px-8 py-8">
-                <h2 className="mb-8 animate-fade-up text-4xl animation-delay-500 animation-fill-backward">
-                    Now Playing
-                </h2>
-                <div className="mx-auto rounded-3xl bg-bkg/55 p-2 sm:p-4 shadow-i-md backdrop-blur-sm transition-colors">
-                    <NowPlayingDetail />
-                </div>
-            </section>
-            <section className="container mx-auto flex flex-col items-center justify-center px-2 sm:px-8 py-8">
-                <h2 className="mb-8 animate-fade-up text-4xl animation-delay-700 animation-fill-backward">
-                    Recently Played
-                </h2>
-                <HistoryGrid />
+                <NPComboGrid />
             </section>
         </main>
     );

@@ -73,7 +73,7 @@ export default function NowPlayingDetail() {
         mutate();
     }
     return (
-        <div className="h-full w-full max-w-96 animate-fade-up dark:text-white">
+        <div className="h-full w-full dark:text-white text-left">
             <div className="clear-both mb-2">
                 <FontAwesomeIcon
                     icon={faChevronCircleRight}
@@ -102,10 +102,10 @@ export default function NowPlayingDetail() {
             )}
             <div className="max-h-26 min-h-24 overflow-auto">
                 <h1 className="text-lg">{activity.title || "Not Playing"}</h1>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-600 max-h-10 dark:text-gray-400">
                     {activity.artist || ""}
                 </p>
-                <p className="overflow-clip text-sm text-gray-600 dark:text-gray-400">
+                <p className="overflow-clip text-sm max-h-10 text-gray-600 dark:text-gray-400">
                     {activity.parent || ""}
                 </p>
             </div>
