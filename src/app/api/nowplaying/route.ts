@@ -44,3 +44,5 @@ export const GET = async () => {
         timestamp,
     });
 };
+
+export const revalidate = 0
