@@ -73,7 +73,7 @@ export default function NowPlayingDetail() {
         mutate();
     }
     return (
-        <div className="h-48 w-96 animate-fade-up dark:text-white">
+        <div className="h-full w-full max-w-96 animate-fade-up dark:text-white">
             <div className="clear-both mb-2">
                 <FontAwesomeIcon
                     icon={faChevronCircleRight}

@@ -95,9 +95,9 @@ const config: Config = {
                 accent: 'hsl(var(--color-accent) / <alpha-value>)',
             },
             boxShadow: {
-                "i-sm": "0px 0px 5px 0px #00000005, 0px 2px 10px 0px #00000002, inset 0px 0px 1px 0px hsla(0,0%,100%,.15)",
-                "i-md": "0px 0px 15px 0px #00000006, 0px 2px 30px 0px #00000016, inset 0px 0px 1px 0px hsla(0,0%,100%,.15)",
-                "i-lg": "0px 0px 30px 0px #00000007, 0px 30px 60px 0px #00000027, inset 0px 0px 1px 0px hsla(0,0%,100%,.15)",
+                "i-sm": "0px 0px 5px 0px #00000005, 0px 2px 10px 0px #00000002, inset 0px 0px 5px 0px hsla(0,0%,100%,.25)",
+                "i-md": "0px 0px 15px 0px #00000006, 0px 2px 30px 0px #00000016, inset 0px 0px 5px 0px hsla(0,0%,100%,.25)",
+                "i-lg": "0px 0px 30px 0px #00000007, 0px 30px 60px 0px #00000027, inset 0px 0px 5px 0px hsla(0,0%,100%,.25)",
             },
         },
     },

@@ -8,7 +8,7 @@ const Media: NextPage = () => {
     return (
         <main className="min-h-screen">
             <section
-                className="container mx-auto px-8 pb-16 pt-32"
+                className="container mx-auto px-2 sm:px-8 pb-16 pt-32"
             >
                 <h2
                     className={`text-6xl text-center font-bold ${textStyles.gradientTitleText}`}
@@ -45,15 +45,15 @@ const Media: NextPage = () => {
                     </span>
                 </h2>
             </section>
-            <section className="container mx-auto flex flex-col items-center justify-center p-8">
+            <section className="container mx-auto flex flex-col items-center justify-center px-2 sm:px-8 py-8">
                 <h2 className="mb-8 animate-fade-up text-4xl animation-delay-500 animation-fill-backward">
                     Now Playing
                 </h2>
-                <div className="mx-auto rounded-3xl bg-bkg/55 p-8 shadow-i-lg backdrop-blur-sm transition-colors">
+                <div className="mx-auto rounded-3xl bg-bkg/55 p-2 sm:p-4 shadow-i-md backdrop-blur-sm transition-colors">
                     <NowPlayingDetail />
                 </div>
             </section>
-            <section className="container mx-auto flex flex-col items-center justify-center p-8">
+            <section className="container mx-auto flex flex-col items-center justify-center px-2 sm:px-8 py-8">
                 <h2 className="mb-8 animate-fade-up text-4xl animation-delay-700 animation-fill-backward">
                     Recently Played
                 </h2>
