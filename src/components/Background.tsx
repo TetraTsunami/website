@@ -18,8 +18,8 @@ export default function Background() {
     });
     
     return (
-        <div className="absolute inset-0 -z-10 overflow-hidden bg-gradient-to-r from-purple-900 to-gray-800">
-            <div className={`absolute inset-0 bg-gradient-to-r from-pink-200 to-violet-300 transition-opacity dark:opacity-0`} />
+        <div className="absolute inset-0 -z-10 overflow-hidden bg-gradient-to-r from-[var(--color-bg-dark-1)] to-[var(--color-bg-dark-2)]">
+            <div className={`absolute inset-0 bg-gradient-to-r from-[var(--color-bg-light-1)] to-[var(--color-bg-light-2)] transition-opacity dark:opacity-0`} />
 
             <div
                 style={{ ["--scrollY" as any]: `${Math.round(scrollY / 4) % 376}px` }}

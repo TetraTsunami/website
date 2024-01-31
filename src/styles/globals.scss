@@ -3,35 +3,47 @@
 @tailwind utilities;
 
 @layer base {
-    :root {
-        --color-bkg: 250deg 100% 98%; // violet-200
-        --color-content: 222deg 47% 11%; // slate-900
-        --color-accent: 255deg 92% 76%; // violet-400
-        &.dark {
-            --color-bkg: 222deg 47% 11%; // slate-900
-            --color-content: 210deg 40% 96%; //slate-100
-            --color-accent: 258deg 90% 66%; // violet-500
-        }
+  :root {
+    --color-bkg: 250deg 100% 98%; // violet-200
+    --color-content: 222deg 47% 11%; // slate-900
+    --color-accent: 255deg 92% 76%; // violet-400
+
+    &.dark {
+      --color-bkg: 222deg 47% 11%; // slate-900
+      --color-content: 210deg 40% 96%; //slate-100
+      --color-accent: 258deg 90% 66%; // violet-500
     }
+  }
+}
+
+@layer music {
+  :root {
+    --color-bg-light-1: theme(colors.pink.200);
+    --color-bg-light-2: theme(colors.purple.300);
+    --color-bg-dark-1: theme(colors.purple.900);
+    --color-bg-dark-2: theme(colors.gray.800);
+    --color-progress-light: theme(colors.pink.400);
+    --color-progress-dark: theme(colors.purple.500);
+  }
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 
-    &.noAnimate {
-        scroll-behavior: auto;
-    }
+  &.noAnimate {
+    scroll-behavior: auto;
+  }
 }
 
 @-moz-document url-prefix() {
-    html {
-        scroll-behavior: auto;
-    }
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
 p,
@@ -42,45 +54,46 @@ h4,
 h5,
 h6,
 section {
-    overflow-wrap: break-word;
-    scroll-margin-top: 3rem;
+  overflow-wrap: break-word;
+  scroll-margin-top: 3rem;
 }
 
 .visible-hidden {
-    clip: rect(1px, 1px, 1px, 1px);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 
-    &:focus {
-        clip: auto;
-        height: auto;
-        overflow: auto;
-        position: absolute;
-        width: auto;
-    }
+  &:focus {
+    clip: auto;
+    height: auto;
+    overflow: auto;
+    position: absolute;
+    width: auto;
+  }
 }
 
 header {
-    transition: box-shadow 0.2s ease-out;
-    z-index: 100;
+  transition: box-shadow 0.2s ease-out;
+  z-index: 100;
 
-    &.scrolled {
-        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
-    }
+  &.scrolled {
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  }
 }
 
-body, #__next {
-    position: relative;
+body,
+#__next {
+  position: relative;
 }
 
 .noAnimate * {
-    animation-duration: 0s !important;
-    transition-duration: 0s !important;
+  animation-duration: 0s !important;
+  transition-duration: 0s !important;
 }
 
 :focus-visible {
-    @apply outline outline-2 outline-purple-400;
+  @apply outline outline-2 outline-purple-400;
 }
