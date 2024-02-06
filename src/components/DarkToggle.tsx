@@ -8,11 +8,7 @@ export default function DarkToggle() {
     
     useEffect(() => {
         const root = document.documentElement;
-        if (root.classList.contains("dark")) {
-            setIsDark(true);
-        } else {
-            setIsDark(false);
-        }
+        setIsDark(root.classList.contains("dark"));
     } , []);
 
     const toggleDark = () => {

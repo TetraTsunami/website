@@ -8,7 +8,7 @@ const rubik = Rubik({
 });
 
 const neon = localFont({
-    src: "./neon_monaspace_v1.ttf",
+    src: "./MonaspaceNeon-Regular.woff",
     display: "swap",
     variable: "--font-neon"
 });
