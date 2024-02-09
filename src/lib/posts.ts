@@ -13,6 +13,7 @@ export type PostData = {
 };
 
 const postsDirectory = path.join(process.cwd(), "posts");
+const componentsDirectory = path.join(process.cwd(), "src", "components");
 
 export function getSortedPostsData() {
   const data = getAllPostData();
@@ -46,7 +47,7 @@ export function getAllPostData() {
 export async function getPostBundle(slug: string) {
   const filePath = path.join(postsDirectory, `${slug}.mdx`);
   const source = fs.readFileSync(filePath, "utf8").trim();
-  const { code, frontmatter } = await bundleMDX({source, cwd: postsDirectory});
+  const { code, frontmatter } = await bundleMDX({source, cwd: componentsDirectory });
   return {
     slug,
     code,

@@ -18,7 +18,7 @@ const PostContent = ({code, frontmatter}: { slug: string, code: string, frontmat
         <h1 className="text-center text-6xl font-semibold">{frontmatter.title}</h1>
       </header>
       <div className="relative mt-32 bg-bkg/70">
-        <div className="container prose prose-slate relative -top-16 mx-auto max-w-prose rounded-xl bg-bkg p-4 shadow-i-lg transition-colors dark:prose-invert prose-code:font-[var(--font-neon)] sm:px-8">
+        <div className="container prose prose-slate relative -top-16 mx-auto max-w-3xl rounded-xl bg-bkg p-4 shadow-i-lg transition-colors dark:prose-invert prose-code:font-[var(--font-neon)] sm:px-8">
           <div className="mb-8 flex justify-between">
             <p className="m-0 text-sm">{date}</p>
             <span className="mx-4 h-0 grow self-center border-b-2 border-b-accent" />
