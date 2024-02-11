@@ -7,11 +7,13 @@ import {
     faPlay
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useSWR from "swr";
 import Error from "./util/Error";
 import Loading from "./util/Loading";
 import StyledProgress1 from "./util/StyledProgress1";
+import { BGContext } from "@/app/providers";
+import Vibrant from "node-vibrant";
 
 async function fetcher<JSON = any>(
     input: RequestInfo,
@@ -35,6 +37,7 @@ interface Activity {
 
 export default function NowPlayingDetail() {
     const { data, error, isValidating, mutate } = useSWR("/api/nowplaying", fetcher);
+    const { theme, setTheme } = useContext(BGContext);
     const [elapsed, setElapsed] = useState(0);
     const [lastUpdated, setLastUpdated] = useState(0);
     const activity = data as Activity;
@@ -54,26 +57,55 @@ export default function NowPlayingDetail() {
                 );
             }
         };
-        updateElapsed();
-
         const interval = setInterval(() => {
             // Updating the duration every second
             updateElapsed();
         }, 1000);
-        return () => clearInterval(interval);
+        updateElapsed();
+
+        if (!data || !activity.isPlaying) return;
+        const element = document.getElementById("vibrant-album") as HTMLImageElement;
+        if (element) {
+            const v = Vibrant.from(element)
+                .useQuantizer(Vibrant.Quantizer.WebWorker || Vibrant.Quantizer.MMCQ); 
+
+            v.getPalette((err, palette) => {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                setTheme({
+                    light1: palette?.LightVibrant?.hex,
+                    light2: palette?.LightMuted?.hex,
+                    dark1: palette?.DarkVibrant?.hex,
+                    dark2: palette?.DarkMuted?.hex,
+                    isActive: activity.isPlaying,
+                })
+            });
+        }    
+
+        return () => {
+            clearInterval(interval);
+            setTheme({
+                ...theme,
+                isActive: false,
+            });
+        }
     }, [activity, data, lastUpdated]);
 
     
     if (error) return <Error className="h-48 w-96" />;
-    if (!data)
-        return <Loading icon={faMusic} className="h-48 w-96 rounded-xl" />;
-    
+    if (!data) {
+        return <Loading icon={faMusic} className="h-48 w-96 rounded-xl" />
+    }
+        
     if (elapsed > +activity.duration && !isValidating) {
         // The duration has ended, so we need to refresh the data
         mutate();
     }
+
     return (
-        <div className="h-full w-full dark:text-white text-left">
+        <div className="h-full w-full text-left dark:text-white">
             <div className="clear-both mb-2">
                 <FontAwesomeIcon
                     icon={faChevronCircleRight}
@@ -93,6 +125,7 @@ export default function NowPlayingDetail() {
                         width={96}
                         height={96}
                         className="aspect-square rounded-lg bg-violet-300 object-cover"
+                        id="vibrant-album"
                     />
                 </picture>
             ) : (
@@ -102,10 +135,10 @@ export default function NowPlayingDetail() {
             )}
             <div className="max-h-26 min-h-24 overflow-auto">
                 <h1 className="text-lg">{activity.title || "Not Playing"}</h1>
-                <p className="text-gray-600 max-h-10 dark:text-gray-400">
+                <p className="max-h-10 text-gray-600 dark:text-gray-400">
                     {activity.artist || ""}
                 </p>
-                <p className="overflow-clip text-sm max-h-10 text-gray-600 dark:text-gray-400">
+                <p className="max-h-10 overflow-clip text-sm text-gray-600 dark:text-gray-400">
                     {activity.parent || ""}
                 </p>
             </div>

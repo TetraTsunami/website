@@ -25,7 +25,7 @@ export default function NPComboGrid() {
     let duplicateAlbumCount = 0;
     return (
         <div className="mt-3 grid w-full max-w-4xl grid-cols-1 content-evenly gap-6 pt-3 text-center sm:grid-cols-2">
-            <div className="animate-fade-up row-span-2 rounded-2xl bg-bkg/55 p-4 shadow-i-md backdrop-blur-sm transition-colors">
+            <div className="row-span-2 animate-fade-up rounded-2xl bg-bkg/55 p-4 shadow-i-md backdrop-blur-sm transition-colors">
                 <NowPlayingDetail />
             </div>
             {history.data.map((item: any, index: number) => {
@@ -72,7 +72,7 @@ export default function NPComboGrid() {
                     duplicateAlbumCount = 0;
                     return (
                         <div
-                            key={item.title}
+                            key={item.title + item.artist + item.parent}
                             className="flex animate-fade-up rounded-lg bg-bkg/80 shadow-i-sm animation-fill-backward"
                             style={{
                                 animationDelay: `${totalNonDuplicate * 0.05}s`,

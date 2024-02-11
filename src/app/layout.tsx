@@ -8,6 +8,7 @@ import type { Viewport } from "next";
 import { Metadata } from "next";
 import { rubik } from "@/fonts/fonts";
 import Script from "next/script";
+import Providers from "./providers";
 config.autoAddCss = false;
 
 export const metadata: Metadata = {
@@ -39,9 +40,11 @@ export default function RootLayout({
                     src="https://net.tsuni.dev/js/pls.js"
                     strategy="lazyOnload"
                 />
-                <Background />
                 <Header />
-                {children}
+                <Providers>
+                    <Background />
+                    {children}
+                </Providers>
                 <Footer />
             </body>
         </html>
