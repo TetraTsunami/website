@@ -23,12 +23,12 @@ export default function Background() {
         <div className="absolute inset-0 -z-10 overflow-hidden">
             {/* Dark */}
             <div className="absolute inset-0" 
-                style={{"background": `linear-gradient(${theme.dark1}, ${theme.dark2}`}} />
+                style={{"background": `linear-gradient(90deg, ${theme.dark1}, ${theme.dark2}`}} />
             <div className={`absolute inset-0 bg-gradient-to-r from-purple-900 to-gray-800 transition-opacity duration-300`}
                 style={{"opacity": theme.isActive ? "0": "1"}} />
             {/* Light */}
             <div className="absolute inset-0 dark:opacity-0" 
-                style={{"background": `linear-gradient(${theme.light1}, ${theme.light2}`}} />
+                style={{"background": `linear-gradient(90deg, ${theme.light1}, ${theme.light2}`}} />
             <div className="absolute inset-0 bg-gradient-to-r from-pink-200 to-purple-300 transition-opacity duration-300 dark:opacity-0" 
                 style={ theme.isActive ? {"opacity": 0 } : {}} />
 

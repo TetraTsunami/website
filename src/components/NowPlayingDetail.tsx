@@ -63,26 +63,23 @@ export default function NowPlayingDetail() {
         }, 1000);
         updateElapsed();
 
-        if (!data || !activity.isPlaying) return;
-        const element = document.getElementById("vibrant-album") as HTMLImageElement;
-        if (element) {
-            const v = Vibrant.from(element)
-                .useQuantizer(Vibrant.Quantizer.WebWorker || Vibrant.Quantizer.MMCQ); 
+        if (!data || !activity.isPlaying || !activity.imageUrl ) return;
+        const v = Vibrant.from(activity.imageUrl)
+            .useQuantizer(Vibrant.Quantizer.WebWorker || Vibrant.Quantizer.MMCQ); 
 
-            v.getPalette((err, palette) => {
-                if (err) {
-                    console.error(err);
-                    return;
-                }
-                setTheme({
-                    light1: palette?.LightVibrant?.hex,
-                    light2: palette?.LightMuted?.hex,
-                    dark1: palette?.DarkVibrant?.hex,
-                    dark2: palette?.DarkMuted?.hex,
-                    isActive: activity.isPlaying,
-                })
-            });
-        }    
+        v.getPalette((err, palette) => {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            setTheme({
+                light1: palette?.LightVibrant?.hex,
+                light2: palette?.LightMuted?.hex,
+                dark1: palette?.DarkVibrant?.hex,
+                dark2: palette?.DarkMuted?.hex,
+                isActive: activity.isPlaying,
+            })
+        });
 
         return () => {
             clearInterval(interval);
