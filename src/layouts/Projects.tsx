@@ -11,6 +11,7 @@ import {
     mnfc2,
     port_website,
     cheese,
+    events,
 } from "../images";
 
 export default function Projects() {
@@ -45,6 +46,13 @@ export default function Projects() {
                 imageUrl={cheese}
                 description="A website with cheesey articles based on the New York Times. My project for CheeseHacks 2023, a hackathon hosted by UW-Madison."
                 year="2023"
+            />
+            <ProjectCard
+                name="UW Events listing"
+                href="https://uwevents.tsuni.dev"
+                imageUrl={events}
+                description="My first experience with web scraping. An alternative front-end for the UW-Madison events calendar."
+                year="2024"
             />
             <GridDivider name="Certifications" />
             <CertCard

@@ -88,6 +88,7 @@ export default function NowPlayingDetail() {
                 isActive: false,
             });
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activity, data, lastUpdated]);
 
     

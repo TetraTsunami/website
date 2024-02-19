@@ -28,8 +28,8 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" className={`bg-slate-900 ${rubik.className}`}>
-            <body className="text-content">
+        <html lang="en" className="bg-slate-900">
+            <body className={`text-content ${rubik.className}`}>
                 {/*we need sync scripts so that the theme is loaded before the page is rendered*/}
                 {/*eslint-disable-next-line @next/next/no-sync-scripts*/ }
                 <script src="/theme.js" />
