@@ -21,10 +21,16 @@
 
 @keyframes flow-background-camo {
     0% {
-        transform: translateX(0px) translateY(var(--scrollY));
+        transform: translateX(0px);
     }
 
     100% {
-        transform: translateX(376px) translateY(var(--scrollY));
+        transform: translateX(376px);
+    }
+}
+
+@media (prefers-reduced-motion) {
+    .camo {
+        animation: none;
     }
 }
