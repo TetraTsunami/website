@@ -19,12 +19,14 @@ function PageLink({
     const isActive = usePathname() === href;
 
     return (
-        <Link href={href} className={`hover:bg-gray-300 dark:hover:bg-gray-600 h-9 p-2 rounded-md transition-colors ${
-            isActive ? "bg-gray-400/25" : ""
-        }`} passHref>
-            {children}
-            {name}
-        </Link>
+        <li>
+            <Link href={href} className={`h-10 flex gap-2 items-center hover:bg-gray-300 dark:hover:bg-gray-600 px-2 rounded-md transition-colors ${
+                isActive ? "bg-gray-200 dark:bg-gray-700" : ""
+            }`} passHref>
+                {children}
+                {name}
+            </Link>
+        </li>
     );
 }
 
@@ -50,7 +52,7 @@ export default function Header() {
 
     return (
         <header className="fixed left-0 right-0 top-0 bg-bkg px-3 py-2 text-white backdrop-blur-md">
-            <div className="container mx-auto flex flex-row flex-wrap items-center justify-between px-4 pt-0 text-black sm:flex-nowrap dark:text-white">
+            <div className="container mx-auto flex flex-row flex-wrap items-center justify-between gap-2 px-4 pt-0 text-black sm:flex-nowrap dark:text-white">
                 <div className="h-full p-0">
                     <Link href="/" passHref>
                         <Image
@@ -63,15 +65,11 @@ export default function Header() {
                 </div>
                 <div className="flex-grow" />
                 <nav>
-                    <ul className="flex flex-row items-center justify-around">
-                        <li className="m-2">
-                            <PageLink name="Home" href="/" />
-                        </li>
-                        <li className="m-2 w-max">
-                            <PageLink name="Media" href="/media">
-                                <NowPlayingIcon />
-                            </PageLink>
-                        </li>
+                    <ul className="flex h-10 flex-row items-center justify-around gap-2">
+                        <PageLink name="Home" href="/" />
+                        <PageLink name="Media" href="/media">
+                            <NowPlayingIcon />
+                        </PageLink>
                     </ul>
                 </nav>
                 <DarkToggle />

@@ -35,7 +35,7 @@ export default function NowPlayingIcon() {
     return (
         <FontAwesomeIcon
             icon={faPlay}
-            className="mx-2 inline animate-pulse text-violet-400"
+            className="inline animate-pulse text-violet-400"
         />
     );
 }
