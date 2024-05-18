@@ -16,7 +16,12 @@
     top: 0;
     background-repeat: repeat;
     background: url("/images/bg-camo.png");
+    transition: opacity 0.5s;
     animation: 20s flow-background-camo linear infinite;
+}
+
+.static {
+    opacity: 0 !important;
 }
 
 @keyframes flow-background-camo {

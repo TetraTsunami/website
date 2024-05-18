@@ -2,9 +2,12 @@
 import { useContext } from "react";
 import styles from "./background.module.scss";
 import { BGContext } from "@/app/providers";
+import { usePathname } from "next/navigation";
 
 export default function Background() {
     const { theme } = useContext(BGContext);
+    const path  = usePathname();
+    const readingMode = path.includes("/posts/");
     
     return (
         <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -19,10 +22,10 @@ export default function Background() {
             <div className="absolute inset-0 bg-gradient-to-r from-pink-200 to-purple-300 transition-opacity duration-300 dark:opacity-0" 
                 style={ theme.isActive ? {"opacity": 0 } : {}} />
             <div
-                className={`transition-opacity opacity-30 dark:opacity-80 ${styles.camo}`}
+                className={`opacity-30 dark:opacity-80 ${styles.camo} ${readingMode ? styles.static : ""}`}
             />
             <div
-                className={`w-full h-full absolute dark:opacity-50 ${styles.dots}`}
+                className={`w-full h-full absolute 0 ${styles.dots}`}
             />
         </div>
     );

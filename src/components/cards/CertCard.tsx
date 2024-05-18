@@ -2,6 +2,7 @@ import { SizeProp } from "@fortawesome/fontawesome-svg-core";
 import { faCodepen } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image, { StaticImageData } from "next/image";
+import HoverCard from "./HoverCard";
 
 export default function CertCard({
     name,
@@ -15,8 +16,7 @@ export default function CertCard({
     imageUrl: string | StaticImageData;
 }) {
     return (
-        <div className="relative">
-            
+        <HoverCard href={certUrl}>
             <div className="border-grey-300 hover:outlinex group relative h-56 w-full overflow-clip rounded-xl border-4 border-content/80 shadow-xl outline-4 outline-accent transition-transform duration-200 focus-within:outline">
                 <a href={certUrl}>
                     <Image
@@ -45,6 +45,6 @@ export default function CertCard({
                     <p className="visible-hidden">Codepen collection</p>
                 </a>
             )}
-        </div>
+        </HoverCard>
     );
 }

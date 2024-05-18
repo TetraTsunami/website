@@ -1,29 +1,22 @@
-import { PostData, getAllPostData } from "@/lib/posts"
-import Image from "next/image"
-import Link from "next/link"
+import PostPreview from "@/components/PostPreview"
+import { getAllPostData } from "@/lib/posts"
 
-const PostPreview = (data: PostData & { slug: string } ) => {
-  return (
-    <Link href={`/posts/${data.slug}`} className="block">
-      <Image src={data.excerptImageUrl} alt={data.excerptImageAlt} width={200} height={200} />
-      <h2>{data.title}</h2>
-      <p>{data.date}</p>
-      <p>{data.excerpt}</p>
-    </Link>
-  )
-}
+
 
 export default function AllPosts() {
   const posts = getAllPostData()
   return (
-    <main className="mx-auto mt-16 flex max-w-[56rem] flex-col items-stretch">
+    <main className="container mx-auto mt-16 flex flex-col items-stretch">
       <header className="mb-8">
         <h1 className="text-center text-6xl font-semibold">Posts</h1>
       </header>
-      <div className="transition-color w relative -top-16 mt-32 box-content rounded-xl bg-bkg p-4 shadow-i-lg sm:px-16 sm:py-8">
-        <div className="mb-8 flex justify-between">
-          {posts.map((post) => (
-            <PostPreview key={post.slug} {...post} />
+      <div className="relative -top-16 mx-2 mt-32 box-content rounded-xl bg-bkg/55 p-4 shadow-i-lg backdrop-blur-sm transition-colors md:p-8">
+        <div className="flex flex-col gap-6">
+          {posts.map((post,  i) => (
+            <>
+              {i > 0 && <span key={i} className="h-[2px] w-full bg-bkg" />}
+              <PostPreview key={post.slug} {...post} />
+            </>
           ))}
         </div>
       </div>

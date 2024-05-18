@@ -1,40 +1,17 @@
 ---
 title: "Test Post"
+subtitle: "This is just a test post!"
 isVisible: true
 date: "2024-01-24"
 excerptImageUrl: "/images/gouda.png"
 excerptImageAlt: "Random stock photo"
-excerpt: "This is just a test post!"
+excerpt: "Next.js has two forms of pre-rendering: **Static Generation** and **Server-side Rendering**. The difference is in **when** it generates the HTML for a page."
 ---
 
 Next.js has two forms of pre-rendering: **Static Generation** and **Server-side Rendering**. The difference is in **when** it generates the HTML for a page.
 
 - **Static Generation** is the pre-rendering method that generates the HTML at **build time**. The pre-rendered HTML is then _reused_ on each request.
 - **Server-side Rendering** is the pre-rendering method that generates the HTML on **each request**.
-
-Importantly, Next.js lets you **choose** which pre-rendering form to use for each page. You can create a "hybrid" Next.js app by using Static Generation for most pages and using Server-side Rendering for others.
-
-# Big heading!
-## Medium heading!
-### Little heading!
-*italics*, **bold**, ***both***, ~~strikethrough~~
-Putting `code` in a line
-```
-// Putting code in a block!?
-const Preview = (props) => {
-  const previewHTML = {
-    __html: marked.parse(props.markdown)
-  };
-  return <div id="preview" dangerouslySetInnerHTML={previewHTML} />;
-};
-```
-[link](#)
-> quotes!
-- lists
-  - indented lists!?
-    - listicular listslaughter
-1. lists with numbers
-2. a second item
 
 Skeleton component:
 
@@ -44,8 +21,9 @@ import Skeleton from "./Skeleton.tsx"
 
 # Heading 1
 ## Heading 2
+### Heading 3
 
-Heading
+Heading 1
 ============
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 

@@ -2,9 +2,12 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { bundleMDX } from "mdx-bundler";
+import gfmPlugin from 'remark-gfm'
+import remarkBreaks from 'remark-breaks'
 
 export type PostData = {
   title: string;
+  subtitle: string;
   isVisible: boolean;
   date: string;
   excerptImageUrl: string;
@@ -47,7 +50,22 @@ export function getAllPostData() {
 export async function getPostBundle(slug: string) {
   const filePath = path.join(postsDirectory, `${slug}.mdx`);
   const source = fs.readFileSync(filePath, "utf8").trim();
-  const { code, frontmatter } = await bundleMDX({source, cwd: componentsDirectory });
+  const { code, frontmatter } = await bundleMDX({
+    source, 
+    mdxOptions(options: { remarkPlugins: any[]; }) {
+      options.remarkPlugins = [
+        ...(options?.remarkPlugins ?? []),
+        gfmPlugin,
+        remarkBreaks,
+      ]
+
+      return options
+    },
+    esbuildOptions(options) {
+      options.target = "esnext"
+      return options
+    },
+    cwd: componentsDirectory });
   return {
     slug,
     code,
