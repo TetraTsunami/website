@@ -16,7 +16,7 @@ export default function CertCard({
     imageUrl: string | StaticImageData;
 }) {
     return (
-        <HoverCard href={certUrl}>
+        <HoverCard>
             <div className="border-grey-300 hover:outlinex group relative h-56 w-full overflow-clip rounded-xl border-4 border-content/80 shadow-xl outline-4 outline-accent transition-transform duration-200 focus-within:outline">
                 <a href={certUrl}>
                     <Image
