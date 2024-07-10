@@ -4,6 +4,8 @@ import IconButtonRow2 from "@/components/IconButtonRow2";
 import Projects from "@/layouts/Projects";
 import textStyles from "@/styles/text.module.scss";
 import { neon } from "@/fonts/fonts";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { SizeProp } from "@fortawesome/fontawesome-svg-core";
 
 const fadeUpDelay = (i: number) => ({ animationDelay: i * 0.1 + 0.3 + "s" });
 
@@ -61,7 +63,7 @@ export default async function Home() {
                     startingFade={9}
                 />
             </section>
-            <div className="container mx-auto flex animate-fade-up flex-col gap-32 rounded-3xl bg-bkg/55 px-8 py-32 shadow-i-lg backdrop-blur-sm transition-colors animation-delay-700 animation-fill-backward">
+            <div className="container mx-auto flex animate-fade-up flex-col gap-32 rounded-3xl bg-bkg/55 px-8 pb-8 pt-32 shadow-i-lg backdrop-blur-sm transition-colors animation-delay-700 animation-fill-backward">
                 <section id="about">
                     <h2
                         className={`text-3xl md:text-4xl font-semibold text-center ${textStyles.terminal} ${neon.className}`}
@@ -87,6 +89,14 @@ export default async function Home() {
                         ls projects
                     </h2>
                     <Projects />
+                    <div className="text-center hover:text-accent">
+                        <FontAwesomeIcon
+                            icon={faGithub}
+                            size={"xl" as SizeProp}
+                        />
+                        {" "}
+                        <a href="https://github.com/TetraTsunami" className="text-lg">See more projects on my GitHub!</a>
+                    </div>
                 </section>
             </div>
         </main>

@@ -10,3 +10,5 @@ export { default as pcep_entry } from "../public/images/pcep_entry.png";
 export { default as logo } from "../public/images/reallogo.png";
 export { default as cheese } from "../public/images/gouda.png";
 export { default as events } from "../public/images/uwevents.png";
+export { default as linklooker } from "../public/images/linklooker.png";
+export { default as redcoral } from "../public/images/redcoral.jpg";
