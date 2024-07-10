@@ -51,7 +51,7 @@ export default function Header() {
     });
 
     return (
-        <header className="fixed left-0 right-0 top-0 z-10 bg-bkg px-3 py-2 text-white backdrop-blur-md">
+        <header className="fixed left-0 right-0 top-0 bg-bkg px-3 py-2 text-white backdrop-blur-md">
             <div className="container mx-auto flex flex-row flex-wrap items-center justify-between gap-2 px-4 pt-0 text-black dark:text-white sm:flex-nowrap">
                 <div className="h-full p-0">
                     <Link href="/" passHref>
