@@ -12,3 +12,4 @@ export { default as cheese } from "../public/images/gouda.png";
 export { default as events } from "../public/images/uwevents.png";
 export { default as linklooker } from "../public/images/linklooker.png";
 export { default as redcoral } from "../public/images/redcoral.jpg";
+export { default as dscpreview } from "../public/images/gh_dsc_preview.png";
