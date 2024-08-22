@@ -99,6 +99,10 @@ const config: Config = {
                 "i-md": "0px 0px 15px 0px #00000006, 0px 2px 30px 0px #00000016, inset 0px 0px 5px 0px hsla(0,0%,100%,.25)",
                 "i-lg": "0px 0px 30px 0px #00000007, 0px 30px 60px 0px #00000027, inset 0px 0px 5px 0px hsla(0,0%,100%,.25)",
             },
+            screens: {
+                'can-hover': {'raw': '(hover: hover)'},
+                'hover-none': {'raw': '(hover: none)'},
+            }
         },
     },
     plugins: [gridColsFlowPlugin, animationDelayPlugin, animationFillPlugin, typography],
