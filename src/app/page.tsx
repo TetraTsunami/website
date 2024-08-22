@@ -1,4 +1,4 @@
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import IconButtonRow2 from "@/components/IconButtonRow2";
 import Projects from "@/layouts/Projects";
@@ -58,6 +58,11 @@ export default async function Home() {
                             icon: faGithub,
                             href: "https://github.com/TetraTsunami",
                             title: "TetraTsunami",
+                        },
+                        {
+                            icon: faTwitter,
+                            href: "https://x.com/tetratsuni",
+                            title: "@TetraTsuni",
                         },
                     ]}
                     startingFade={9}
