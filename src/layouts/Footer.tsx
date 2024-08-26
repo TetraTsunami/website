@@ -22,7 +22,7 @@ export default function Footer() {
                         },
                         {
                             icon: faTwitter,
-                            href: "https://x.com/tetratsuni",
+                            href: "https://twitter.com/tsuniHD",
                             title: "Twitter/X",
                         },
                         {

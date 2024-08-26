@@ -61,8 +61,8 @@ export default async function Home() {
                         },
                         {
                             icon: faTwitter,
-                            href: "https://x.com/tetratsuni",
-                            title: "@TetraTsuni",
+                            href: "https://twitter.com/tsuniHD",
+                            title: "@tsuniHD",
                         },
                     ]}
                     startingFade={9}
