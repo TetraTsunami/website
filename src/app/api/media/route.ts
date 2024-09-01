@@ -7,7 +7,7 @@ export const GET = async () => {
 };
 
 
-export async function formatHistory() {
+async function formatHistory() {
     const timestamp = Date.now();
     const response = await getHistory(plexUser, 1);
     const intermediate = await response.json();
