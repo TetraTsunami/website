@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export default function PostPreview(data: PostData & { slug: string } ) {
   return (
-    <Link href={`/posts/${data.slug}`} className="group relative flex w-full flex-col sm:flex-row">
+    <Link href={`/${data.slug}`} className="group relative flex w-full flex-col sm:flex-row">
       <div className="relative aspect-[16/9] min-h-56 overflow-clip rounded-xl">
         <Image src={data.excerptImageUrl} alt={data.excerptImageAlt} fill
         sizes="(max-width: 600px) 100vw, (max-width 1024px) 66vw, 33vw"

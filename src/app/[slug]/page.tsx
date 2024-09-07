@@ -13,8 +13,8 @@ const PostContent = ({code, frontmatter}: { slug: string, code: string, frontmat
   const PostContent = React.useMemo(() => getMDXComponent(code), [code])
   const date = new Date(frontmatter.date).toLocaleDateString("en-US", {weekday: "long", year: "numeric", month: "long", day: "numeric"})
   return (
-    <article className="mt-16 flex flex-col items-center">
-      <header className="mb-8">
+    <article className="mt-24 flex flex-col items-center">
+      <header className="-z-10 mb-8">
         <h1 className="text-center text-6xl font-semibold">{frontmatter.title}</h1>
       </header>
       <div className="prose prose-slate relative -top-16 mx-2 mt-32 max-w-[56rem] rounded-xl bg-bkg p-4 shadow-i-lg transition-colors dark:prose-invert prose-code:font-[var(--font-neon)] md:px-16 md:py-8">

@@ -13,10 +13,10 @@ export default function AllPosts() {
       <div className="relative -top-16 mx-2 mt-32 box-content rounded-xl bg-bkg/55 p-4 shadow-i-lg backdrop-blur-sm transition-colors md:p-8">
         <div className="flex flex-col gap-6">
           {posts.map((post,  i) => (
-            <>
+            <div key={post.slug}>
               {i > 0 && <span key={i} className="h-[2px] w-full bg-bkg" />}
-              <PostPreview key={post.slug} {...post} />
-            </>
+              <PostPreview {...post} />
+            </div>
           ))}
         </div>
       </div>
