@@ -2,8 +2,11 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { bundleMDX } from "mdx-bundler";
-import gfmPlugin from 'remark-gfm'
+import remarkGFM from 'remark-gfm'
 import remarkBreaks from 'remark-breaks'
+import rehypeSlug from "rehype-slug";
+import rehypeSectionize from "@hbsnow/rehype-sectionize";
+import GithubSlugger from "github-slugger";
 
 export type PostData = {
   title: string;
@@ -47,18 +50,50 @@ export function getAllPostData() {
   return data.filter(Boolean) as (PostData & { slug: string })[];
 }
 
+type header = { indent: number, title: string, slug: string }
+
+const extractTableOfContents = (markdown: string): header[] => {
+  const slugger = new GithubSlugger();
+  const headings = markdown.match(/^#+\s.+|.+\r?\n=+/gm);
+  console.log(headings)
+  if (!headings) return [];
+  const extracted = headings.map(heading => {
+    const indent = heading.match(/#/g)?.length ?? 1;
+    const title = heading.replace(/^#+\s/, "").replace(/=+$/, "").trim();
+    const slug = slugger.slug(title);
+    return { indent, title, slug };
+  });
+  // Normalize levels (0-based)
+  const minLevel = Math.min(...extracted.map(({ indent }) => indent));
+  extracted.forEach(header => {
+    header.indent = header.indent - minLevel;
+  });
+  console.log(extracted)
+  return extracted;
+}
+
+const calulateReadingTime = (markdown: string): number => {
+    const wpm = 225;
+    const words = markdown.trim().split(/\s+/).length;
+    return Math.ceil(words / wpm);
+}
+
 export async function getPostBundle(slug: string) {
   const filePath = path.join(postsDirectory, `${slug}.mdx`);
   const source = fs.readFileSync(filePath, "utf8").trim();
   const { code, frontmatter } = await bundleMDX({
     source, 
-    mdxOptions(options: { remarkPlugins: any[]; }) {
+    mdxOptions(options: { remarkPlugins: any[]; rehypePlugins: any[] }) {
       options.remarkPlugins = [
         ...(options?.remarkPlugins ?? []),
-        gfmPlugin,
+        remarkGFM,
         remarkBreaks,
       ]
-
+      options.rehypePlugins = [
+        ...(options?.rehypePlugins ?? []),
+        rehypeSlug,
+        rehypeSectionize
+      ]
       return options
     },
     esbuildOptions(options) {
@@ -66,13 +101,13 @@ export async function getPostBundle(slug: string) {
       return options
     },
     cwd: componentsDirectory });
+  const tableOfContents = extractTableOfContents(source);
+  const readingMinutes = calulateReadingTime(source)
   return {
     slug,
     code,
     frontmatter,
-  } as {
-    slug: string;
-    code: string;
-    frontmatter: PostData;
+    tableOfContents,
+    readingMinutes
   };
 }

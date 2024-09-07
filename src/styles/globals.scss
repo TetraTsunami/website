@@ -51,7 +51,7 @@ h5,
 h6,
 section {
   overflow-wrap: break-word;
-  scroll-margin-top: 3rem;
+  scroll-margin-top: 6rem;
 }
 
 .visible-hidden {
@@ -93,4 +93,12 @@ body,
 
 :focus-visible {
   @apply outline outline-2 outline-purple-400;
+}
+
+nav.scrollspy li {
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  &.active {
+    opacity: 1;
+  }
 }
