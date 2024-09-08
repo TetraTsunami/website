@@ -2,9 +2,15 @@ import { getAllPostIds, getPostBundle } from "@/lib/posts"
 import { getMDXComponent } from "mdx-bundler/client"
 import React from "react"
 import TableOfContents from "../../components/TableOfContents"
+import fs from "fs";
+import path from "path";
+import { notFound } from "next/navigation";
 
 export default async function Post({ params }: { params: { slug: string } }) {
     const { slug } = params
+    if (fs.existsSync(path.join(process.cwd(), "src", "posts", `${slug}.mdx`)) === false) {
+        notFound()
+    }
     const post = await getPostBundle(slug)
     return <PostContent {...post} />
 }
@@ -38,3 +44,4 @@ export async function generateStaticParams() {
   const posts = await getAllPostIds()
   return posts.map(slug => {slug})
 }
+export const dynamicParams = false // 404 on unknown paths
