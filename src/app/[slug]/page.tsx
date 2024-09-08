@@ -40,7 +40,7 @@ const PostContent = ({code, frontmatter, tableOfContents, readingMinutes}: Await
   )
 }
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   const slugs = getAllPostIds()
   return slugs.map(slug => {slug})
 }
