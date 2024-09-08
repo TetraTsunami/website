@@ -55,7 +55,6 @@ type header = { indent: number, title: string, slug: string }
 const extractTableOfContents = (markdown: string): header[] => {
   const slugger = new GithubSlugger();
   const headings = markdown.match(/^#+\s.+|.+\r?\n=+/gm);
-  console.log(headings)
   if (!headings) return [];
   const extracted = headings.map(heading => {
     const indent = heading.match(/#/g)?.length ?? 1;
@@ -68,7 +67,6 @@ const extractTableOfContents = (markdown: string): header[] => {
   extracted.forEach(header => {
     header.indent = header.indent - minLevel;
   });
-  console.log(extracted)
   return extracted;
 }
 

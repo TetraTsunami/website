@@ -8,8 +8,8 @@ import { notFound } from "next/navigation";
 
 export default async function Post({ params }: { params: { slug: string } }) {
     const { slug } = params
-    if (fs.existsSync(path.join(process.cwd(), "src", "posts", `${slug}.mdx`)) === false) {
-        notFound()
+    if (fs.existsSync(path.join(process.cwd(), "posts", `${slug}.mdx`)) === false) {
+      notFound()
     }
     const post = await getPostBundle(slug)
     return <PostContent {...post} />
@@ -41,7 +41,7 @@ const PostContent = ({code, frontmatter, tableOfContents, readingMinutes}: Await
 }
 
 export async function generateStaticParams() {
-  const posts = await getAllPostIds()
-  return posts.map(slug => {slug})
+  const slugs = getAllPostIds()
+  return slugs.map(slug => {slug})
 }
 export const dynamicParams = false // 404 on unknown paths
