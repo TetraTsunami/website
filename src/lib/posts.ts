@@ -29,9 +29,9 @@ export function getSortedPostsData() {
   );
 }
 
-export function getAllPostIds(): { slug: string }[] {
+export function getAllPostIds() {
   const fileNames = fs.readdirSync(postsDirectory);
-  return fileNames.map(fileName => ({ slug: fileName.replace(/\.mdx$/, "") }));
+  return fileNames.map(fileName => fileName.replace(/\.mdx$/, ""));
 }
 
 export function getAllPostData() {
