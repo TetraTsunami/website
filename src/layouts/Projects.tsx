@@ -46,7 +46,7 @@ export default function Projects() {
                 name="GitHub Discord Previews"
                 href="https://github.com/TetraTsunami/discord-github-preview"
                 imageUrl={dscpreview}
-                description="A weekend project that embeds Discord statuses in SVGs that can be easily placed anywhere."
+                description="A project that embeds Discord statuses in SVGs that can be easily placed anywhere."
                 year="2024"
             />
             <GridDivider name="2023" />
