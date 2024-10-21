@@ -76,8 +76,8 @@ export default async function Home() {
                         whois Tsuni
                     </h2>
                     <p className="mx-auto mb-4 max-w-prose text-center text-lg">
-                        {`Heya! I'm Tsuni, a 19 year old developer from Wisconsin, USA.
-                        I'm currently studying Computer Science in my sophomore year at
+                        {`Heya! I'm Tsuni, a 20 year old developer from Wisconsin, USA.
+                        I'm currently studying Computer Science at
                         UW-Madison. When I'm not programming, you'll find me hiking, mountain
                         biking, reading, tinkering with my old-PC-turned-server, or playing video games.
                         I'm always looking out for new projects that excite me, so feel free to reach out!`}
