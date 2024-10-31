@@ -1,13 +1,17 @@
-import type { NextPage } from "next";
+import type { Metadata, NextPage } from "next";
 import textStyles from "@/styles/text.module.scss";
 import NPComboGrid from "@/components/NPComboGrid";
 
+export const metadata: Metadata = {
+    title: 'Posts - Tsuni!',
+}
+  
 const fadeUpDelay = (i: number) => ({ animationDelay: i * 0.1 + 0.3 + "s" });
 const Media: NextPage = () => {
     return (
         <main className="min-h-screen">
             <section
-                className="container mx-auto px-2 sm:px-8 pb-16 pt-32"
+                className="container mx-auto px-2 pb-16 pt-32 sm:px-8"
             >
                 <h2
                     className={`text-6xl text-center font-bold ${textStyles.gradientTitleText}`}
@@ -44,7 +48,7 @@ const Media: NextPage = () => {
                     </span>
                 </h2>
             </section>
-            <section className="container mx-auto flex flex-col items-center justify-center px-2 sm:px-8 py-8">
+            <section className="container mx-auto flex flex-col items-center justify-center px-2 py-8 sm:px-8">
                 <NPComboGrid />
             </section>
         </main>

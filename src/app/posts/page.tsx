@@ -1,7 +1,10 @@
 import PostPreview from "@/components/PostPreview"
 import { getAllPostData } from "@/lib/posts"
-
-
+import type { Metadata } from 'next'
+ 
+export const metadata: Metadata = {
+  title: 'Posts - Tsuni!',
+}
 
 export default function AllPosts() {
   const posts = getAllPostData()

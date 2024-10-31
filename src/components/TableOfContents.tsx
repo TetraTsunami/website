@@ -23,13 +23,11 @@ window.addEventListener('DOMContentLoaded', () => {
 });*/
 export default function TableOfContents({ tableOfContents }: { tableOfContents: { indent: number, title: string, slug: string }[] }) {
   useEffect(() => {
-    console.log("dom loaded")
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         const id = entry.target.getAttribute('aria-labelledby');
         if (entry.intersectionRatio > 0) {
           document.querySelector(`nav li a[href="#${id}"]`)?.parentElement?.classList.add('active');
-          console.log("active", id)
         } else {
           document.querySelector(`nav li a[href="#${id}"]`)?.parentElement?.classList.remove('active');
         }
@@ -42,7 +40,7 @@ export default function TableOfContents({ tableOfContents }: { tableOfContents: 
     });
   })
   return (
-    <nav className="scrollspy top-20 self-baseline rounded-xl bg-bkg/90 p-4 shadow-i-lg transition-colors sm:sticky md:px-4">
+    <nav className="scrollspy top-20 self-baseline rounded-xl bg-bkg/90 p-4 shadow-i-sm transition-colors sm:sticky md:px-4">
       <ul className="flex flex-col gap-2">
         {tableOfContents.map(({ indent, title, slug }) => (
           <li key={slug} className={`ml-${indent * 4}`}>

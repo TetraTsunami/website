@@ -1,7 +1,16 @@
 "use client";
-import { createContext, ReactNode, useState} from 'react';
+import { createContext, Dispatch, ReactNode, useState} from 'react';
 
-const defaultTheme = {
+export type theme = {
+    focus: boolean;
+    isActive: boolean;
+    light1: string | undefined;
+    light2: string | undefined;
+    dark1: string | undefined;
+    dark2: string | undefined;
+}
+
+const defaultTheme: theme = {
     focus: false,
     isActive: false,
     light1: "#f5f5f5",
@@ -10,16 +19,16 @@ const defaultTheme = {
     dark2: "#1a1a1a",
 }
 
-export const BGContext = createContext({
-    theme: defaultTheme,
-    setTheme: (theme: any) => theme
-});
+export const BGContext = createContext(defaultTheme);
+export const BGDispatchContext = createContext(null as unknown as Dispatch<React.SetStateAction<typeof defaultTheme>>);
 
 const BGProvider = ({ children }:  { children: ReactNode }) => {
     const [theme, setTheme] = useState(defaultTheme)
     return (
-        <BGContext.Provider value={{theme, setTheme}}>
-            {children}
+        <BGContext.Provider value={theme}>
+            <BGDispatchContext.Provider value={setTheme}>
+                {children}
+            </BGDispatchContext.Provider>
         </BGContext.Provider>
     );
 

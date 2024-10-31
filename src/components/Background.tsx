@@ -4,7 +4,7 @@ import styles from "./background.module.scss";
 import { BGContext } from "@/app/providers";
 
 export default function Background() {
-    const { theme } = useContext(BGContext);
+    const theme = useContext(BGContext);
     
     return (
         <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -20,9 +20,11 @@ export default function Background() {
                 style={ theme.isActive ? {"opacity": 0 } : undefined} />
             <div
                 className={`opacity-30 dark:opacity-80 ${styles.camo}`}
+                style={ theme.focus ? {"opacity": "0"} : undefined}
             />
             <div
                 className={`w-full h-full absolute 0 ${styles.dots}`}
+                style={ theme.focus ? {"opacity": "0"} : undefined}
             />
         </div>
     );

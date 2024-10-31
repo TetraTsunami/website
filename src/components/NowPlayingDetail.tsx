@@ -12,7 +12,7 @@ import useSWR from "swr";
 import Error from "./util/Error";
 import Loading from "./util/Loading";
 import StyledProgress1 from "./util/StyledProgress1";
-import { BGContext } from "@/app/providers";
+import { BGDispatchContext } from "@/app/providers";
 import Vibrant from "node-vibrant";
 
 async function fetcher<JSON = any>(
@@ -37,7 +37,7 @@ interface Activity {
 
 export default function NowPlayingDetail() {
     const { data, error, isValidating, mutate } = useSWR("/api/nowplaying", fetcher);
-    const { theme, setTheme } = useContext(BGContext);
+    const setTheme = useContext(BGDispatchContext);
     const [elapsed, setElapsed] = useState(0);
     const [lastUpdated, setLastUpdated] = useState(0);
     const activity = data as Activity;
@@ -72,21 +72,22 @@ export default function NowPlayingDetail() {
                 console.error(err);
                 return;
             }
-            setTheme({
+            setTheme((theme) => ({
+                ...theme,
                 light1: palette?.LightVibrant?.hex,
                 light2: palette?.LightMuted?.hex,
                 dark1: palette?.DarkVibrant?.hex,
                 dark2: palette?.DarkMuted?.hex,
                 isActive: activity.isPlaying,
-            })
+            }));
         });
 
         return () => {
             clearInterval(interval);
-            setTheme({
+            setTheme((theme) => ({
                 ...theme,
                 isActive: false,
-            });
+            }));
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activity, data, lastUpdated]);

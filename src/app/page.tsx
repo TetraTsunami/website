@@ -6,6 +6,11 @@ import textStyles from "@/styles/text.module.scss";
 import { neon } from "@/fonts/fonts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SizeProp } from "@fortawesome/fontawesome-svg-core";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: 'Homepage - Tsuni!',
+}
 
 const fadeUpDelay = (i: number) => ({ animationDelay: i * 0.1 + 0.3 + "s" });
 
