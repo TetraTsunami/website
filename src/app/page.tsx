@@ -73,7 +73,7 @@ export default async function Home() {
                     startingFade={9}
                 />
             </section>
-            <div className="container mx-auto flex animate-fade-up flex-col gap-32 rounded-3xl bg-bkg/55 px-8 pb-8 pt-32 shadow-i-lg backdrop-blur-sm transition-colors animation-delay-700 animation-fill-backward">
+            <div className="container mx-auto flex flex-col gap-32 rounded-3xl bg-bkg/55 px-8 pb-8 pt-32 shadow-i-lg backdrop-blur-sm transition-colors animation-delay-700 animation-fill-backward motion-safe:animate-fade-up">
                 <section id="about">
                     <h2
                         className={`text-3xl md:text-4xl font-semibold mb-4 text-center ${textStyles.terminal} ${neon.className}`}

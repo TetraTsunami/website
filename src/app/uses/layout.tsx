@@ -5,7 +5,7 @@ export default function PostLayout({
 }) {
 
   return (
-      <div className="relative pt-12" style={{minHeight: "calc(100vh - 4rem)"}}>
+      <div className="relative pt-12 motion-safe:animate-fade-up" style={{minHeight: "calc(100vh - 4rem)"}}>
           {children}
       </div>
   );
