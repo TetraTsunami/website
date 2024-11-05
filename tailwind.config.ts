@@ -65,7 +65,7 @@ const animationFillPlugin = plugin(
 );
 
 const config: Config = {
-    content: ["./src/**/*.{js,ts,jsx,tsx}"],
+    content: ["./src/**/*.{js,ts,jsx,tsx,mdx}", "./posts/*.mdx"],
     darkMode: "class",
     theme: {
         extend: {

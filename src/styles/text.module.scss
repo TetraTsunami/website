@@ -81,3 +81,14 @@
   background-image: linear-gradient(theme('colors.violet.400'),
       theme('colors.violet.500'));
 }
+
+.prose {
+  p::selection {
+    color: white;
+    background: hsl(var(--color-accent));
+  }
+  img {
+    border-radius: 0.5rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+  }
+}

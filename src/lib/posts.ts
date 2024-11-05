@@ -76,8 +76,8 @@ const calulateReadingTime = (markdown: string): number => {
     return Math.ceil(words / wpm);
 }
 
-export async function getPostBundle(slug: string) {
-  const filePath = path.join(postsDirectory, `${slug}.mdx`);
+export async function getPostBundle(slug: string, searchDirectory?: string) {
+  const filePath = path.join(searchDirectory || postsDirectory, `${slug}.mdx`);
   const source = fs.readFileSync(filePath, "utf8").trim();
   const { code, frontmatter } = await bundleMDX({
     source, 

@@ -40,10 +40,10 @@ export default function TableOfContents({ tableOfContents }: { tableOfContents: 
     });
   })
   return (
-    <nav className="scrollspy top-20 self-baseline rounded-xl bg-bkg/90 p-4 shadow-i-sm transition-colors sm:sticky md:px-4">
+    <nav className="scrollspy top-20 self-baseline rounded-xl bg-bkg/90 p-4 shadow-i-sm transition-colors sm:sticky md:p-6">
       <ul className="flex flex-col gap-2">
         {tableOfContents.map(({ indent, title, slug }) => (
-          <li key={slug} className={`ml-${indent * 4}`}>
+          <li key={slug} style={{"marginLeft": indent + "rem"}}>
             <a href={`#${slug}`}>{title}</a>
           </li>
         ))}

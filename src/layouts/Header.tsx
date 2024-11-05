@@ -67,6 +67,7 @@ export default function Header() {
                 <nav>
                     <ul className="flex h-10 flex-row items-center justify-around gap-2">
                         <PageLink name="Home" href="/" />
+                        <PageLink name="Uses" href="/uses" />
                         <PageLink name="Media" href="/media">
                             <NowPlayingIcon />
                         </PageLink>
