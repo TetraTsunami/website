@@ -14,6 +14,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@giscus/react": "^3.0.0",
     "@hbsnow/rehype-sectionize": "^1.0.7",
     "@tailwindcss/typography": "^0.5.15",
     "@tippyjs/react": "^4.2.6",
