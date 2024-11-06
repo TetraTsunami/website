@@ -1,0 +1,16 @@
+.articleGrid {
+  grid-template-columns: [wide-start] 1fr [content-start] minmax(0, 50rem) [content-end toc-start] max-content [toc-end] 1fr [wide-end];
+  grid-gap: 0.5rem;
+}
+
+.articleWide {
+  grid-column: wide-start / wide-end;
+}
+
+.articleContent {
+  grid-column: content-start / content-end;
+}
+
+.articleToc {
+  grid-column: toc-start / toc-end;
+}
