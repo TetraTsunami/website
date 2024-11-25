@@ -7,6 +7,8 @@ import { neon } from "@/fonts/fonts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SizeProp } from "@fortawesome/fontawesome-svg-core";
 import { Metadata } from "next";
+import { getAllPostData } from "@/lib/posts";
+import PostPreview from "@/components/PostPreview";
 
 export const metadata: Metadata = {
     title: 'Homepage - Tsuni!',
@@ -15,6 +17,7 @@ export const metadata: Metadata = {
 const fadeUpDelay = (i: number) => ({ animationDelay: i * 0.1 + 0.3 + "s" });
 
 export default async function Home() {
+    const posts = getAllPostData();
     return (
         <main className="pb-8 pt-16">
             <section
@@ -112,6 +115,19 @@ export default async function Home() {
                         {" "}
                         <a href="https://github.com/TetraTsunami" className="text-lg">See more projects on my GitHub!</a>
                     </div>
+                </section>
+                <section id="posts">
+                    <h2 className={`text-3xl text-center md:text-4xl font-semibold text-content ${textStyles.terminal} ${neon.className}`}>
+                        cat blog.md
+                    </h2>
+                    <ul className="my-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+                        {posts.map((post,  i) => (
+                            <li className="rounded-xl bg-bkg/75 p-4 shadow-lg ring-accent hover:ring-4" key={post.slug}>
+                            {i > 0 && <span key={i} className="h-[2px] w-full bg-bkg" />}
+                            <PostPreview {...post} />
+                            </li>
+                        ))}
+                    </ul>
                 </section>
             </div>
         </main>
