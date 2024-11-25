@@ -12,8 +12,9 @@ import Providers from "./providers";
 config.autoAddCss = false;
 
 export const metadata: Metadata = {
-    title: "Tsuni!",
+    title: "Tsuni",
     description: "Tsuni's lovely website",
+    themeColor: "#d6b2f6"
 };
 
 export const viewport: Viewport = {
@@ -29,6 +30,9 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className={`bg-slate-900 ${rubik.className}`}>
+            <head>
+                <link rel="preconnect" href="https://net.tsuni.dev" />
+            </head>
             <body className={`text-content`}>
                 {/*we need sync scripts so that the theme is loaded before the page is rendered*/}
                 {/*eslint-disable-next-line @next/next/no-sync-scripts*/ }

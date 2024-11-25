@@ -3,7 +3,8 @@ import textStyles from "@/styles/text.module.scss";
 import NPComboGrid from "@/components/NPComboGrid";
 
 export const metadata: Metadata = {
-    title: 'Posts - Tsuni!',
+    title: 'Tsuni - Media',
+    description: 'A list of media recently played by Tsuni',
 }
   
 const fadeUpDelay = (i: number) => ({ animationDelay: i * 0.1 + 0.3 + "s" });

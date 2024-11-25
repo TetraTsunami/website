@@ -3,7 +3,8 @@ import { getAllPostData } from "@/lib/posts"
 import type { Metadata } from 'next'
  
 export const metadata: Metadata = {
-  title: 'Posts - Tsuni!',
+  title: 'Tsuni - Posts',
+  description: 'A list of posts by Tsuni',
 }
 
 export default function AllPosts() {

@@ -9,7 +9,8 @@ import Giscus from "@/components/Giscus";
 import PostComponents from "@/components/PostComponents";
 
 export const metadata: Metadata = {
-  title: "Uses - Tsuni!",
+  title: "Tsuni - Uses",
+  description: "A list of tools and software used by Tsuni",
 };
 
 export default async function Uses() {
