@@ -6,7 +6,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import type { Viewport } from "next";
 import { Metadata } from "next";
-import { rubik } from "@/fonts/fonts";
+import { neon, rubik } from "@/fonts/fonts";
 import Script from "next/script";
 import Providers from "./providers";
 config.autoAddCss = false;
@@ -28,7 +28,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" className={`bg-slate-900 ${rubik.className}`} suppressHydrationWarning={true}>
+        <html lang="en" className={`bg-slate-900 ${rubik.className} ${neon.variable}`} suppressHydrationWarning={true}>
             <head>
                 <link rel="preconnect" href="https://net.tsuni.dev" />
             </head>

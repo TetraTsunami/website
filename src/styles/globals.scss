@@ -102,3 +102,31 @@ nav.scrollspy li {
     opacity: 1;
   }
 }
+
+.prose {
+  p::selection {
+    color: white;
+    background: hsl(var(--color-accent));
+  }
+  img {
+    border-radius: 0.5rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+  }
+  pre {
+    transition: background-color 0.2s, color 0.2s;
+    background-color: var(--shiki-light-bg);
+    color: var(--shiki-light);
+    * {
+      transition: background-color 0.2s, color 0.2s;
+      color: var(--shiki-light);
+    }
+  }
+}
+
+.dark .prose pre {
+  background-color: var(--shiki-dark-bg);
+  color: var(--shiki-dark);
+  * {
+    color: var(--shiki-dark);
+  }
+}

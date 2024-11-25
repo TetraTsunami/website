@@ -8,6 +8,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeSectionize from "@hbsnow/rehype-sectionize";
 import GithubSlugger from "github-slugger";
 import imageMetadata from "./image-metadata-plugin";
+import rehypeShiki from '@shikijs/rehype';
 
 export type PostData = {
   title: string;
@@ -90,9 +91,16 @@ export async function getPostBundle(slug: string, searchDirectory?: string) {
       ]
       options.rehypePlugins = [
         ...(options?.rehypePlugins ?? []),
+        [rehypeShiki, {
+          themes: {
+            light: "catppuccin-latte",
+            dark: "catppuccin-frappe",
+          },
+          defaultColor: false,
+        }],
         rehypeSlug,
         rehypeSectionize,
-        imageMetadata
+        imageMetadata,
       ]
       return options
     },

@@ -100,9 +100,29 @@ const config: Config = {
                 "i-lg": "0px 0px 30px 0px #00000007, 0px 30px 60px 0px #00000027, inset 0px 0px 5px 0px hsla(0,0%,100%,.25)",
             },
             screens: {
-                'can-hover': {'raw': '(hover: hover)'},
-                'hover-none': {'raw': '(hover: none)'},
-            }
+                'can-hover': { 'raw': '(hover: hover)' },
+                'hover-none': { 'raw': '(hover: none)' },
+            },
+            typography: ({ theme }: { theme: any }) => ({
+                DEFAULT: {
+                    css: {
+                        code: {
+                            backgroundColor: 'hsl(var(--color-content) / 0.05)',
+                            borderRadius: theme('borderRadius.md'),
+                            paddingTop: theme('padding[1]'),
+                            paddingRight: theme('padding[1.5]'),
+                            paddingBottom: theme('padding[1]'),
+                            paddingLeft: theme('padding[1.5]'),
+                        },
+                        'code::before': {
+                            content: 'normal',
+                        },
+                        'code::after': {
+                            content: 'normal',
+                        },
+                    },
+                },
+            }),
         },
     },
     plugins: [gridColsFlowPlugin, animationDelayPlugin, animationFillPlugin, typography],
