@@ -5,6 +5,8 @@ import { Processor } from "unified";
 import { Node } from "unist";
 import { visit } from "unist-util-visit";
 import { promisify } from "util";
+import { readFile } from "fs/promises";
+import { getPlaiceholder } from "plaiceholder";
 
 const sizeOf = promisify(imageSize);
 
@@ -15,6 +17,7 @@ interface ImageNode extends Node {
     src: string;
     height?: number;
     width?: number;
+    blurDataURL?: string;
   };
 }
 
@@ -33,14 +36,16 @@ function filterImageNode(node: ImageNode): boolean {
 }
 
 async function addMetadata(node: ImageNode): Promise<void> {
-  const res = await sizeOf(
-    path.join(process.cwd(), "public", node.properties.src)
-  );
-
+  const srcPath = path.join(process.cwd(), "public", node.properties.src);
+  const res = await sizeOf(srcPath);
   if (!res) throw Error(`Invalid image with src "${node.properties.src}"`);
 
+  const buffer = await readFile(srcPath);
+  
   node.properties.width = res.width;
   node.properties.height = res.height;
+  node.properties.blurDataURL
+  = await getPlaiceholder(buffer, {size: 10}).then((result) => result.base64);
 }
 
 export default function imageMetadata(this: Processor) {

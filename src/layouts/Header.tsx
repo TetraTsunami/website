@@ -60,6 +60,8 @@ export default function Header() {
                             alt="Tsuni logo"
                             className="aspect-auto h-12 w-auto"
                             priority={true}
+                            sizes="200px"
+                            quality={50}
                             />
                     </Link>
                 </div>

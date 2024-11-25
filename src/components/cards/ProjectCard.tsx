@@ -35,7 +35,7 @@ export default function ProjectCard({
                     className="bg-bkg object-cover duration-1000 group-hover:scale-105"
                     fill
                     sizes="(max-width: 600px) 100vw, (max-width 1024px) 66vw, 33vw"
-                    quality={85}
+                    quality={60}
                     placeholder="blur"
                 />
                 <div
