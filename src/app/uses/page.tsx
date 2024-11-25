@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import textStyles from "@/styles/text.module.scss";
 import gridStyles from "@/styles/grid.module.scss";
 import Giscus from "@/components/Giscus";
+import PostComponents from "@/components/PostComponents";
 
 export const metadata: Metadata = {
   title: "Uses - Tsuni!",
@@ -31,7 +32,7 @@ const PostContent = ({
       <div
         className={`prose prose-slate max-w-full rounded-xl bg-bkg/90 p-4 shadow-i-lg dark:prose-invert prose-code:font-[var(--font-neon)] md:px-12 md:py-8 ${textStyles.prose} ${gridStyles.articleContent}`}
       >
-        <PostContent />
+        <PostContent components={PostComponents}/>
       </div>
       <nav className={`scrollspy top-20 hidden self-baseline rounded-xl bg-bkg/90 p-4 shadow-i-sm transition-colors sm:sticky sm:block md:p-6 ${gridStyles.articleToc}`}>
         <TableOfContents tableOfContents={tableOfContents} />

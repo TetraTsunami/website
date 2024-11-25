@@ -21,6 +21,7 @@
     "esbuild": "^0.19.12",
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.3",
+    "image-size": "^1.1.1",
     "mdx-bundler": "^10.0.3",
     "next": "^14.2.16",
     "node-vibrant": "3.1.6",
@@ -30,12 +31,16 @@
     "remark-breaks": "^4.0.0",
     "remark-gfm": "^4.0.0",
     "sharp": "0.32.6",
-    "swr": "^2.2.5"
+    "swr": "^2.2.5",
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.0.0",
+    "vfile": "^6.0.3"
   },
   "devDependencies": {
     "@types/node": "^20.17.5",
     "@types/react": "18.0.14",
     "@types/react-dom": "18.0.5",
+    "@types/unist": "^3.0.3",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "autoprefixer": "^10.4.20",

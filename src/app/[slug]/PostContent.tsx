@@ -4,6 +4,7 @@ import React, { useContext, useEffect } from "react"
 import TableOfContents from "../../components/TableOfContents"
 import { BGDispatchContext } from "../providers"
 import { getPostBundle } from "@/lib/posts";
+import PostComponents from "@/components/PostComponents";
 
 export default function PostContent({code, frontmatter, tableOfContents, readingMinutes}: Awaited<ReturnType<typeof getPostBundle>>) {
   // it's a mouthful, but the props are essentially "the result of getPostBundle after it resolves"
@@ -28,7 +29,7 @@ export default function PostContent({code, frontmatter, tableOfContents, reading
             <span className="mx-4 h-0 grow self-center border-b-2 border-b-accent" />
             <p className="m-0 text-sm">{readingMinutes} minute read</p>
           </div>
-          <PostContent />
+          <PostContent components={PostComponents} />
         </div>
       </div>
     </article>

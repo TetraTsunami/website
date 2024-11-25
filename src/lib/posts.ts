@@ -7,6 +7,7 @@ import remarkBreaks from 'remark-breaks'
 import rehypeSlug from "rehype-slug";
 import rehypeSectionize from "@hbsnow/rehype-sectionize";
 import GithubSlugger from "github-slugger";
+import imageMetadata from "./image-metadata-plugin";
 
 export type PostData = {
   title: string;
@@ -90,12 +91,17 @@ export async function getPostBundle(slug: string, searchDirectory?: string) {
       options.rehypePlugins = [
         ...(options?.rehypePlugins ?? []),
         rehypeSlug,
-        rehypeSectionize
+        rehypeSectionize,
+        imageMetadata
       ]
       return options
     },
     esbuildOptions(options) {
       options.target = "esnext"
+      options.loader = {
+        ...options.loader,
+        ".svg": "dataurl",
+      };
       return options
     },
     cwd: componentsDirectory });
