@@ -14,11 +14,10 @@ config.autoAddCss = false;
 export const metadata: Metadata = {
     title: "Tsuni",
     description: "Tsuni's lovely website",
-    themeColor: "#d6b2f6"
 };
 
 export const viewport: Viewport = {
-    themeColor: "black",
+    themeColor: "#d6b2f6",
     initialScale: 1,
     width: "device-width",
 };
@@ -29,7 +28,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" className={`bg-slate-900 ${rubik.className}`}>
+        <html lang="en" className={`bg-slate-900 ${rubik.className}`} suppressHydrationWarning={true}>
             <head>
                 <link rel="preconnect" href="https://net.tsuni.dev" />
             </head>

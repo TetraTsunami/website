@@ -28,7 +28,7 @@ export default function ProjectCard({
     )
     return (
         <HoverCard noHoverChildren={noHoverElement}>
-            <a href={href}>
+            <a href={href} className="absolute inset-0">
                 <Image
                     src={imageUrl}
                     alt={`Screenshot of ${name}`}
@@ -39,7 +39,7 @@ export default function ProjectCard({
                     placeholder="blur"
                 />
                 <div
-                    className="relative top-full mx-auto flex h-full w-full -translate-y-5 flex-col justify-center rounded-lg bg-bkg/75 px-6 py-6 shadow-lg will-change-transform can-hover:group-hover:-translate-y-full can-hover:group-hover:bg-bkg/90 motion-safe:duration-200"
+                    className="relative top-full mx-auto flex h-full w-full -translate-y-5 flex-col justify-center rounded-lg bg-bkg/75 px-6 py-6 shadow-lg will-change-transform motion-safe:duration-200 can-hover:group-hover:-translate-y-full can-hover:group-hover:bg-bkg/90"
                 >
                     <span className="absolute right-5 top-0 text-left align-top text-sm font-semibold italic text-slate-900 dark:text-white">
                         {year}

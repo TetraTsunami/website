@@ -18,7 +18,7 @@ export default function CertCard({
     return (
         <HoverCard>
             <div className="border-grey-300 hover:outlinex group relative h-56 w-full overflow-clip rounded-xl border-4 border-content/80 shadow-xl outline-4 outline-accent transition-transform duration-200 focus-within:outline">
-                <a href={certUrl}>
+                <a href={certUrl} className="absolute inset-0">
                     <Image
                         src={imageUrl}
                         alt={name}

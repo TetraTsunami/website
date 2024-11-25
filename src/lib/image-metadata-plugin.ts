@@ -17,6 +17,7 @@ interface ImageNode extends Node {
     src: string;
     height?: number;
     width?: number;
+    processed?: boolean;
     blurDataURL?: string;
   };
 }
@@ -44,8 +45,9 @@ async function addMetadata(node: ImageNode): Promise<void> {
   
   node.properties.width = res.width;
   node.properties.height = res.height;
-  node.properties.blurDataURL
-  = await getPlaiceholder(buffer, {size: 10}).then((result) => result.base64);
+  node.properties.blurDataURL = await getPlaiceholder(buffer, {size: 10})
+  .then((result) => result.base64);
+  node.properties.processed = true;
 }
 
 export default function imageMetadata(this: Processor) {
