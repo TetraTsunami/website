@@ -11,7 +11,7 @@ export default function PostContent({code, frontmatter, tableOfContents, reading
   // it's a mouthful, but the props are essentially "the result of getPostBundle after it resolves"
   // usememo to avoid re-creating the component every render.
   const PostContent = React.useMemo(() => getMDXComponent(code), [code]);
-  const date = new Date(frontmatter.date).toLocaleDateString("en-US", {weekday: "long", year: "numeric", month: "long", day: "numeric"});
+  const date = new Date(frontmatter.date).toLocaleDateString("en-US", {weekday: "long", year: "numeric", month: "long", day: "numeric", timeZone: "UTC"});
   const setTheme = useContext(BGDispatchContext);
   useEffect(() => {
     setTheme((theme) => ({...theme, focus: true }))
