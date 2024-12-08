@@ -1,79 +1,21 @@
-import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import IconButtonRow2 from "@/components/IconButtonRow2";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import Projects from "@/layouts/Projects";
 import textStyles from "@/styles/text.module.scss";
 import { neon } from "@/fonts/fonts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SizeProp } from "@fortawesome/fontawesome-svg-core";
 import { Metadata } from "next";
+import HomeHeader from "@/components/HomeHeader";
 
 export const metadata: Metadata = {
     title: 'Homepage - Tsuni!',
 }
 
-const fadeUpDelay = (i: number) => ({ animationDelay: i * 0.1 + 0.3 + "s" });
-
-export default async function Home() {
+export default function Home() {
     return (
         <main className="pb-8 pt-16">
-            <section
-                id="home"
-                className="container relative mx-auto flex h-[70vh] flex-col items-center justify-center p-8 text-center"
-            >
-                <h2 className="text-4xl font-semibold">
-                    <span
-                        className={textStyles["animateFadeUp"]}
-                        style={fadeUpDelay(0)}
-                    >
-                        Hello
-                    </span>{" "}
-                    <span
-                        className={textStyles["animateFadeUp"]}
-                        style={fadeUpDelay(1)}
-                    >
-                        world!
-                    </span>
-                </h2>
-                <h1
-                    className={`text-8xl font-extrabold text-transparent ${textStyles.gradientTitleText}`}
-                >
-                    <span
-                        className={textStyles["animateFadeUp"]}
-                        style={fadeUpDelay(5)}
-                    >
-                        I{"'"}m
-                    </span>{" "}
-                    <span
-                        className={textStyles["animateFadeUp"]}
-                        style={fadeUpDelay(6)}
-                    >
-                        Tsuni!
-                    </span>
-                </h1>
-
-                <IconButtonRow2
-                    buttons={[
-                        {
-                            icon: faEnvelope,
-                            href: "mailto:tsuni@[this domain]",
-                            title: "tsuni@[this domain]",
-                        },
-                        {
-                            icon: faGithub,
-                            href: "https://github.com/TetraTsunami",
-                            title: "TetraTsunami",
-                        },
-                        {
-                            icon: faTwitter,
-                            href: "https://twitter.com/tsuniHD",
-                            title: "@tsuniHD",
-                        },
-                    ]}
-                    startingFade={9}
-                />
-            </section>
-            <div className="container mx-auto flex flex-col gap-32 rounded-3xl bg-bkg/55 px-8 pb-8 pt-32 shadow-i-lg backdrop-blur-sm transition-colors animation-delay-700 animation-fill-backward motion-safe:animate-fade-up">
+            <HomeHeader />
+            <div className="container mx-auto flex animate-fade-up flex-col gap-32 rounded-3xl bg-bkg/55 px-8 pb-8 pt-32 shadow-i-lg backdrop-blur-sm transition-colors animation-delay-[3s] animation-fill-backward">
                 <section id="about">
                     <h2
                         className={`text-3xl md:text-4xl font-semibold mb-4 text-center ${textStyles.terminal} ${neon.className}`}
