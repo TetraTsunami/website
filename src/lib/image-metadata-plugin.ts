@@ -6,7 +6,7 @@ import { Node } from "unist";
 import { visit } from "unist-util-visit";
 import { promisify } from "util";
 import { readFile } from "fs/promises";
-import { getPlaiceholder } from "plaiceholder";
+// import { getPlaiceholder } from "plaiceholder";
 
 const sizeOf = promisify(imageSize);
 
@@ -45,8 +45,8 @@ async function addMetadata(node: ImageNode): Promise<void> {
   
   node.properties.width = res.width;
   node.properties.height = res.height;
-  node.properties.blurDataURL = await getPlaiceholder(buffer, {size: 10})
-  .then((result) => result.base64);
+  // node.properties.blurDataURL = await getPlaiceholder(buffer, {size: 10})
+  // .then((result) => result.base64);
   node.properties.processed = true;
 }
 

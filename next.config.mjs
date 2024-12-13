@@ -1,4 +1,4 @@
-import withPlaiceholder from "@plaiceholder/next";
+// import withPlaiceholder from "@plaiceholder/next";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -6,4 +6,5 @@ const nextConfig = {
     swcMinify: true,
     output: "standalone",
 }
-export default withPlaiceholder(nextConfig);
+// export default withPlaiceholder(nextConfig);
+export default nextConfig;
