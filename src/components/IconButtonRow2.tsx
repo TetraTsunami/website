@@ -10,7 +10,7 @@ interface IconButtonRowProps {
   href: string;
   title: string;
 }
-const fadeUpDelay = (i: number) => ({ animationDelay: i * 0.1 + 1 + "s", opacity: 0 });
+const fadeUpDelay = (i: number) => ({ animationDelay: i * 0.1 + 1 + "s" });
 export default function IconButtonRowLg({
   buttons,
   animate,
@@ -40,7 +40,7 @@ export default function IconButtonRowLg({
           <Tippy content={button.title} singleton={target}>
             <a
               href={button.href}
-              className={`px-3 py-2 ${animate && textStyles["animateFadeUp"]}`}
+              className={`px-3 py-2 ${animate ? textStyles["animateFadeUp"] : "motion-safe:opacity-0"}`}
               style={fadeUpDelay(index + animateDelay)}
             >
               <FontAwesomeIcon icon={button.icon} size={"xl" as SizeProp} />

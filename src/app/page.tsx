@@ -15,7 +15,7 @@ export default function Home() {
     return (
         <main className="pb-8 pt-16">
             <HomeHeader />
-            <div className="container mx-auto flex animate-fade-up flex-col gap-32 rounded-3xl bg-bkg/55 px-8 pb-8 pt-32 shadow-i-lg backdrop-blur-sm transition-colors animation-delay-[3s] animation-fill-backward">
+            <div className="container mx-auto flex flex-col gap-32 rounded-3xl bg-bkg/55 px-8 pb-8 pt-32 shadow-i-lg backdrop-blur-sm transition-colors animation-delay-[3s] animation-fill-backward motion-safe:animate-fade-up">
                 <section id="about">
                     <h2
                         className={`text-3xl md:text-4xl font-semibold mb-4 text-center ${textStyles.terminal} ${neon.className}`}

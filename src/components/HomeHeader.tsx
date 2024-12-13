@@ -21,13 +21,13 @@ export default function HomeHeader() {
     >
       <h2 className="text-4xl font-semibold">
         <span
-          className={animate ? textStyles["animateFadeUp"] : "opacity-0"}
+          className={animate ? textStyles["animateFadeUp"] : "motion-safe:opacity-0"}
           style={fadeUpDelay(0)}
         >
           Hello
         </span>{" "}
         <span
-          className={animate ? textStyles["animateFadeUp"] : "opacity-0"}
+          className={animate ? textStyles["animateFadeUp"] : "motion-safe:opacity-0"}
           style={fadeUpDelay(1)}
         >
           world!
@@ -37,13 +37,13 @@ export default function HomeHeader() {
         className={`text-8xl font-extrabold text-transparent ${textStyles.gradientTitleText}`}
       >
         <span
-          className={animate ? textStyles["animateFadeUp"] : "opacity-0"}
+          className={animate ? textStyles["animateFadeUp"] : "motion-safe:opacity-0"}
           style={fadeUpDelay(5)}
         >
           I{"'"}m
         </span>{" "}
         <span
-          className={animate ? textStyles["animateFadeUp"] : "opacity-0"}
+          className={animate ? textStyles["animateFadeUp"] : "motion-safe:opacity-0"}
           style={fadeUpDelay(6)}
         >
           Tsuni!

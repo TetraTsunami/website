@@ -13,7 +13,7 @@ import Error from "./util/Error";
 import Loading from "./util/Loading";
 import StyledProgress1 from "./util/StyledProgress1";
 import { BGDispatchContext } from "@/app/providers";
-import Vibrant from "node-vibrant";
+import * as Vibrant from "node-vibrant/lib/bundle.worker.js";
 
 async function fetcher<JSON = any>(
     input: RequestInfo,
