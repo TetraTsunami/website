@@ -6,8 +6,7 @@ import textStyles from "@/styles/text.module.scss";
 import IconButtonRow2 from "@/components/IconButtonRow2";
 
 const fadeUpDelay = (i: number) => ({
-  animationDelay: (i * 0.1) + 1 + "s",
-  opacity: 0,
+  animationDelay: (i * 0.1) + 1 + "s"
 });
 
 export default function HomeHeader() {
@@ -22,13 +21,13 @@ export default function HomeHeader() {
     >
       <h2 className="text-4xl font-semibold">
         <span
-          className={animate ? textStyles["animateFadeUp"] : ""}
+          className={animate ? textStyles["animateFadeUp"] : "opacity-0"}
           style={fadeUpDelay(0)}
         >
           Hello
         </span>{" "}
         <span
-          className={animate ? textStyles["animateFadeUp"] : ""}
+          className={animate ? textStyles["animateFadeUp"] : "opacity-0"}
           style={fadeUpDelay(1)}
         >
           world!
@@ -38,13 +37,13 @@ export default function HomeHeader() {
         className={`text-8xl font-extrabold text-transparent ${textStyles.gradientTitleText}`}
       >
         <span
-          className={animate ? textStyles["animateFadeUp"] : ""}
+          className={animate ? textStyles["animateFadeUp"] : "opacity-0"}
           style={fadeUpDelay(5)}
         >
           I{"'"}m
         </span>{" "}
         <span
-          className={animate ? textStyles["animateFadeUp"] : ""}
+          className={animate ? textStyles["animateFadeUp"] : "opacity-0"}
           style={fadeUpDelay(6)}
         >
           Tsuni!
