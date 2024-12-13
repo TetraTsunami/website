@@ -41,7 +41,7 @@ async function addMetadata(node: ImageNode): Promise<void> {
   const res = await sizeOf(srcPath);
   if (!res) throw Error(`Invalid image with src "${node.properties.src}"`);
 
-  const buffer = await readFile(srcPath);
+  // const buffer = await readFile(srcPath);
   
   node.properties.width = res.width;
   node.properties.height = res.height;
