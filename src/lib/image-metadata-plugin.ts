@@ -5,7 +5,7 @@ import { Processor } from "unified";
 import { Node } from "unist";
 import { visit } from "unist-util-visit";
 import { promisify } from "util";
-import { readFile } from "fs/promises";
+// import { readFile } from "fs/promises";
 // import { getPlaiceholder } from "plaiceholder";
 
 const sizeOf = promisify(imageSize);
