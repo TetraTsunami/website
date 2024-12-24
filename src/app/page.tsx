@@ -32,8 +32,7 @@ export default function Home() {
                     <p className="mx-auto mb-4 max-w-prose text-center text-lg italic">
                         {`Here's a quick peek at what I'm up to right now:`}
                     </p>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="https://dsc-readme.tsuni.dev/api/user/214167454291722241" alt="Discord status" className="mx-auto my-2" width={500} loading="lazy" />
+                    <object data="https://dsc-readme.tsuni.dev/api/user/214167454291722241" className="mx-auto my-2" width={500}>Discord status</object>
                 </section>
                 <section
                     id="projects"
