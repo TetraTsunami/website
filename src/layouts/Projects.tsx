@@ -19,13 +19,6 @@ export default function Projects() {
     return (
         <div className="my-3 grid w-full content-evenly gap-6 pt-3 text-center grid-cols-flow-64">
             <ProjectCard
-                name="UW Events listing"
-                href="https://uwevents.tsuni.dev"
-                imageUrl={events}
-                description="My first experience with web scraping. An alternative front-end for the UW-Madison events calendar."
-                year="2024"
-            />
-            <ProjectCard
                 name="DSSD Madison - Red CORAL"
                 href="https://github.com/DSSD-Madison/Red-CORAL"
                 imageUrl={redcoral}
