@@ -1,7 +1,7 @@
 import Background from "@/components/Background";
 import Footer from "@/layouts/Footer";
 import Header from "@/layouts/Header";
-import "@/styles/globals.scss";
+import "@/styles/globals.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import type { Viewport } from "next";

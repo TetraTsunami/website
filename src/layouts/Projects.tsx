@@ -9,7 +9,6 @@ import {
     mnfc2,
     port_website,
     cheese,
-    events,
     redcoral,
     linklooker,
     dscpreview,

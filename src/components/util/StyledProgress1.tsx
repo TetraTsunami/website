@@ -1,4 +1,4 @@
-import styles from "./progress.module.scss";
+import styles from "./progress.module.css";
 
 export default function StyledProgress1({
     value,

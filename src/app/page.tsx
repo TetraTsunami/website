@@ -1,6 +1,6 @@
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import Projects from "@/layouts/Projects";
-import textStyles from "@/styles/text.module.scss";
+import textStyles from "@/styles/text.module.css";
 import { neon } from "@/fonts/fonts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SizeProp } from "@fortawesome/fontawesome-svg-core";
@@ -33,9 +33,11 @@ export default function Home() {
                         {`Here's a quick peek at what I'm up to right now:`}
                     </p>
                     <object data="https://dsc-readme.tsuni.dev/api/user/214167454291722241?banner=https%3A%2F%2Ftsuni.dev%2Fimages%2Fsobanner.png&theme=nitroLight&primaryColor=8080FF&accentColor=FF80C0" className="mx-auto my-2 max-w-full" width={500}>Discord status</object>
-                    <p className="mx-auto mb-4 max-w-prose text-center text-sm hover:text-accent">
-                    <a href="https://dsc-readme.tsuni.dev/">
-                        psst, want one of these for yourself? try my Discord status SVG generator!
+                    <p className="mx-auto mb-4 max-w-prose text-center text-sm">
+                    psst, want one of these for yourself?
+                    <a href="https://dsc-readme.tsuni.dev/" className="text-accent hover:text-accent/80">
+                        {" "}
+                        try my Discord status SVG generator!
                     </a>
                     </p>
                 </section>

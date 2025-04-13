@@ -1,7 +1,7 @@
 "use client";
 import { IconDefinition, SizeProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import textStyles from "../styles/text.module.scss";
+import textStyles from "../styles/text.module.css";
 
 interface IconButtonRowProps {
   icon: IconDefinition;

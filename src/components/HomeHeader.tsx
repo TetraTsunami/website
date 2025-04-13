@@ -2,7 +2,7 @@
 import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
-import textStyles from "@/styles/text.module.scss";
+import textStyles from "@/styles/text.module.css";
 import IconButtonRow2 from "@/components/IconButtonRow2";
 
 const fadeUpDelay = (i: number) => ({

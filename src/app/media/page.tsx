@@ -1,5 +1,5 @@
 import type { Metadata, NextPage } from "next";
-import textStyles from "@/styles/text.module.scss";
+import textStyles from "@/styles/text.module.css";
 import NPComboGrid from "@/components/NPComboGrid";
 
 export const metadata: Metadata = {

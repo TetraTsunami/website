@@ -1,6 +1,6 @@
 "use client";
 import { useContext } from "react";
-import styles from "./background.module.scss";
+import styles from "./background.module.css";
 import { BGContext } from "@/app/providers";
 
 export default function Background() {

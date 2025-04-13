@@ -1,28 +1,34 @@
 import React from "react"
 import { getAllPostIds, getPostBundle } from "@/lib/posts"
 import PostContent from "./PostContent"
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
  
+type Props = {
+  params: Promise<{ slug: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
 export async function generateMetadata(
-  { params }: { params: { slug: string } }, 
-  parent: ResolvingMetadata
+  { params }: Props, 
 ): Promise<Metadata> {
-  const { slug } = params
+  const { slug } = await params
   const post = await getPostBundle(slug)
-  // @ts-expect-error - next.js types are wrong?
   return {
     title: post.frontmatter.title,
     description: post.frontmatter.description,
-    image: post.frontmatter.image,
-    date: post.frontmatter.date,
-    type: "article",
-    url: `https://tsuni.dev/${slug}`,
-    ...parent
+    openGraph: {
+      title: post.frontmatter.title,
+      description: post.frontmatter.description,
+      images: [post.frontmatter.image],
+      url: `https://tsuni.dev/${slug}`,
+      publishedTime: post.frontmatter.date,
+      type: "article",
+    },
   }
 }
 
-export default async function Post({ params }: { params: { slug: string } }) {
-    const { slug } = params
+export default async function Post({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params
     const post = await getPostBundle(slug)
     return <PostContent {...post} />
 }

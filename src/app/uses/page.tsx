@@ -3,8 +3,8 @@ import { getMDXComponent } from "mdx-bundler/client";
 import React from "react";
 import TableOfContents from "../../components/TableOfContents";
 import type { Metadata } from "next";
-import textStyles from "@/styles/text.module.scss";
-import gridStyles from "@/styles/grid.module.scss";
+import textStyles from "@/styles/text.module.css";
+import gridStyles from "@/styles/grid.module.css";
 import Giscus from "@/components/Giscus";
 import PostComponents from "@/components/PostComponents";
 
