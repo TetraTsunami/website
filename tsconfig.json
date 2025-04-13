@@ -37,7 +37,7 @@
     "**/*.tsx",
     "**/*.js",
     ".next/types/**/*.ts",
-    "src/lib/tautulli.js",
+    "src/lib/tautulli.js", "postcss.config.mjs",
   ],
   "exclude": [
     "node_modules"
