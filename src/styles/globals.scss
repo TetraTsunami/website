@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
   :root {
@@ -18,8 +16,8 @@
 
 @layer music {
   :root {
-    --color-progress-light: theme(colors.pink.400);
-    --color-progress-dark: theme(colors.purple.500);
+    --color-progress-light: var(--colors-pink-400);
+    --color-progress-dark: var(--colors-purple-500);
   }
 }
 
@@ -92,7 +90,7 @@ body,
 }
 
 :focus-visible {
-  @apply outline outline-2 outline-purple-400;
+  outline: 2px solid hsl(var(--colors-purple-400));
 }
 
 nav.scrollspy li {

@@ -1,6 +1,6 @@
 .terminal {
   position: relative;
-  --terminal-color: theme('colors.violet.400');
+  --terminal-color: var(--colors-violet-400);
 
   &:after {
     content: '|';
@@ -78,8 +78,8 @@
 .gradientTitleText span {
   background-clip: text;
   color: transparent;
-  background-image: linear-gradient(theme('colors.violet.400'),
-      theme('colors.violet.500'));
+  background-image: linear-gradient(var(--colors-violet-400),
+      var(--colors-violet-500));
 }
 
 @media (prefers-reduced-motion) {
