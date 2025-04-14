@@ -1,7 +1,6 @@
 "use client";
 import { IconDefinition, SizeProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "tippy.js/dist/tippy.css";
 import textStyles from "../styles/text.module.css";
 
 interface IconButtonRowProps {
