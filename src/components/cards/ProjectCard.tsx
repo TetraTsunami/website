@@ -7,6 +7,7 @@ type ProjectCardProps = {
     imageUrl: string | StaticImageData;
     description: string;
     year: string;
+    size?: 1 | 2 | 3;
 };
 
 export default function ProjectCard({
@@ -15,6 +16,7 @@ export default function ProjectCard({
     imageUrl,
     description,
     year,
+    size = 1,
 }: ProjectCardProps) {
     const noHoverElement = (
         <>
@@ -27,7 +29,7 @@ export default function ProjectCard({
         </>
     )
     return (
-        <HoverCard noHoverChildren={noHoverElement}>
+        <HoverCard noHoverChildren={noHoverElement} className={(size === 1 ? "w-48" : size === 2 ? "w-64" : "w-80") + " min-w-1/5 flex-grow xl:max-w-1/2"}>
             <a href={href} className="absolute inset-0">
                 <Image
                     src={imageUrl}
@@ -39,7 +41,7 @@ export default function ProjectCard({
                     placeholder="blur"
                 />
                 <div
-                    className="relative top-full mx-auto flex h-full w-full -translate-y-5 flex-col justify-center rounded-lg bg-bkg/75 px-6 py-6 shadow-lg will-change-transform motion-safe:duration-200 can-hover:group-hover:-translate-y-full can-hover:group-hover:bg-bkg/90"
+                    className="bg-bkg/75 can-hover:group-hover:-translate-y-full can-hover:group-hover:bg-bkg/90 relative top-full mx-auto flex h-full w-full -translate-y-5 flex-col justify-center rounded-lg px-6 py-6 shadow-lg will-change-transform motion-safe:duration-200"
                 >
                     <span className="absolute right-5 top-0 text-left align-top text-sm font-semibold italic text-slate-900 dark:text-white">
                         {year}

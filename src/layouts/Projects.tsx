@@ -12,17 +12,20 @@ import {
     redcoral,
     linklooker,
     dscpreview,
+    featuredart,
+    fishbowl,
 } from "../images";
 
 export default function Projects() {
     return (
-        <div className="my-3 grid w-full content-evenly gap-6 pt-3 text-center grid-cols-flow-64">
+        <div className="my-3 flex w-full flex-wrap content-evenly gap-3 pt-3 text-center grid-cols-flow-24">
             <ProjectCard
                 name="DSSD Madison - Red CORAL"
                 href="https://github.com/DSSD-Madison/Red-CORAL"
                 imageUrl={redcoral}
                 description="An open-source club project. A web app for a non-profit in South America that visualizes crime data."
                 year="2024"
+                size={2}
             />
             <ProjectCard
                 name="LinkLooker"
@@ -30,6 +33,7 @@ export default function Projects() {
                 imageUrl={linklooker}
                 description="My first browser extension. Previews links using ChatGPT when you hover over them in Chrome and Firefox."
                 year="2024"
+                size={3}
             />
             <ProjectCard
                 name="GitHub Discord Previews"
@@ -37,6 +41,22 @@ export default function Projects() {
                 imageUrl={dscpreview}
                 description="A project that embeds Discord statuses in SVGs that can be easily placed anywhere."
                 year="2024"
+                size={2}
+            />
+            <ProjectCard
+                name="CS559 Featured Artists Site"
+                href="https://cs559featuredartists.github.io/"
+                imageUrl={featuredart}
+                description="The class project showcase site for CS559: Computer Graphics at UW-Madison."
+                year="2025"
+            />
+            <ProjectCard
+                name="Fishbowl"
+                href="https://tetratsunami.github.io/cs559-p8/"
+                imageUrl={fishbowl}
+                description="A 3D fishbowl simulation built with pure WebGL. Loads in models and handwritten shaders! My final project for CS559: Computer Graphics at UW-Madison."
+                year="2025"
+                size={2}
             />
             <ProjectCard
                 name="The Gouda Times"
@@ -91,14 +111,8 @@ export default function Projects() {
                 imageUrl={port_website}
                 description="The website you're currently on! Built with Next.js, Tailwind CSS, and TypeScript."
                 year="2022"
+                size={2}
             />
-            {/* <ProjectCard
-                name="Cricket Bot"
-                href="https://github.com/TetraTsunami/cricket-bot"
-                imageUrl={cricket_chat}
-                description="A fun little Discord bot with a variety of unique functions (such as image manipulation, pinging Minecraft servers, and more)."
-                year="2021"
-            /> */}
         </div>
     );
 }

@@ -15,8 +15,8 @@ export default function CertCard({
     year: string;
 }) {
     return (
-        <HoverCard>
-            <div className="border-grey-300 hover:outlinex group h-56 overflow-clip rounded-xl border-4 border-content/80 shadow-xl outline-4 outline-accent transition-transform duration-200 focus-within:outline">
+        <HoverCard className="w-50 xl:max-w-1/5 flex-grow">
+            <div className="border-grey-300 hover:outlinex border-content/80 outline-accent group h-56 overflow-clip rounded-xl border-4 shadow-xl outline-4 transition-transform duration-200 focus-within:outline">
                 <a href={certUrl}>
                     <Image
                         src={imageUrl}
@@ -24,7 +24,7 @@ export default function CertCard({
                         fill
                         sizes="(max-width: 600px) 100vw, (max-width 1024px) 66vw, 33vw" 
                     />
-                    <div className="absolute bottom-0 right-0 text-ellipsis whitespace-nowrap rounded-tl-lg bg-bkg/75 px-2 shadow-lg">
+                    <div className="bg-bkg/75 absolute bottom-0 right-0 text-ellipsis whitespace-nowrap rounded-tl-lg px-2 shadow-lg">
                         <span className="text-sm font-bold italic text-slate-900 dark:text-white">
                             {year}
                         </span>
@@ -34,7 +34,7 @@ export default function CertCard({
             {collectionUrl && (
                 <a
                     href={collectionUrl}
-                    className="absolute bottom-0 left-0 rounded-tr-lg bg-bkg/75 px-2 text-sm text-slate-900 underline shadow-lg hover:text-accent dark:text-white"
+                    className="bg-bkg/75 hover:text-accent absolute bottom-0 left-0 rounded-tr-lg px-2 text-sm text-slate-900 underline shadow-lg dark:text-white"
                 >
                     Codepen collection
                 </a>
