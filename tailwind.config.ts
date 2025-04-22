@@ -86,6 +86,14 @@ const config: Config = {
                         'code::after': {
                             content: 'normal',
                         },
+                        p: {
+                            '&::before': {
+                                content: 'none !important',
+                            },
+                            '&::after': {
+                                content: 'none !important',
+                            },
+                        },
                     },
                 },
             }),

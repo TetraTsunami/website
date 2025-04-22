@@ -9,6 +9,7 @@ import rehypeSectionize from "@hbsnow/rehype-sectionize";
 import GithubSlugger from "github-slugger";
 import imageMetadata from "./image-metadata-plugin";
 import rehypeShiki from '@shikijs/rehype';
+import rehypeCallouts from 'rehype-callouts'
 
 export type PostData = {
   title: string;
@@ -49,7 +50,7 @@ export function getAllPostData() {
       ...metadata.data
     } as PostData & { slug: string };
   });
-  return data.filter(Boolean) as (PostData & { slug: string })[];
+  return data.filter(Boolean).sort((a, b) => Date.parse(a?.date || "") - Date.parse(b?.date || "")) as (PostData & { slug: string })[];
 }
 
 type header = { indent: number, title: string, slug: string }
@@ -100,6 +101,7 @@ export async function getPostBundle(slug: string, searchDirectory?: string) {
         }],
         rehypeSlug,
         rehypeSectionize,
+        rehypeCallouts,
         imageMetadata,
       ]
       return options

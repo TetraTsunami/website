@@ -157,6 +157,18 @@ nav.scrollspy li {
       color: var(--shiki-light);
     }
   }
+
+  .callout p {
+    margin: 0;
+    line-height: 1.75;
+  }
+
+  .callout .callout-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
 }
 
 .dark .prose pre {
