@@ -1,8 +1,8 @@
 "use client";
 import { getMDXComponent } from "mdx-bundler/client"
 import React, { useContext, useEffect } from "react"
-import TableOfContents from "../../components/TableOfContents"
-import { BGDispatchContext } from "../providers"
+import TableOfContents from "@/components/TableOfContents"
+import { BGDispatchContext } from "@/app/providers"
 import { getPostBundle } from "@/lib/posts";
 import PostComponents from "@/components/PostComponents";
 import gridStyles from "@/styles/grid.module.css";
