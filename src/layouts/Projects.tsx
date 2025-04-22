@@ -18,12 +18,12 @@ import {
 
 export default function Projects() {
     return (
-        <div className="my-3 flex w-full flex-wrap content-evenly gap-3 pt-3 text-center grid-cols-flow-24">
+        <div className="my-3 flex w-full flex-wrap content-evenly gap-4 pt-3 text-center grid-cols-flow-24">
             <ProjectCard
                 name="DSSD Madison - Red CORAL"
                 href="https://github.com/DSSD-Madison/Red-CORAL"
                 imageUrl={redcoral}
-                description="An open-source club project. A web app for a non-profit in South America that visualizes crime data."
+                description="An open-source club project that I led. A web app for a non-profit in South America that filters, sorts, and visualizes crime data on a map, table, and other charts."
                 year="2024"
                 size={2}
             />

@@ -41,17 +41,20 @@ export default function ProjectCard({
                     placeholder="blur"
                 />
                 <div
-                    className="bg-bkg/75 can-hover:group-hover:-translate-y-full can-hover:group-hover:bg-bkg/90 relative top-full mx-auto flex h-full w-full -translate-y-5 flex-col justify-center rounded-lg px-6 py-6 shadow-lg will-change-transform motion-safe:duration-200"
+                    className="can-hover:group-hover:-translate-y-full relative top-full mx-auto flex h-full w-full -translate-y-6 flex-col justify-center rounded-lg shadow-lg will-change-transform motion-safe:duration-200"
                 >
-                    <span className="absolute right-5 top-0 text-left align-top text-sm font-semibold italic text-slate-900 dark:text-white">
+                    <span className="bg-bkg/90 absolute right-5 top-1 h-4 rounded-t-lg px-4 text-left align-top text-sm font-semibold italic text-slate-900 dark:text-white">
                         {year}
                     </span>
-                    <h3 className="pt-6 text-lg text-gray-700 dark:text-white">
-                        {name}
-                    </h3>
-                    <p className="py-2 text-sm text-gray-600 dark:text-slate-300">
-                        {description}
-                    </p>
+                    <div className="bg-bkg/90 absolute bottom-0 left-0 right-0 top-5 rounded-lg" />
+                    <div className="mask-t-from-80% absolute bottom-0 left-0 right-0 top-4 flex flex-col justify-center gap-2 overflow-y-auto px-4">
+                        <h3 className="pt-4 text-lg text-gray-700 dark:text-white">
+                            {name}
+                        </h3>
+                        <p className="pb-2 text-sm text-gray-600 dark:text-slate-300">
+                            {description}
+                        </p>
+                    </div>
                 </div>
             </a>
         </HoverCard>
