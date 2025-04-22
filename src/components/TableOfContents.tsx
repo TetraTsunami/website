@@ -19,7 +19,10 @@ export default function TableOfContents({ tableOfContents }: { tableOfContents: 
     document.querySelectorAll('section[aria-labelledby]').forEach((section) => {
       observer.observe(section);
     });
-  })
+    return () => {
+      observer.disconnect();
+    }
+  }, []);
   return (
     <ul className="flex flex-col gap-2">
       {tableOfContents.map(({ indent, title, slug }) => (
