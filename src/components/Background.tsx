@@ -11,7 +11,7 @@ export default function Background() {
             {/* Dark */}
             <div className="absolute inset-0" 
                 style={{"background": `linear-gradient(90deg, ${theme.dark1}, ${theme.dark2}`}} />
-            <div className={`absolute inset-0 bg-gradient-to-r from-purple-900 to-gray-800 transition-opacity duration-300`}
+            <div className={`absolute inset-0 bg-gradient-to-r from-indigo-900 to-purple-950 transition-opacity duration-300`}
                 style={{"opacity": theme.isActive ? "0": "1"}} />
             {/* Light */}
             <div className="absolute inset-0 dark:opacity-0" 
