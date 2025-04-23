@@ -1,14 +1,11 @@
 // https://www.skovy.dev/blog/nextjs-image-with-mdx-bundler
-import imageSize from "image-size";
+import { imageSizeFromFile } from "image-size/fromFile";
 import path from "path";
 import { Processor } from "unified";
 import { Node } from "unist";
 import { visit } from "unist-util-visit";
-import { promisify } from "util";
 // import { readFile } from "fs/promises";
 // import { getPlaiceholder } from "plaiceholder";
-
-const sizeOf = promisify(imageSize);
 
 interface ImageNode extends Node {
   type: "element";
@@ -38,7 +35,7 @@ function filterImageNode(node: ImageNode): boolean {
 
 async function addMetadata(node: ImageNode): Promise<void> {
   const srcPath = path.join(process.cwd(), "public", node.properties.src);
-  const res = await sizeOf(srcPath);
+  const res = await imageSizeFromFile(srcPath);
   if (!res) throw Error(`Invalid image with src "${node.properties.src}"`);
 
   // const buffer = await readFile(srcPath);

@@ -10,6 +10,7 @@ const PostComponents = {
     blurDataURL = "",
     processed = false,
   }: React.ImgHTMLAttributes<HTMLImageElement> & {
+    src: string;
     blurDataURL?: string;
     processed?: boolean;
   }) => {
