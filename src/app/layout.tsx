@@ -14,6 +14,10 @@ config.autoAddCss = false;
 export const metadata: Metadata = {
     title: "Tsuni",
     description: "Tsuni's lovely website",
+    metadataBase: new URL('https://tsuni.dev'),
+    openGraph: {
+        images: '/images/reallogo.png',
+    },
 };
 
 export const viewport: Viewport = {
