@@ -15,11 +15,11 @@ export async function generateMetadata(
   const post = await getPostBundle(slug)
   return {
     title: post.frontmatter.title,
-    description: post.frontmatter.description,
+    description: post.frontmatter.subtitle,
     openGraph: {
       title: post.frontmatter.title,
-      description: post.frontmatter.description,
-      images: [post.frontmatter.image],
+      description: post.frontmatter.excerpt,
+      images: [post.frontmatter.excerptImageUrl],
       url: `https://tsuni.dev/${slug}`,
       publishedTime: post.frontmatter.date,
       type: "article",
