@@ -1,0 +1,76 @@
+---
+import Projects from '@/layouts/Projects.astro';
+import textStyles from '@/styles/text.module.css';
+import HomeHeader from '@/components/HomeHeader.astro';
+// import { getAllPostData } from "@/lib/posts";
+// import SmallPostPreview from "@/components/SmallPostPreview";
+import Layout from '../layouts/Layout.astro';
+const posts = []; // const posts = getAllPostData().slice(0, 4);
+---
+
+<Layout>
+  <main class="pb-8 pt-16">
+    <HomeHeader />
+    <div
+      class="bg-bkg/55 shadow-i-lg motion-safe:animate-fade-up container mx-auto flex flex-col gap-32 rounded-3xl px-8 pb-8 pt-32 backdrop-blur-sm transition-colors animation-delay-[3s] animation-fill-backward"
+    >
+      <section id="about">
+        <h2 class={`text-3xl md:text-4xl font-semibold mb-4 text-center font-neon ${textStyles.terminal}`}>whois Tsuni</h2>
+        <p class="mx-auto mb-4 max-w-prose text-center text-lg">
+          {
+            `Heya! I'm Tsuni, a 20 year old developer from Wisconsin, USA.
+                        I'm currently studying Computer Science at
+                        UW-Madison. When I'm not programming, you'll find me hiking, mountain
+                        biking, reading, tinkering with my old-PC-turned-server, or playing video games.
+                        I'm always looking out for new projects that excite me, so feel free to reach out!`
+          }
+        </p>
+        <p class="mx-auto mb-4 max-w-prose text-center text-lg italic">
+          {`Here's a quick peek at what I'm up to right now:`}
+        </p>
+        <object
+          data="https://dsc-readme.tsuni.dev/api/user/214167454291722241?banner=https%3A%2F%2Ftsuni.dev%2Fimages%2Fsobanner.png&theme=nitroLight&primaryColor=8080FF&accentColor=FF80C0"
+          class="mx-auto my-2 max-w-full"
+          width={500}
+        >
+          Discord status
+        </object>
+        <p class="mx-auto mb-4 max-w-prose text-center text-sm">
+          psst, want one of these for yourself?
+          <a href="https://dsc-readme.tsuni.dev/" class="text-accent hover:text-accent/80">
+            {' '}
+            try my Discord status SVG generator!
+          </a>
+        </p>
+      </section>
+      <section id="posts" class="container mx-auto flex flex-col items-center justify-center">
+        <h2
+          class={`text-3xl md:text-4xl leading-normal font-semibold text-content
+                            ${textStyles.terminal} font-neon`}
+        >
+          ls posts
+        </h2>
+        <div class="mt-6 grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
+          <!-- {posts.map((post, i) => (
+                <div key={post.slug}>
+                {i > 0 && <span key={i} class="bg-bkg h-[2px] w-full" />}
+                <SmallPostPreview {...post} />
+                </div>
+            ))} -->
+        </div>
+      </section>
+      <section id="projects" class="container mx-auto flex flex-col items-center justify-center">
+        <h2
+          class={`text-3xl md:text-4xl leading-normal font-semibold text-content
+                            ${textStyles.terminal} font-neon`}
+        >
+          ls portfolio
+        </h2>
+        <Projects />
+        <div class="hover:text-accent text-center">
+          <a href="https://github.com/TetraTsunami" class="text-lg"> See more projects on my GitHub! </a>
+        </div>
+      </section>
+    </div>
+  </main>
+</Layout>

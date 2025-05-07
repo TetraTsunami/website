@@ -1,0 +1,34 @@
+---
+import { Icon } from "astro-icon/components";
+import textStyles from "../styles/text.module.css";
+interface IconButtonRowProps {
+  iconName: string;
+  rel?: string;
+  href: string;
+  title: string;
+}
+// Define props using Astro.props
+interface Props {
+  buttons: IconButtonRowProps[];
+}
+
+const { buttons } = Astro.props;
+---
+
+<ul class="mx-4 my-2 flex flex-row items-center justify-between">
+  {
+    buttons.map((button: IconButtonRowProps, index: number) => (
+      <li class="relative text-center">
+        <a
+          rel={button.rel}
+          href={button.href}
+          class:list={["px-3 py-2", textStyles["pastelTextHover"]]}
+          style={`--data-degree: ${(index * 360) / buttons.length};`}
+        >
+          <Icon name={button.iconName} size={24} />
+          <p class="visible-hidden">{button.title}</p>
+        </a>
+      </li>
+    ))
+  }
+</ul>

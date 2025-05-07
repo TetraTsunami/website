@@ -1,0 +1,81 @@
+---
+// import DarkToggle from "../components/DarkToggle";
+// import NowPlayingIcon from "../components/NowPlayingIcon";
+import { Image } from 'astro:assets';
+import logo from '@images/reallogo.png';
+
+const currentPath = Astro.url.pathname;
+
+const links = [
+  { name: 'Home', href: '/', icon: false },
+  { name: 'Uses', href: '/uses', icon: false },
+  { name: 'Media', href: '/media', icon: true },
+];
+---
+
+<header class="fixed left-0 right-0 top-0 z-50 px-3 py-2 text-white">
+  <div class="container mx-auto flex flex-row flex-wrap items-center justify-between gap-2 px-4 pt-0 text-black dark:text-white sm:flex-nowrap">
+    <div class="h-12 p-0">
+      <a href="/" class="h-12 w-max leading-none">
+        <img src="/images/logooutline.svg" class="opacity-50 dark:invert" width="200" height="50" />
+        <Image src={logo} alt="Tsuni logo" class="relative -translate-y-full" loading="eager" width="200" height="50" quality={50} />
+      </a>
+    </div>
+    <div class="flex-grow"></div>
+    <nav>
+      <ul class="flex h-10 flex-row items-center justify-around gap-2">
+        {
+          links.map(link => {
+            const isActive = currentPath === link.href;
+            return (
+              <li>
+                <a
+                  href={link.href}
+                  class:list={[
+                    'flex h-10 items-center gap-2 rounded-md px-2 transition-colors hover:bg-gray-300 dark:hover:bg-gray-600',
+                    { 'bg-gray-200 dark:bg-gray-700': isActive },
+                  ]}
+                >
+                  {/* {link.icon && <NowPlayingIcon />} */}
+                  {link.name}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </nav>
+    <!-- <DarkToggle /> -->
+  </div>
+</header>
+
+<script>
+  function scrollHeader() {
+    const header = document.querySelector('header');
+    if (header) {
+      if (window.scrollY > 0) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+  }
+  document.addEventListener('scroll', scrollHeader);
+
+  document.addEventListener('astro:page-load', () => {
+    scrollHeader();
+  });
+</script>
+
+<style>
+  header {
+    transition: all 0.2s ease-out;
+    z-index: 100;
+
+    &.scrolled {
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+      background: hsl(var(--color-bkg) / 100);
+      backdrop-filter: blur(12px);
+    }
+  }
+</style>

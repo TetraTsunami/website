@@ -1,0 +1,41 @@
+---
+import IconButtonRow1 from "../components/IconButtonRow1.astro";
+// import NowPlayingText from "../components/NowPlayingText";
+---
+
+<footer class="bg-slate-900 px-3 py-2 text-white">
+  <div
+    class="min-h-12 container mx-auto flex flex-row flex-wrap items-center justify-around lg:justify-between"
+  >
+    <!-- <NowPlayingText /> -->
+    <IconButtonRow1
+      buttons={[
+        {
+          iconName: "lucide:mail",
+          href: "mailto:tsuni@[this domain]",
+          title: "tsuni@[this domain]",
+        },
+        {
+          iconName: "simple-icons:github",
+          href: "https://github.com/TetraTsunami",
+          title: "Github",
+        },
+        {
+          iconName: "simple-icons:twitter",
+          href: "https://twitter.com/tsuniHD",
+          title: "Twitter/X",
+        },
+        {
+          iconName: "simple-icons:discord",
+          href: "https://discord.gg/AH7XHAkY3p",
+          title: "@tsni",
+        },
+        {
+          iconName: "simple-icons:codepen",
+          href: "https://codepen.io/TetraTsunami",
+          title: "Codepen",
+        },
+      ]}
+    />
+  </div>
+</footer>

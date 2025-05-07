@@ -1,0 +1,77 @@
+---
+import textStyles from "@/styles/text.module.css";
+import IconButtonRow2 from "@/components/IconButtonRow2.astro";
+
+const fadeUpDelay = (i: number) => {
+  return `animation-delay: ${i * 0.1 + 1}s;`;
+};
+---
+
+<script>
+  const parent = document.querySelector("#home") as HTMLElement;
+  const words = document.querySelectorAll(".header-word");
+  document.addEventListener("DOMContentLoaded", () => {
+    const className = parent.dataset.textstyle;
+    words.forEach((word, index) => {
+      word.classList.add(className || "");
+    });
+  });
+</script>
+
+<section
+  id="home"
+  class="container relative mx-auto flex h-[70vh] flex-col items-center justify-center p-8 text-center"
+  data-textstyle={textStyles.animateFadeUp}
+>
+  <h2 class="text-4xl font-semibold">
+    <span
+      class="header-word motion-safe:opacity-0"
+      style={fadeUpDelay(0)}
+    >
+      Hello
+    </span>
+    <span
+      class="header-word motion-safe:opacity-0"
+      style={fadeUpDelay(1)}
+    >
+      world!
+    </span>
+  </h2>
+  <h1
+    class={`text-8xl font-extrabold text-transparent ${textStyles.gradientTitleText}`}
+  >
+    <span
+      class="header-word motion-safe:opacity-0"
+      style={fadeUpDelay(5)}
+    >
+      I'm
+    </span>
+    <span
+      class="header-word motion-safe:opacity-0"
+      style={fadeUpDelay(6)}
+    >
+      Tsuni!
+    </span>
+  </h1>
+
+  <IconButtonRow2
+    buttons={[
+      {
+        iconName: "lucide:mail",
+        href: "mailto:tsuni@[this domain]",
+        title: "tsuni@[this domain]",
+      },
+      {
+        iconName: "simple-icons:github",
+        href: "https://github.com/TetraTsunami",
+        title: "TetraTsunami",
+      },
+      {
+        iconName: "simple-icons:twitter",
+        href: "https://twitter.com/tsuniHD",
+        title: "@tsuniHD",
+      },
+    ]}
+    animateDelay={7}
+  />
+</section>

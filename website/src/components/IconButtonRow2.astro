@@ -1,0 +1,46 @@
+---
+import { Icon } from 'astro-icon/components';
+import textStyles from '../styles/text.module.css';
+
+// Define props interface for Astro
+interface ButtonProps {
+  iconName: string; // Changed from IconDefinition to string
+  href: string;
+  title: string;
+}
+
+export interface Props {
+  buttons: ButtonProps[];
+  animateDelay: number;
+}
+
+const { buttons, animateDelay } = Astro.props;
+
+const getAnimationDelayStyle = (index: number, baseDelay: number) => {
+  return `animation-delay: ${(index + baseDelay) * 0.1 + 1}s;`;
+};
+---
+
+<script>
+  const parent = document.querySelector("#list") as HTMLElement;
+  const links = document.querySelectorAll(".icon-row-link");
+  document.addEventListener("DOMContentLoaded", () => {
+    const className = parent.dataset.textstyle;
+    links.forEach((link, index) => {
+      link.classList.add(className || "");
+    });
+  });
+</script>
+
+<ul id="list" class="m-2 flex flex-row items-center justify-between" data-textstyle={textStyles.animateFadeUp}>
+  {
+    buttons.map((button: ButtonProps, index: number) => (
+      <li class="relative text-center">
+        <a href={button.href} class="icon-row-link px-3 py-2 motion-safe:opacity-0" style={getAnimationDelayStyle(index, animateDelay)}>
+          <Icon name={button.iconName} size={24} />
+          <p class="visible-hidden">{button.title}</p>
+        </a>
+      </li>
+    ))
+  }
+</ul>

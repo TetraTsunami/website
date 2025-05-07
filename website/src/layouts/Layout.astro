@@ -1,0 +1,46 @@
+---
+import Font from 'astro/components/Font.astro';
+import Header from '@/layouts/Header.astro';
+import Footer from '@/layouts/Footer.astro';
+import Background from '@/components/Background.astro';
+import { ClientRouter } from 'astro:transitions';
+import '@/styles/global.css';
+
+interface Props {
+  theme?: {
+    isActive?: boolean;
+    focus?: boolean;
+    dark1?: string;
+    dark2?: string;
+    light1?: string;
+    light2?: string;
+  };
+}
+const { theme = {} } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="bg-slate-900 font-sans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <Font cssVariable="--font-rubik" preload />
+    <Font cssVariable="--font-neon" preload />
+    <link rel="preconnect" href="https://net.tsuni.dev" />
+    <script is:inline src="/theme.js"></script>
+    <script>
+      addEventListener('load', () => {
+        document.documentElement.classList.remove('noAnimate');
+      });
+    </script>
+    <title>Tsuni!</title>
+    <ClientRouter />
+  </head>
+  <body>
+    <Header />
+    <Background {...theme} />
+    <slot />
+    <Footer />
+  </body>
+</html>
