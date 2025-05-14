@@ -1,9 +1,10 @@
 // Modified from https://github.com/skeletonlabs/skeleton/blob/main/eslint.config.js
 import javascript from '@eslint/js';
-import typescript from 'typescript-eslint';
 import astro from 'eslint-plugin-astro';
+import prettier from 'eslint-plugin-prettier/recommended';
 import react from 'eslint-plugin-react';
-import prettier from 'eslint-plugin-prettier/recommended.js';
+import importSort from 'eslint-plugin-simple-import-sort';
+import typescript from 'typescript-eslint';
 
 /**
  * @see https://eslint.org/docs/latest/use/configure/
@@ -26,5 +27,14 @@ export default typescript.config(
     files: ['**/*.tsx', '**/*.jsx'],
     ...react.configs.flat.recommended,
     ...react.configs.flat['jsx-runtime'],
+  },
+  {
+    plugins: {
+      'simple-import-sort': importSort,
+    },
+    rules: {
+      'simple-import-sort/imports': 'error',
+      'simple-import-sort/exports': 'error',
+    },
   }
 );
