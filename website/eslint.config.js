@@ -1,32 +1,30 @@
-import globals from 'globals';
-import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import eslintPluginAstro from 'eslint-plugin-astro';
+// Modified from https://github.com/skeletonlabs/skeleton/blob/main/eslint.config.js
+import javascript from '@eslint/js';
+import typescript from 'typescript-eslint';
+import astro from 'eslint-plugin-astro';
+import react from 'eslint-plugin-react';
+import prettier from 'eslint-plugin-prettier/recommended.js';
 
-export default tseslint.config(
+/**
+ * @see https://eslint.org/docs/latest/use/configure/
+ * @type {import('eslint').Linter.Config}
+ */
+export default typescript.config(
   {
-    ignores: ['**/dist', '**/node_modules', '**/.astro', '**/.github', '**/.changeset'],
+    ignores: ['**/node_modules/', '**/dist/', '**/build/', '**/pagefind/', '**/.svelte-kit/', '**/.astro/', '**/.next/', '**/.vercel/'],
   },
-  eslint.configs.recommended,
-  ...tseslint.configs.recommendedTypeChecked,
+  // Prettier
+  prettier,
+  // JavaScript
+  javascript.configs.recommended,
+  // TypeScript
+  typescript.configs.recommended,
+  // Astro
+  astro.configs.recommended,
+  // React
   {
-    languageOptions: {
-      parserOptions: {
-        project: true,
-        tsconfigRootDir: import.meta.dirname,
-      },
-    },
-  },
-  ...eslintPluginAstro.configs.recommended,
-  {
-    files: ['scripts/**'],
-    languageOptions: {
-      globals: globals.node,
-    },
-  },
-	{
-		rules: {
-			'@typescript-eslint/no-unsafe-assignment': 'off',
-		},
-	}
+    files: ['**/*.tsx', '**/*.jsx'],
+    ...react.configs.flat.recommended,
+    ...react.configs.flat['jsx-runtime'],
+  }
 );

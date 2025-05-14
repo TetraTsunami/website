@@ -1,21 +1,22 @@
 ---
+import { getCollection } from 'astro:content';
+import Layout from '@/layouts/Layout.astro';
 import Projects from '@/layouts/Projects.astro';
 import textStyles from '@/styles/text.module.css';
 import HomeHeader from '@/components/HomeHeader.astro';
-// import { getAllPostData } from "@/lib/posts";
-// import SmallPostPreview from "@/components/SmallPostPreview";
-import Layout from '../layouts/Layout.astro';
-const posts = []; // const posts = getAllPostData().slice(0, 4);
+import SmallPostPreview from '@/components/SmallPostPreview.astro';
+const posts = await getCollection('blog');
+const sortedPosts = posts.filter(post => post.data.isVisible).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 <Layout>
-  <main class="pb-8 pt-16">
+  <main class="pt-16 pb-8">
     <HomeHeader />
     <div
-      class="bg-bkg/55 shadow-i-lg motion-safe:animate-fade-up container mx-auto flex flex-col gap-32 rounded-3xl px-8 pb-8 pt-32 backdrop-blur-sm transition-colors animation-delay-[3s] animation-fill-backward"
+      class="bg-bkg/55 shadow-i-lg motion-safe:animate-fade-up animation-delay-[3s] animation-fill-backward container mx-auto flex flex-col gap-32 rounded-3xl px-8 pt-32 pb-8 backdrop-blur-sm transition-colors"
     >
       <section id="about">
-        <h2 class={`text-3xl md:text-4xl font-semibold mb-4 text-center font-neon ${textStyles.terminal}`}>whois Tsuni</h2>
+        <h2 class={`text-3xl md:text-4xl font-semibold mb-4 text-center font-mono ${textStyles.terminal}`}>whois Tsuni</h2>
         <p class="mx-auto mb-4 max-w-prose text-center text-lg">
           {
             `Heya! I'm Tsuni, a 20 year old developer from Wisconsin, USA.
@@ -44,28 +45,13 @@ const posts = []; // const posts = getAllPostData().slice(0, 4);
         </p>
       </section>
       <section id="posts" class="container mx-auto flex flex-col items-center justify-center">
-        <h2
-          class={`text-3xl md:text-4xl leading-normal font-semibold text-content
-                            ${textStyles.terminal} font-neon`}
-        >
-          ls posts
-        </h2>
+        <h2 class={`text-3xl md:text-4xl leading-normal font-semibold text-content ${textStyles.terminal} font-mono`}>ls posts</h2>
         <div class="mt-6 grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
-          <!-- {posts.map((post, i) => (
-                <div key={post.slug}>
-                {i > 0 && <span key={i} class="bg-bkg h-[2px] w-full" />}
-                <SmallPostPreview {...post} />
-                </div>
-            ))} -->
+          {sortedPosts.map(post => <SmallPostPreview {post} />)}
         </div>
       </section>
       <section id="projects" class="container mx-auto flex flex-col items-center justify-center">
-        <h2
-          class={`text-3xl md:text-4xl leading-normal font-semibold text-content
-                            ${textStyles.terminal} font-neon`}
-        >
-          ls portfolio
-        </h2>
+        <h2 class={`text-3xl md:text-4xl leading-normal font-semibold text-content ${textStyles.terminal} font-mono`}>ls portfolio</h2>
         <Projects />
         <div class="hover:text-accent text-center">
           <a href="https://github.com/TetraTsunami" class="text-lg"> See more projects on my GitHub! </a>
