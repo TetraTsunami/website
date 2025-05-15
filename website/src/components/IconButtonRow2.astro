@@ -23,9 +23,10 @@ const getAnimationDelayStyle = (index: number, baseDelay: number) => {
 ---
 
 <script>
-  const parent = document.querySelector('#list') as HTMLElement;
-  const links = document.querySelectorAll('.icon-row-link');
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('astro:page-load', () => {
+    const parent = document.querySelector('#list') as HTMLElement | null;
+    if (!parent) return;
+    const links = document.querySelectorAll('.icon-row-link');
     const className = parent.dataset.textstyle;
     links.forEach(link => {
       link.classList.add(className || '');
