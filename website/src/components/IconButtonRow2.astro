@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+
 import textStyles from '../styles/text.module.css';
 
 // Define props interface for Astro
@@ -22,12 +23,12 @@ const getAnimationDelayStyle = (index: number, baseDelay: number) => {
 ---
 
 <script>
-  const parent = document.querySelector("#list") as HTMLElement;
-  const links = document.querySelectorAll(".icon-row-link");
-  document.addEventListener("DOMContentLoaded", () => {
+  const parent = document.querySelector('#list') as HTMLElement;
+  const links = document.querySelectorAll('.icon-row-link');
+  document.addEventListener('DOMContentLoaded', () => {
     const className = parent.dataset.textstyle;
-    links.forEach((link, index) => {
-      link.classList.add(className || "");
+    links.forEach(link => {
+      link.classList.add(className || '');
     });
   });
 </script>

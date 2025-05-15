@@ -1,23 +1,31 @@
 // @ts-check
 import mdx from '@astrojs/mdx';
-import react from '@astrojs/react';
-import rehypeSectionize from '@hbsnow/rehype-sectionize';
+import preact from '@astrojs/preact';
 import tailwindcss from '@tailwindcss/vite';
-import { defineConfig, fontProviders } from 'astro/config';
+import { defineConfig, envField, fontProviders } from 'astro/config';
 import icon from 'astro-icon';
 import rehypeCallouts from 'rehype-callouts';
-import rehypeSlug from 'rehype-slug';
 import remarkBreaks from 'remark-breaks';
 import remarkGFM from 'remark-gfm';
 
+import remarkSectionize from './src/utils/remark/sectionize';
+
 // https://astro.build/config
 export default defineConfig({
+  env: {
+    schema: {
+      GISCUS_REPO: envField.string({ context: 'client', access: 'public' }),
+      GISCUS_REPO_ID: envField.string({ context: 'client', access: 'public' }),
+      GISCUS_CATEGORY: envField.string({ context: 'client', access: 'public' }),
+      GISCUS_CATEGORY_ID: envField.string({ context: 'client', access: 'public' }),
+    },
+  },
   vite: {
     plugins: [tailwindcss()],
   },
   markdown: {
-    remarkPlugins: [remarkGFM, remarkBreaks],
-    rehypePlugins: [rehypeSlug, rehypeSectionize, rehypeCallouts],
+    remarkPlugins: [remarkGFM, remarkSectionize, remarkBreaks],
+    rehypePlugins: [rehypeCallouts],
     shikiConfig: {
       themes: {
         light: 'catppuccin-latte',
@@ -48,5 +56,5 @@ export default defineConfig({
       },
     ],
   },
-  integrations: [icon(), mdx(), react()],
+  integrations: [icon(), mdx(), preact()],
 });

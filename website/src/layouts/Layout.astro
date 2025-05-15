@@ -1,10 +1,11 @@
 ---
-import Font from 'astro/components/Font.astro';
-import Header from '@/layouts/Header.astro';
-import Footer from '@/layouts/Footer.astro';
-import Background from '@/components/Background.astro';
-import { ClientRouter } from 'astro:transitions';
 import '@/styles/global.css';
+
+import Font from 'astro/components/Font.astro';
+
+import Background from '@/components/Background.astro';
+import Footer from '@/layouts/Footer.astro';
+import Header from '@/layouts/Header.astro';
 
 interface Props {
   theme?: {
@@ -27,14 +28,12 @@ const { theme = {} } = Astro.props;
     <Font cssVariable="--font-rubik" preload />
     <Font cssVariable="--font-neon" preload />
     <link rel="preconnect" href="https://net.tsuni.dev" />
-    <script is:inline src="/theme.js"></script>
     <script>
       addEventListener('load', () => {
         document.documentElement.classList.remove('noAnimate');
       });
     </script>
     <title>Tsuni!</title>
-    <ClientRouter />
   </head>
   <body>
     <Header />

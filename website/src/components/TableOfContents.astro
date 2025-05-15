@@ -1,0 +1,38 @@
+---
+interface Props {
+  class?: string;
+  tableOfContents: { indent: number; title: string; slug: string }[];
+}
+
+const { class: className, tableOfContents, ...rest } = Astro.props;
+---
+
+<nav class:list={['scrollspy bg-bkg/90 shadow-i-sm top-20 self-baseline rounded-xl p-4 transition-colors md:sticky md:p-6', className]} {...rest}>
+  <ul class="flex flex-col">
+    {
+      tableOfContents.map(({ indent, title, slug }) => (
+        <li class:list={[{ 'mt-2': indent === 0, 'ml-4 text-sm': indent === 1, 'ml-8 text-sm': indent === 2, 'ml-12 text-sm': indent === 3 }]}>
+          <a href={`#${slug}`}>{title}</a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<script>
+  import scrollSpy from 'simple-scrollspy';
+  scrollSpy('.scrollspy', {
+    sectionClass: 'section[id]',
+    offset: 400,
+  });
+</script>
+
+<style is:global>
+  nav.scrollspy ul li a {
+    opacity: 0.5;
+    transition: opacity 0.2s;
+    &.active {
+      opacity: 1;
+    }
+  }
+</style>

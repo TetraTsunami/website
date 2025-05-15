@@ -1,8 +1,9 @@
 ---
-// import DarkToggle from "../components/DarkToggle";
 // import NowPlayingIcon from "../components/NowPlayingIcon";
-import { Image } from 'astro:assets';
 import logo from '@images/reallogo.png';
+import { Image } from 'astro:assets';
+
+import DarkToggle from '../components/DarkToggle.astro';
 
 const currentPath = Astro.url.pathname;
 
@@ -13,8 +14,8 @@ const links = [
 ];
 ---
 
-<header class="fixed left-0 right-0 top-0 z-50 px-3 py-2 text-white">
-  <div class="container mx-auto flex flex-row flex-wrap items-center justify-between gap-2 px-4 pt-0 text-black dark:text-white sm:flex-nowrap">
+<header class="fixed top-0 right-0 left-0 z-50 px-3 py-2 text-white">
+  <div class="container mx-auto flex flex-row flex-wrap items-center justify-between gap-2 px-4 pt-0 text-black sm:flex-nowrap dark:text-white">
     <div class="h-12 p-0">
       <a href="/" class="h-12 w-max leading-none">
         <img src="/images/logooutline.svg" class="opacity-50 dark:invert" width="200" height="50" />
@@ -23,7 +24,7 @@ const links = [
     </div>
     <div class="flex-grow"></div>
     <nav>
-      <ul class="flex h-10 flex-row items-center justify-around gap-2">
+      <ul class="bg-bkg/30 inset-shadow-accent/40 flex h-10 flex-row items-stretch justify-around gap-2 rounded-lg p-0.5 inset-shadow-xs">
         {
           links.map(link => {
             const isActive = currentPath === link.href;
@@ -32,7 +33,7 @@ const links = [
                 <a
                   href={link.href}
                   class:list={[
-                    'flex h-10 items-center gap-2 rounded-md px-2 transition-colors hover:bg-gray-300 dark:hover:bg-gray-600',
+                    'flex h-full items-center gap-2 rounded-md px-2 transition-colors hover:bg-gray-300 dark:hover:bg-gray-500',
                     { 'bg-gray-200 dark:bg-gray-700': isActive },
                   ]}
                 >
@@ -45,7 +46,7 @@ const links = [
         }
       </ul>
     </nav>
-    <!-- <DarkToggle /> -->
+    <DarkToggle />
   </div>
 </header>
 

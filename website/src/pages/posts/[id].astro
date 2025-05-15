@@ -4,7 +4,8 @@ import 'rehype-callouts/theme/obsidian';
 import { getCollection, render } from 'astro:content';
 import GithubSlugger from 'github-slugger';
 
-import TableOfContents from '@/components/TableOfContents.tsx';
+import Giscus from '@/components/Giscus.astro';
+import TableOfContents from '@/components/TableOfContents.astro';
 import Layout from '@/layouts/Layout.astro';
 import gridStyles from '@/styles/grid.module.css';
 
@@ -73,14 +74,10 @@ const { Content } = await render(post);
           </div>
           <Content />
         </div>
-        <nav
-          class={`scrollspy top-20 self-baseline rounded-xl bg-bkg/90 p-4 shadow-i-sm transition-colors md:sticky md:p-6 ${gridStyles.articleToc}`}
-        >
-          <TableOfContents client:load {tableOfContents} />
-        </nav>
+        <TableOfContents {tableOfContents} class={gridStyles.articleToc} />
       </div>
       <div class={`w-full mt-16 mb-32 shadow-i-lg max-w-[56rem] rounded-xl bg-slate-900/90 p-4 ${gridStyles.articleContent}`}>
-        <!-- <Giscus /> -->
+        <Giscus />
       </div>
     </article>
   </div>

@@ -1,6 +1,7 @@
 ---
-import { Icon } from "astro-icon/components";
-import textStyles from "../styles/text.module.css";
+import { Icon } from 'astro-icon/components';
+
+import textStyles from '../styles/text.module.css';
 interface IconButtonRowProps {
   iconName: string;
   rel?: string;
@@ -22,7 +23,7 @@ const { buttons } = Astro.props;
         <a
           rel={button.rel}
           href={button.href}
-          class:list={["px-3 py-2", textStyles["pastelTextHover"]]}
+          class:list={['px-3 py-2', textStyles['pastelTextHover']]}
           style={`--data-degree: ${(index * 360) / buttons.length};`}
         >
           <Icon name={button.iconName} size={24} />

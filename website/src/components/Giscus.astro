@@ -1,0 +1,21 @@
+---
+import { GISCUS_CATEGORY, GISCUS_CATEGORY_ID, GISCUS_REPO, GISCUS_REPO_ID } from 'astro:env/client';
+---
+
+<script>
+  import 'giscus';
+</script>
+
+<giscus-widget
+  id="comments"
+  repo={GISCUS_REPO}
+  repoId={GISCUS_REPO_ID}
+  category={GISCUS_CATEGORY}
+  categoryId={GISCUS_CATEGORY_ID}
+  mapping="pathname"
+  strict="1"
+  reactionsEnabled="1"
+  inputPosition="top"
+  lang="en"
+  loading="lazy"
+  theme="dark_dimmed"></giscus-widget>

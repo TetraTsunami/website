@@ -20,6 +20,11 @@ export default typescript.config(
   javascript.configs.recommended,
   // TypeScript
   typescript.configs.recommended,
+  {
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+    },
+  },
   // Astro
   astro.configs.recommended,
   // React
