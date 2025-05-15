@@ -4,6 +4,6 @@ const { frontmatter, headings } = Astro.props;
 const { title } = frontmatter;
 ---
 
-<PostOuter {title} {headings}>
+<PostOuter {title} {headings} id={title}>
   <slot />
 </PostOuter>

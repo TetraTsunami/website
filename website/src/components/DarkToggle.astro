@@ -2,11 +2,14 @@
 import { Icon } from 'astro-icon/components';
 ---
 
-<button class="relative -mt-2 h-12 w-10 cursor-pointer overflow-clip rounded-b-full hover:shadow-lg active:shadow-none" id="dark-toggle">
+<button
+  class="group relative -mt-2 h-12 w-10 cursor-pointer overflow-clip rounded-b-full transition-all hover:shadow-lg active:shadow-none"
+  id="dark-toggle"
+>
   <div
-    class="inset-shadow-accent/40 relative mt-2 h-10 w-10 overflow-clip rounded-full bg-gray-200 p-2.5 inset-shadow-xs transition-all dark:bg-gray-700"
+    class="inset-shadow-accent/40 relative mt-2 h-10 w-10 overflow-clip rounded-full bg-gray-200 p-2.5 transition-all group-hover:-translate-y-1.5 group-active:translate-y-1.5 group-active:inset-shadow-xs dark:bg-gray-700"
   >
-    <div class="absolute grid place-items-center gap-2.5 transition-transform dark:-translate-y-[calc(50%+5px)]">
+    <div class="absolute grid place-items-center gap-2.5 transition-transform group-active:-translate-y-[35%] dark:-translate-y-[calc(50%+5px)]">
       <Icon name="lucide:sun" size={20} />
       <Icon name="lucide:moon" size={20} />
     </div>
@@ -16,7 +19,6 @@ import { Icon } from 'astro-icon/components';
 
 <style is:global>
   #dark-toggle {
-    transition: all 0.2s ease-in-out;
     &::before {
       content: '';
       position: absolute;
@@ -27,15 +29,6 @@ import { Icon } from 'astro-icon/components';
       background: var(--color-gray-300);
       border-radius: 100%;
       transition: color 0s 0.075s;
-    }
-    &:hover > div {
-      transform: translateY(-6px);
-    }
-    &:active > div {
-      transform: translateY(6px);
-      > div {
-        translate: 0 -35%;
-      }
     }
   }
   .dark #dark-toggle::before {
@@ -74,4 +67,8 @@ import { Icon } from 'astro-icon/components';
   };
 
   document.getElementById('dark-toggle')?.addEventListener('click', handleToggleClick);
+  // https://www.reddit.com/r/webdev/comments/16iu3uf/how_do_i_get_dark_theme_working_when_using_view/
+  document.addEventListener('astro:after-swap', function () {
+    if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.toggle('dark', true);
+  });
 </script>
