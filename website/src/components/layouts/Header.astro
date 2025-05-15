@@ -14,8 +14,8 @@ const links = [
 ];
 ---
 
-<header class="fixed top-0 right-0 left-0 z-50 px-3 py-2 text-white">
-  <div class="container mx-auto flex flex-row flex-wrap items-center justify-between gap-2 px-4 pt-0 text-black sm:flex-nowrap dark:text-white">
+<header class="fixed left-0 right-0 top-0 z-50 px-3 py-2 text-white">
+  <div class="container mx-auto flex flex-row flex-wrap items-center justify-between gap-2 px-4 pt-0 text-black dark:text-white sm:flex-nowrap">
     <div class="h-12 p-0">
       <a href="/" class="h-12 w-max leading-none">
         <img src="/images/logooutline.svg" class="opacity-50 dark:invert" width="200" height="50" />
@@ -24,16 +24,16 @@ const links = [
     </div>
     <div class="flex-grow"></div>
     <nav>
-      <ul class="bg-bkg/30 inset-shadow-accent/40 flex h-10 flex-row items-stretch justify-around gap-2 rounded-lg p-0.5 inset-shadow-xs">
+      <ul class="bg-bkg/30 header-link-group inset-shadow-accent/40 inset-shadow-xs flex h-10 flex-row items-stretch justify-around gap-2 rounded-lg p-0.5">
         {
           links.map(link => {
             const isActive = currentPath === link.href;
             return (
-              <li>
+              <li class:list={["header-link relative group hover:shadow-lg active:shadow-none transition-shadow shadow-none", {'active': isActive}]}>
                 <a
                   href={link.href}
                   class:list={[
-                    'flex h-full items-center gap-2 rounded-md px-2 transition-colors hover:bg-gray-300 dark:hover:bg-gray-500',
+                    'flex h-full items-center gap-2 rounded-md px-2 transition-[translate,background,box-shadow] inset-shadow-none inset-shadow-accent group-hover:inset-shadow-xs group-active:bg-gray-300 dark:group-active:bg-gray-700 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 group-active:translate-y-0 group-hover:-translate-y-1.5',
                     { 'bg-gray-200 dark:bg-gray-700': isActive },
                   ]}
                 >
@@ -49,6 +49,29 @@ const links = [
     <DarkToggle />
   </div>
 </header>
+
+<style is:global>
+  .header-link-group:hover .header-link:not(:hover) a {
+    background: transparent;
+  }
+  .header-link::before {
+    pointer-events: none;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 6px;
+    background: transparent
+  }
+  .header-link:hover::before {
+    background: var(--color-gray-300);
+  }
+  .dark .header-link:hover::before {
+    background: var(--color-gray-800);
+  }
+</style>
 
 <script>
   function scrollHeader() {
@@ -79,4 +102,4 @@ const links = [
       backdrop-filter: blur(12px);
     }
   }
-</style>
+</>
