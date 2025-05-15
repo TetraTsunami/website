@@ -41,11 +41,14 @@ export default defineConfig({
         name: 'Rubik',
         cssVariable: '--font-rubik',
         weights: ['300 900'],
+        fallbacks: ['ui-rounded', 'system-ui', 'sans-serif'],
+        optimizedFallbacks: false,
       },
       {
         provider: 'local',
         name: 'Monaspace Neon',
         cssVariable: '--font-neon',
+        fallbacks: ['ui-monospace', 'monospace'],
         variants: [
           {
             weight: 400,

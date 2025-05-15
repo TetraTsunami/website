@@ -1,10 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '@/layouts/Layout.astro';
-import Projects from '@/layouts/Projects.astro';
-import textStyles from '@/styles/text.module.css';
+
 import HomeHeader from '@/components/HomeHeader.astro';
+import Projects from '@/components/layouts/Projects.astro';
 import SmallPostPreview from '@/components/SmallPostPreview.astro';
+import Layout from '@/layouts/Layout.astro';
+import textStyles from '@/styles/text.module.css';
 const posts = await getCollection('blog');
 const sortedPosts = posts.filter(post => post.data.isVisible).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
@@ -13,7 +14,7 @@ const sortedPosts = posts.filter(post => post.data.isVisible).sort((a, b) => b.d
   <main class="pt-16 pb-8">
     <HomeHeader />
     <div
-      class="bg-bkg/55 shadow-i-lg motion-safe:animate-fade-up animation-delay-[3s] animation-fill-backward container mx-auto flex flex-col gap-32 rounded-3xl px-8 pt-32 pb-8 backdrop-blur-sm transition-colors"
+      class="bg-bkg/55 shadow-i-lg motion-safe:animate-faWde-up animation-delay-[3s] animation-fill-backward container mx-auto flex flex-col gap-32 rounded-3xl px-8 pt-32 pb-8 backdrop-blur-sm transition-colors"
     >
       <section id="about">
         <h2 class={`text-3xl md:text-4xl font-semibold mb-4 text-center font-mono ${textStyles.terminal}`}>whois Tsuni</h2>

@@ -1,13 +1,7 @@
 ---
-import 'rehype-callouts/theme/obsidian';
+import { getCollection } from 'astro:content';
 
-import { getCollection, render } from 'astro:content';
-import GithubSlugger from 'github-slugger';
-
-import Giscus from '@/components/Giscus.astro';
-import TableOfContents from '@/components/TableOfContents.astro';
-import Layout from '@/layouts/Layout.astro';
-import gridStyles from '@/styles/grid.module.css';
+import Post from '@/components/layouts/Post.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -16,69 +10,7 @@ export async function getStaticPaths() {
     props: { post },
   }));
 }
-type header = { indent: number; title: string; slug: string };
-const extractTableOfContents = (markdown: string): header[] => {
-  const slugger = new GithubSlugger();
-  const headings = markdown.match(/^#+\s.+|.+\r?\n=+/gm);
-  if (!headings) return [];
-  const extracted = headings.map(heading => {
-    const indent = heading.match(/#/g)?.length ?? 1;
-    const title = heading.replace(/^#+\s/, '').replace(/=+$/, '').trim();
-    const slug = slugger.slug(title);
-    return { indent, title, slug };
-  });
-  // Normalize levels (0-based)
-  const minLevel = Math.min(...extracted.map(({ indent }) => indent));
-  extracted.forEach(header => {
-    header.indent = header.indent - minLevel;
-  });
-  return extracted;
-};
-const calculateReadingTime = (markdown: string): number => {
-  const wpm = 225;
-  const words = markdown.trim().split(/\s+/).length;
-  return Math.ceil(words / wpm);
-};
 const { post } = Astro.props;
-const readingMinutes = calculateReadingTime(post.body || '');
-const tableOfContents = extractTableOfContents(post.body || '');
-const date = new Date(post.data.date).toLocaleDateString('en-US', {
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-  timeZone: 'UTC',
-});
-const { Content } = await render(post);
 ---
 
-<Layout
-  theme={{
-    focus: true,
-  }}
->
-  <div class="relative min-h-[calc(100vh-4rem)] pt-12">
-    <article class="mt-24 flex flex-col items-center">
-      <header class="-z-10 mb-8 px-8">
-        <h1 class="pb-4 text-center text-6xl font-semibold">{post.data.title}</h1>
-        <h2 class="text-center text-2xl font-light italic">{post.data.subtitle}</h2>
-      </header>
-      <div class={`mx-2 mb-16 mt-28 w-full ${gridStyles.articleGrid} gap-2`}>
-        <div
-          class={`bg-bkg/90 shadow-i-sm prose prose-slate ${gridStyles.articleContent} max-w-[56rem] rounded-xl p-4 transition-colors dark:prose-invert prose-h1:mb-4 prose-h1:mt-8 prose-p:mt-0 prose-code:font-[var(--font-neon)] md:px-12`}
-        >
-          <div class="mb-8 flex justify-between">
-            <p class="mb-0 text-sm">{date}</p>
-            <span class="border-b-accent mx-4 h-0 grow self-center border-b-2"></span>
-            <p class="mb-0 text-sm">{readingMinutes} minute read</p>
-          </div>
-          <Content />
-        </div>
-        <TableOfContents {tableOfContents} class={gridStyles.articleToc} />
-      </div>
-      <div class={`w-full mt-16 mb-32 shadow-i-lg max-w-[56rem] rounded-xl bg-slate-900/90 p-4 ${gridStyles.articleContent}`}>
-        <Giscus />
-      </div>
-    </article>
-  </div>
-</Layout>
+<Post {post} />

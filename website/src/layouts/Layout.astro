@@ -4,8 +4,8 @@ import '@/styles/global.css';
 import Font from 'astro/components/Font.astro';
 
 import Background from '@/components/Background.astro';
-import Footer from '@/layouts/Footer.astro';
-import Header from '@/layouts/Header.astro';
+import Footer from '@/components/layouts/Footer.astro';
+import Header from '@/components/layouts/Header.astro';
 
 interface Props {
   theme?: {
@@ -25,8 +25,8 @@ const { theme = {} } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <Font cssVariable="--font-rubik" preload />
-    <Font cssVariable="--font-neon" preload />
+    <Font cssVariable="--font-rubik" />
+    <Font cssVariable="--font-neon" />
     <link rel="preconnect" href="https://net.tsuni.dev" />
     <script>
       addEventListener('load', () => {

@@ -1,0 +1,32 @@
+---
+import 'rehype-callouts/theme/obsidian';
+
+import { render } from 'astro:content';
+
+import PostOuter from '@/layouts/PostOuter.astro';
+
+const calculateReadingTime = (markdown: string): number => {
+  const wpm = 225;
+  const words = markdown.trim().split(/\s+/).length;
+  return Math.ceil(words / wpm);
+};
+const { post } = Astro.props;
+const readingMinutes = calculateReadingTime(post.body || '');
+const date = new Date(post.data.date).toLocaleDateString('en-US', {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+const { Content, headings } = await render(post);
+---
+
+<PostOuter {...post.data} {headings}>
+  <div class="mb-8 flex justify-between">
+    <p class="mb-0 text-sm">{date}</p>
+    <span class="border-b-accent mx-4 h-0 grow self-center border-b-2"></span>
+    <p class="mb-0 text-sm">{readingMinutes} minute read</p>
+  </div>
+  <Content />
+</PostOuter>

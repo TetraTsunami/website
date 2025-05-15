@@ -1,18 +1,20 @@
 ---
+import type { MarkdownHeading } from 'astro';
+
 interface Props {
   class?: string;
-  tableOfContents: { indent: number; title: string; slug: string }[];
+  headings: MarkdownHeading[];
 }
 
-const { class: className, tableOfContents, ...rest } = Astro.props;
+const { class: className, headings, ...rest } = Astro.props;
 ---
 
 <nav class:list={['scrollspy bg-bkg/90 shadow-i-sm top-20 self-baseline rounded-xl p-4 transition-colors md:sticky md:p-6', className]} {...rest}>
   <ul class="flex flex-col">
     {
-      tableOfContents.map(({ indent, title, slug }) => (
-        <li class:list={[{ 'mt-2': indent === 0, 'ml-4 text-sm': indent === 1, 'ml-8 text-sm': indent === 2, 'ml-12 text-sm': indent === 3 }]}>
-          <a href={`#${slug}`}>{title}</a>
+      headings.map(({ depth, text, slug }) => (
+        <li class:list={[{ 'mt-2': depth === 1, 'ml-4 text-sm': depth === 2, 'ml-8 text-xs': depth === 3, 'ml-12 text-xs': depth === 4 }]}>
+          <a href={`#${slug}`}>{text}</a>
         </li>
       ))
     }
