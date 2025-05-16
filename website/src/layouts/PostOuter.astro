@@ -30,7 +30,7 @@ const { title, subtitle, image, headings, id } = Astro.props;
 >
   <div class="relative min-h-[calc(100vh-4rem)] pt-12">
     <article class="mt-24 flex flex-col items-center">
-      <div class="-z-10 mb-8 px-8">
+      <div class="mb-8 px-8">
         <h1 class="pb-4 text-center text-6xl font-semibold" transition:name={id}>{title}</h1>
         {subtitle && <h2 class="text-center text-2xl font-light italic">{subtitle}</h2>}
       </div>
@@ -42,9 +42,21 @@ const { title, subtitle, image, headings, id } = Astro.props;
         </div>
         {headings && <TableOfContents {headings} class={gridStyles.articleToc} />}
       </div>
-      <div class={`w-full mx-2 mt-16 mb-32 shadow-i-lg max-w-[56rem] rounded-xl bg-slate-900/90 p-4 ${gridStyles.articleContent}`}>
+      <div class={`giscus-container w-full mx-2 mt-16 mb-32 shadow-i-lg max-w-[56rem] rounded-xl p-4 ${gridStyles.articleContent}`}>
         <Giscus />
       </div>
     </article>
   </div>
 </Layout>
+
+<style>
+  /* separate light/dark styles for giscus because widget goes off preferred-color and not .dark class */
+  .giscus-container {
+    background-color: --alpha(hsl(250deg 100% 98%) / 90%);
+  }
+  @media (prefers-color-scheme: dark) {
+    .giscus-container {
+      background-color: --alpha(hsl(222deg 47% 11%) / 90%);
+    }
+  }
+</style>

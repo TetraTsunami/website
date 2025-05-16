@@ -10,7 +10,8 @@
   }
 
   &:before {
-    content: '> ';
+    content: '>';
+    margin-right: 0.5rem;
     font-weight: bolder;
     color: var(--terminal-color);
   }

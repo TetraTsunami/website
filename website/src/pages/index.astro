@@ -1,4 +1,5 @@
 ---
+import Guestbook from '@/components/Guestbook';
 import HomeHero from '@/components/HomeHero.astro';
 import Projects from '@/components/layouts/Projects.astro';
 import Layout from '@/layouts/Layout.astro';
@@ -50,6 +51,15 @@ import textStyles from '@/styles/text.module.css';
         <div class="hover:text-accent text-center">
           <a href="https://github.com/TetraTsunami" class="text-lg"> See more projects on my GitHub! </a>
         </div>
+      </section>
+      <section id="guestbook">
+        <h2 class={`text-3xl md:text-4xl font-semibold mb-4 text-center font-mono ${textStyles.terminal}`}>cat guestbook</h2>
+        <p class="text-center text-lg">
+          {`Leave a drawing in my guestbook! User-generated content below!`}
+        </p>
+        <Guestbook client:visible>
+          <div slot="fallback">Loading~!</div>
+        </Guestbook>
       </section>
     </div>
   </main>

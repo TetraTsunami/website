@@ -11,7 +11,7 @@ interface Props {
 const { isActive = false, focus = false, dark1 = '#333333', dark2 = '#1a1a1a', light1 = '#f5f5f5', light2 = '#e0e0e0' } = Astro.props;
 ---
 
-<div class="absolute inset-0 -z-10 overflow-hidden">
+<div class="absolute inset-0 overflow-hidden">
   {/* Dark */}
   <div
     class="absolute inset-0"
@@ -42,22 +42,29 @@ const { isActive = false, focus = false, dark1 = '#333333', dark2 = '#1a1a1a', l
     ]}
   >
   </div>
-  <div class:list={['camo', { 'opacity-30 dark:opacity-80': !focus }, { 'opacity-0': focus }]}></div>
-  <div class:list={['dots absolute h-full w-full', { 'opacity-0': focus }]}></div>
+  <div class:list={['bg-camo', { 'opacity-30 dark:opacity-80': !focus }, { 'opacity-0': focus }]}></div>
+  <div class:list={['bg-dots absolute h-full w-full', { 'opacity-0': focus }]}></div>
 </div>
 
 <style>
   .opacityCircleOut {
     clip-path: circle(50% at 95% 10px);
   }
-
-  .dots {
+  .bg-dots {
+    --dots-color: #7468871f;
+    --dots-size: 1.5px;
+    --dots-spacing: 10px;
     background-repeat: repeat;
-    transform: translateY(var(--scrollY));
-    background: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23746887' fill-opacity='0.15' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+    background: radial-gradient(#7468871f 1.5px, transparent 0), radial-gradient(#7468871f var(--dots-size), transparent 0);
+    background-size:
+      var(--dots-spacing) var(--dots-spacing),
+      var(--dots-spacing) var(--dots-spacing);
+    background-position:
+      0 0,
+      calc(var(--dots-spacing) / 2) calc(var(--dots-spacing) / 2);
   }
 
-  .camo {
+  .bg-camo {
     width: calc(100% + 376px);
     height: calc(100% + 376px);
     position: absolute;
