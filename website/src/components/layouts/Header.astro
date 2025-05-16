@@ -3,37 +3,45 @@
 import logo from '@images/reallogo.png';
 import { Image } from 'astro:assets';
 
+import Outline from '@/assets/logooutline.svg';
 import DarkToggle from '@/components/DarkToggle.astro';
 
 const currentPath = Astro.url.pathname;
 
 const links = [
   { name: 'Home', href: '/', icon: false },
+  { name: 'Blog', href: '/posts', icon: false },
   { name: 'Uses', href: '/uses', icon: false },
-  { name: 'Media', href: '/media', icon: true },
 ];
 ---
 
-<header class="fixed left-0 right-0 top-0 z-50 px-3 py-2 text-white">
-  <div class="container mx-auto flex flex-row flex-wrap items-center justify-between gap-2 px-4 pt-0 text-black dark:text-white sm:flex-nowrap">
+<header class="fixed top-0 right-0 left-0 z-50 px-3 py-2 text-white">
+  <div class="container mx-auto flex flex-row flex-wrap items-center justify-between gap-2 px-4 pt-0 text-black sm:flex-nowrap dark:text-white">
     <div class="h-12 p-0">
-      <a href="/" class="h-12 w-max leading-none">
-        <img src="/images/logooutline.svg" class="opacity-50 dark:invert" width="200" height="50" />
-        <Image src={logo} alt="Tsuni logo" class="relative -translate-y-full" loading="eager" width="200" height="50" quality={50} />
+      <a href="/" class="group grid h-12 w-max place-items-center leading-none">
+        <Outline
+          width="200"
+          height="50"
+          fill="currentColor"
+          class="col-end-1 row-end-1 text-white opacity-50 transition-opacity group-hover:opacity-100 dark:text-black"
+        />
+        <Image src={logo} alt="Tsuni logo" class="z-10 col-end-1 row-end-1" loading="eager" width="200" height="50" quality={50} />
       </a>
     </div>
     <div class="flex-grow"></div>
     <nav>
-      <ul class="bg-bkg/30 header-link-group inset-shadow-accent/40 inset-shadow-xs flex h-10 flex-row items-stretch justify-around gap-2 rounded-lg p-0.5">
+      <ul
+        class="bg-bkg/30 header-link-group inset-shadow-accent/40 flex h-10 flex-row items-stretch justify-around gap-2 rounded-lg p-0.5 inset-shadow-xs"
+      >
         {
           links.map(link => {
             const isActive = currentPath === link.href;
             return (
-              <li class:list={["header-link relative group hover:shadow-lg active:shadow-none transition-shadow shadow-none", {'active': isActive}]}>
+              <li class:list={['header-link group relative shadow-none transition-shadow hover:shadow-lg active:shadow-none', { active: isActive }]}>
                 <a
                   href={link.href}
                   class:list={[
-                    'flex h-full items-center gap-2 rounded-md px-2 transition-[translate,background,box-shadow] inset-shadow-none inset-shadow-accent group-hover:inset-shadow-xs group-active:bg-gray-300 dark:group-active:bg-gray-700 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 group-active:translate-y-0 group-hover:-translate-y-1.5',
+                    'inset-shadow-accent flex h-full items-center gap-2 rounded-md px-2 inset-shadow-none transition-[translate,background,box-shadow] group-hover:-translate-y-1.5 group-hover:bg-gray-200 group-hover:inset-shadow-xs group-active:translate-y-0 group-active:bg-gray-300 dark:group-hover:bg-gray-700 dark:group-active:bg-gray-700',
                     { 'bg-gray-200 dark:bg-gray-700': isActive },
                   ]}
                 >
@@ -63,7 +71,7 @@ const links = [
     bottom: 0;
     left: 0;
     border-radius: 6px;
-    background: transparent
+    background: transparent;
   }
   .header-link:hover::before {
     background: var(--color-gray-300);
@@ -102,4 +110,4 @@ const links = [
       backdrop-filter: blur(12px);
     }
   }
-</>
+</style>

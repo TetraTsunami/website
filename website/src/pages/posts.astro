@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+
+import SmallPostPreview from '@/components/SmallPostPreview.astro';
+import Layout from '@/layouts/Layout.astro';
+import textStyles from '@/styles/text.module.css';
+const posts = await getCollection('blog');
+const sortedPosts = posts.filter(p => p.data.isVisible).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Layout metadata={{ title: 'Blog', description: "Tsuni's blog" }}>
+  <main class="min-h-screen pt-16 pb-8">
+    <section id="posts" class="container mx-auto flex flex-col items-center justify-center">
+      <h2 class={`text-3xl md:text-4xl leading-normal font-semibold text-content ${textStyles.terminal} font-mono`}>ls posts</h2>
+      <div class="mt-6 grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
+        {sortedPosts.map(post => <SmallPostPreview {post} />)}
+      </div>
+    </section>
+  </main>
+</Layout>

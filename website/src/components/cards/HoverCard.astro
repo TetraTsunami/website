@@ -1,14 +1,18 @@
 ---
 interface Props {
   class?: string;
+  heightLimit?: boolean;
 }
 
-const { class: className, ...rest } = Astro.props;
+const { class: className, heightLimit = true, ...rest } = Astro.props;
 ---
 
-<div class:list={className} {...rest}>
+<div class:list={[className, 'dark:bg-800 rounded-xl bg-gray-300 shadow-sm hover:shadow-lg']} {...rest}>
   <div
-    class="border-bkg ring-accent group relative block h-52 w-full overflow-hidden rounded-xl border-2 shadow-lg transition-transform duration-200 hover:scale-105 hover:ring-4"
+    class:list={[
+      'border-bkg hover:border-accent group relative block w-full overflow-hidden rounded-xl border-2 brightness-100 transition-[translate,filter] duration-200 hover:-translate-y-1.5 hover:border-4 active:translate-y-0 active:brightness-95',
+      { 'h-52': heightLimit },
+    ]}
   >
     <slot />
   </div>

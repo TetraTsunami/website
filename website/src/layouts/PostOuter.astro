@@ -12,12 +12,18 @@ interface Props {
   title: string;
   subtitle?: string;
   headings?: MarkdownHeading[];
+  image?: string;
   id: string;
 }
-const { title, subtitle, headings, id } = Astro.props;
+const { title, subtitle, image, headings, id } = Astro.props;
 ---
 
 <Layout
+  metadata={{
+    title,
+    description: subtitle,
+    image,
+  }}
   theme={{
     focus: true,
   }}
