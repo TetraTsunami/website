@@ -1,5 +1,6 @@
 // @ts-check
 import mdx from '@astrojs/mdx';
+import preact from '@astrojs/preact';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, envField, fontProviders } from 'astro/config';
 import icon from 'astro-icon';
@@ -58,5 +59,5 @@ export default defineConfig({
       },
     ],
   },
-  integrations: [icon(), mdx()],
+  integrations: [icon(), mdx(), preact({ compat: true })],
 });
