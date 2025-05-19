@@ -21,6 +21,7 @@ export default function Guestbook() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [drawingStatus, setDrawingStatus] = useState<null | 'drawing' | 'submitting' | 'success' | 'error' | 'complete'>(null);
   const [isCanvasVisible, setIsCanvasVisible] = useState(false);
+  const [canvasAttached, setCanvasAttached] = useState(false);
   // Submitted drawings
   const [drawings, setDrawings] = useState<{ id: string; data: Uint8Array }[]>([]);
   const [drawingImages, setDrawingImages] = useState<{ id: string; image: string }[]>([]);
@@ -33,7 +34,6 @@ export default function Guestbook() {
     const randomColorIndex = Math.floor(Math.random() * colorList.length);
     const newGrid: number[] = Array(GRID_SIZE * GRID_SIZE).fill(randomColorIndex);
     setGrid(newGrid);
-    setSelectedColorIndex(0); // Default to first color for drawing
     return newGrid;
   };
 
@@ -263,7 +263,7 @@ export default function Guestbook() {
     <div className="mx-auto max-w-[1024px]">
       {isCanvasVisible && (
         <div className="animate-in fade-in mx-auto my-16 w-max duration-500">
-          <div className="flex w-max gap-4">
+          <div className={`fill-mode-forwards fade-out flex w-max gap-4`}>
             <canvas
               id="canvas"
               ref={canvasRef}
@@ -339,12 +339,19 @@ export default function Guestbook() {
         </div>
       )}
       <div className="grid grid-cols-8 items-stretch gap-2 px-8">
-        <div className="relative" style={{ gridColumnStart: startingCol.toString() }}>
-          {drawingStatus !== null && <canvas className="absolute inset-0 w-full" width={300} height={300} ref={previewCanvasRef} />}
+        <div className="relative overflow-clip" style={{ gridColumnStart: startingCol.toString() }}>
+          {drawingStatus !== null && (
+            <canvas
+              className={`absolute inset-0 aspect-square w-full transition duration-500 ${drawingStatus !== 'success' && drawingStatus !== 'complete' ? 'blur-xs' : ''}`}
+              width={300}
+              height={300}
+              ref={previewCanvasRef}
+            />
+          )}
           {drawingStatus !== 'complete' && (
             <div
               id="new-drawing"
-              className="bg-bkg flex aspect-square h-full w-full cursor-pointer items-center justify-center backdrop-blur-sm transition-opacity hover:bg-gray-100 dark:hover:bg-gray-800"
+              className={`bg-bkg fade-out fill-mode-forwards flex aspect-square h-full w-full cursor-pointer items-center justify-center transition-opacity duration-500 hover:bg-gray-100 dark:hover:bg-gray-800 ${drawingStatus === 'success' || drawingStatus === 'complete' ? 'animate-out' : ''}`}
               style={{
                 opacity: drawingStatus !== null ? 0.6 : 1,
               }}
