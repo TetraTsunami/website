@@ -12,12 +12,18 @@ export default function Guestbook() {
 
   // Canvas state
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const previewCanvasRef = useRef<HTMLCanvasElement>(null);
+  const offscreenCanvasRef = useRef<HTMLCanvasElement | null>(null);
+  // Current drawing
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
   const [grid, setGrid] = useState<number[]>([]);
   const [isDrawing, setIsDrawing] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<null | 'submitting' | 'success' | 'error'>(null);
+  const [drawingStatus, setDrawingStatus] = useState<null | 'drawing' | 'submitting' | 'success' | 'error' | 'complete'>(null);
   const [isCanvasVisible, setIsCanvasVisible] = useState(false);
+  // Submitted drawings
+  const [drawings, setDrawings] = useState<{ id: string; data: Uint8Array }[]>([]);
+  const [drawingImages, setDrawingImages] = useState<{ id: string; image: string }[]>([]);
 
   const GRID_SIZE = 8;
   const CELL_SIZE = 300 / GRID_SIZE; // Canvas is 300x300
@@ -31,21 +37,28 @@ export default function Guestbook() {
     return newGrid;
   };
 
-  // Draw the grid on the canvas
+  // Draw the grid on both main and preview canvases
   const drawGrid = (gridData: number[]) => {
     const canvas = canvasRef.current;
+    const previewCanvas = previewCanvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext('2d');
+    const previewCtx = previewCanvas?.getContext('2d');
     if (!ctx) return;
-
+    setDrawingStatus('drawing');
     for (let y = 0; y < GRID_SIZE; y++) {
       for (let x = 0; x < GRID_SIZE; x++) {
         const index = y * GRID_SIZE + x;
         const colorIndex = gridData[index];
-
-        ctx.fillStyle = colorList[colorIndex];
+        const fillColor = colorList[colorIndex];
+        // Draw on main canvas
+        ctx.fillStyle = fillColor;
         ctx.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1); // +1 to avoid gaps
+        // Draw on preview canvas if available
+        if (previewCtx) {
+          previewCtx.fillStyle = fillColor;
+          previewCtx.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
+        }
       }
     }
   };
@@ -123,24 +136,13 @@ export default function Guestbook() {
   const [clearAngle, setClearAngle] = useState(0);
   const handleClear = () => {
     setClearAngle(prev => prev + 180);
-    const newGrid = initializeGrid();
-    // optimization: draw one big rectangle of the new color
-    const color = newGrid[0];
-    const canvas = canvasRef.current;
-    if (canvas) {
-      const ctx = canvas.getContext('2d');
-      if (ctx) {
-        ctx.fillStyle = colorList[color];
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-      }
-    }
-    setSubmitStatus(null);
+    initializeGrid();
   };
 
   // Submit the drawing
   const handleSubmit = async () => {
     setIsSubmitting(true);
-    setSubmitStatus('submitting');
+    setDrawingStatus('submitting');
 
     try {
       // Convert grid to Uint8Array
@@ -156,17 +158,18 @@ export default function Guestbook() {
       });
 
       if (response.ok) {
-        setSubmitStatus('success');
+        setDrawingStatus('success');
         // Clear the canvas after successful submission
         setTimeout(() => {
           handleClear();
-          setSubmitStatus(null);
+          setDrawingStatus('complete');
+          setIsCanvasVisible(false);
         }, 2000);
       } else {
-        setSubmitStatus('error');
+        setDrawingStatus('error');
       }
     } catch (error) {
-      setSubmitStatus('error');
+      setDrawingStatus('error');
       console.error('Error submitting drawing:', error);
     } finally {
       setIsSubmitting(false);
@@ -178,28 +181,83 @@ export default function Guestbook() {
     canvasRef.current?.scrollIntoView({ behavior: 'smooth' });
     if (isCanvasVisible) {
       handleClear();
+    } else {
+      setDrawingStatus(cur => (cur !== 'complete' ? null : cur));
     }
-
-    // Clean up event listeners on unmount
-    return () => {
-      const canvas = canvasRef.current;
-      if (canvas) {
-        canvas.removeEventListener('mousedown', handleDrawStart as any);
-        canvas.removeEventListener('touchstart', handleDrawStart as any);
-        document.removeEventListener('mouseup', handleDrawEnd);
-        document.removeEventListener('touchend', handleDrawEnd);
-      }
-    };
   }, [isCanvasVisible]);
+  // Initialize preview when it becomes visible
+  useEffect(() => {
+    if (drawingStatus === 'drawing' && previewCanvasRef.current) {
+      drawGrid(grid);
+    }
+  }, [drawingStatus]);
 
   // Update canvas when grid changes
   useEffect(() => {
     drawGrid(grid);
   }, [grid]);
-  // theoretical list of guestbook entries
-  const submitButtonTranslateY = submitStatus === null ? '0' : submitStatus === 'submitting' ? '-2rem' : '-4rem';
-  const drawings = Array(10).fill(0);
-  const startingCol = 7 - (drawings.length % 8);
+
+  // fetch drawings from the server
+  const fetchDrawings = async () => {
+    fetch('/api/guestbook')
+      .then(res => res.arrayBuffer())
+      .then(buf => {
+        const data = new Uint8Array(buf);
+        const drawings: Array<{ id: string; data: Uint8Array }> = [];
+        let startIndex = 0;
+
+        for (let i = 0; i < data.length; i++) {
+          if (data[i] === 255) {
+            // Found a delimiter, extract the drawing
+            const drawing = data.slice(startIndex, i);
+            drawings.push({ id: `drawing-${startIndex}`, data: drawing });
+            startIndex = i + 1;
+          }
+        }
+
+        setDrawings(drawings.reverse());
+      })
+      .catch(err => {
+        console.error('Error fetching drawings:', err);
+      });
+  };
+  // Fetch drawings on component mount
+  useEffect(() => {
+    fetchDrawings();
+  }, []);
+
+  // Convert a drawing's data to an image URL
+  const drawingToImageUrl = (drawingData: Uint8Array): string => {
+    if (!offscreenCanvasRef.current) {
+      offscreenCanvasRef.current = document.createElement('canvas');
+      offscreenCanvasRef.current.width = GRID_SIZE * CELL_SIZE;
+      offscreenCanvasRef.current.height = GRID_SIZE * CELL_SIZE;
+    }
+    const canvas = offscreenCanvasRef.current;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return '';
+    // Draw the grid to the offscreen canvas
+    for (let y = 0; y < GRID_SIZE; y++) {
+      for (let x = 0; x < GRID_SIZE; x++) {
+        const index = y * GRID_SIZE + x;
+        const colorIndex = drawingData[index];
+        ctx.fillStyle = colorList[colorIndex];
+        ctx.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
+      }
+    }
+
+    // Convert canvas to image URL
+    return canvas.toDataURL('image/png');
+  };
+
+  // Convert all drawings to image URLs
+  useEffect(() => {
+    const images = drawings.map(drawing => ({ id: drawing.id, image: drawingToImageUrl(drawing.data) }));
+    setDrawingImages(images);
+  }, [drawings]);
+
+  const submitButtonTranslateY = drawingStatus === 'submitting' ? '-2rem' : drawingStatus === 'error' || drawingStatus === 'success' ? '-4rem' : '0';
+  const startingCol = 7 - (drawings.length % 8) + 1;
 
   return (
     <div className="mx-auto max-w-[1024px]">
@@ -248,7 +306,7 @@ export default function Guestbook() {
           >
             <div className="bg-accent absolute inset-0 h-8 w-full rounded-full" />
             <div
-              className={`bg-accent relative h-8 w-max cursor-pointer items-center overflow-clip rounded-full text-white transition-transform active:translate-y-0 disabled:bg-violet-300 ${submitStatus === null && 'hover:-translate-y-1.5 hover:bg-violet-600'}`}
+              className={`bg-accent relative h-8 w-max cursor-pointer items-center overflow-clip rounded-full text-white transition-transform active:translate-y-0 disabled:bg-violet-300 ${drawingStatus === null && 'hover:-translate-y-1.5 hover:bg-violet-600'}`}
             >
               <div
                 className="grid place-items-center gap-2 px-4 py-1 transition-transform"
@@ -263,7 +321,7 @@ export default function Guestbook() {
                   Loading
                 </div>
                 <div className="flex items-center gap-2">
-                  {submitStatus === 'success' ? (
+                  {drawingStatus === 'success' ? (
                     <>
                       <Check size={16} />
                       Success!
@@ -280,18 +338,25 @@ export default function Guestbook() {
           </button>
         </div>
       )}
-      <div className="grid grid-cols-8 gap-2 px-8">
-        <div
-          id="new-drawing"
-          className="bg-bkg flex aspect-square cursor-pointer items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800"
-          style={{ gridColumnStart: startingCol.toString() }}
-          onClick={() => setIsCanvasVisible(cur => !cur)}
-        >
-          <span className="text-2xl font-bold">+</span>
+      <div className="grid grid-cols-8 items-stretch gap-2 px-8">
+        <div className="relative" style={{ gridColumnStart: startingCol.toString() }}>
+          {drawingStatus !== null && <canvas className="absolute inset-0 w-full" width={300} height={300} ref={previewCanvasRef} />}
+          {drawingStatus !== 'complete' && (
+            <div
+              id="new-drawing"
+              className="bg-bkg flex aspect-square h-full w-full cursor-pointer items-center justify-center backdrop-blur-sm transition-opacity hover:bg-gray-100 dark:hover:bg-gray-800"
+              style={{
+                opacity: drawingStatus !== null ? 0.6 : 1,
+              }}
+              onClick={() => setIsCanvasVisible(cur => !cur)}
+            >
+              <span className="text-2xl font-bold">+</span>
+            </div>
+          )}
         </div>
-        {drawings.map((_, i) => (
-          <div className="bg-bkg aspect-square" key={i}>
-            <span>Drawing {i}</span>
+        {drawingImages.map(({ id, image }) => (
+          <div className="bg-bkg aspect-square" key={id}>
+            <img src={image} alt={`Drawing ${id}`} className="object-cover" />
           </div>
         ))}
       </div>

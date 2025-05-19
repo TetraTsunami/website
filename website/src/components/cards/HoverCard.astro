@@ -7,7 +7,7 @@ interface Props {
 const { class: className, heightLimit = true, ...rest } = Astro.props;
 ---
 
-<div class:list={[className, 'dark:bg-800 can-hover:bg-gray-300 rounded-xl shadow-sm hover:shadow-lg']} {...rest}>
+<div class:list={[className, 'dark:bg-800 can-hover:bg-gray-300 dark:can-hover:bg-gray-800 rounded-xl shadow-sm hover:shadow-lg']} {...rest}>
   <div
     class:list={[
       'border-bkg hover:border-accent group relative block w-full overflow-hidden rounded-xl border-2 brightness-100 transition-[translate,filter] duration-200 hover:-translate-y-1.5 hover:border-4 active:translate-y-0 active:brightness-95',
