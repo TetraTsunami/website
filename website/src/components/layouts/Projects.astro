@@ -1,4 +1,5 @@
 ---
+// images
 import fcc_backend from '@images/fcc_cert_backend.png';
 import fcc_datavis from '@images/fcc_cert_datavis.png';
 import fcc_frontend from '@images/fcc_cert_frontend.png';
@@ -8,10 +9,10 @@ import featuredart from '@images/featuredart.png';
 import fishbowl from '@images/fishbowl.png';
 import dscpreview from '@images/gh_dsc_preview.png';
 import cheese from '@images/gouda.png';
+import imagehound from '@images/imagehound.png';
 import linklooker from '@images/linklooker.png';
 import mnfc2 from '@images/mnfc2.jpg';
 import port_website from '@images/port_website.png';
-// images
 import redcoral from '@images/redcoral.jpg';
 
 import CertCard from '@/components/cards/CertCard.astro';
@@ -56,6 +57,14 @@ import ProjectCard from '@/components/cards/ProjectCard.astro';
     src={fishbowl}
     description="A 3D fishbowl simulation built with pure WebGL. Loads in models and handwritten shaders! My final project for CS559: Computer Graphics at UW-Madison."
     year="2025"
+    size={2}
+  />
+  <ProjectCard
+    name="ImageHound"
+    href="https://tetratsunami.github.io/imagehound/"
+    src={imagehound}
+    description="My interview take-home for Fetch, where I interned during the summer of 2025. A web app that displays dog images from an API and lets you select and search for specfiic breeds, all coded in a handful of hours in Svelte."
+    year="2024"
     size={2}
   />
   <ProjectCard
