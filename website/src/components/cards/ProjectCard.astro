@@ -1,6 +1,7 @@
 ---
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
+
 import HoverCard from './HoverCard.astro';
 
 interface Props {
@@ -25,15 +26,15 @@ const { name, href, src, description, year, size = 1 } = Astro.props;
       quality={60}
     />
     <div
-      class="can-hover:group-hover:-translate-y-full relative top-full mx-auto flex h-full w-full -translate-y-6 flex-col justify-center rounded-lg shadow-lg will-change-transform motion-safe:duration-200"
+      class="can-hover:group-hover:-translate-y-full relative top-full mx-auto flex h-full w-full -translate-y-6 flex-col justify-center rounded-lg shadow-lg backdrop-blur-sm will-change-transform motion-safe:duration-200"
     >
       <span
-        class="bg-bkg/90 absolute right-5 top-1 h-4 rounded-t-lg px-4 text-left align-top text-sm font-semibold italic text-slate-900 dark:text-white"
+        class="bg-bkg/90 absolute top-1 right-5 h-4 rounded-t-lg px-4 text-left align-top text-sm font-semibold text-slate-900 italic dark:text-white"
       >
         {year}
       </span>
-      <div class="bg-bkg/90 absolute bottom-0 left-0 right-0 top-5 rounded-lg"></div>
-      <div class="mask-t-from-80% absolute bottom-0 left-0 right-0 top-4 flex flex-col justify-center gap-2 overflow-y-auto px-4">
+      <div class="bg-bkg/90 absolute top-5 right-0 bottom-0 left-0 rounded-lg"></div>
+      <div class="absolute top-4 right-0 bottom-0 left-0 flex flex-col justify-center gap-2 overflow-y-auto mask-t-from-80% px-4">
         <h3 class="pt-4 text-lg text-gray-700 dark:text-white">
           {name}
         </h3>

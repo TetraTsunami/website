@@ -1,4 +1,4 @@
-import { Check, CircleX, LoaderCircle, RefreshCw, Send } from 'lucide-react';
+import { Check, CircleX, LoaderCircle, RefreshCw, Send, Trash2 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 import colors from '@/assets/dnot-froget.hex?raw';
@@ -21,10 +21,10 @@ export default function Guestbook() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [drawingStatus, setDrawingStatus] = useState<null | 'drawing' | 'submitting' | 'success' | 'error' | 'complete'>(null);
   const [isCanvasVisible, setIsCanvasVisible] = useState(false);
-  const [canvasAttached, setCanvasAttached] = useState(false);
   // Submitted drawings
   const [drawings, setDrawings] = useState<{ id: string; data: Uint8Array }[]>([]);
   const [drawingImages, setDrawingImages] = useState<{ id: string; image: string }[]>([]);
+  const [guestbookKey, setGuestbookKey] = useState<string | null>(null);
 
   const GRID_SIZE = 8;
   const CELL_SIZE = 300 / GRID_SIZE; // Canvas is 300x300
@@ -224,6 +224,12 @@ export default function Guestbook() {
   // Fetch drawings on component mount
   useEffect(() => {
     fetchDrawings();
+    // Check for guestbookKey in URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const key = urlParams.get('guestbookKey');
+    if (key) {
+      setGuestbookKey(key);
+    }
   }, []);
 
   // Convert a drawing's data to an image URL
@@ -256,13 +262,41 @@ export default function Guestbook() {
     setDrawingImages(images);
   }, [drawings]);
 
+  const handleDeleteDrawing = async (index: number) => {
+    if (!guestbookKey) {
+      console.error('Guestbook key not found.');
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/guestbook', {
+        method: 'DELETE',
+        headers: {
+          'secret-key': guestbookKey,
+          'drawing-index': index.toString(),
+        },
+      });
+
+      if (response.ok) {
+        // Refresh drawings after deletion
+        fetchDrawings();
+      } else {
+        console.error('Error deleting drawing:', await response.text());
+      }
+    } catch (error) {
+      console.error('Error deleting drawing:', error);
+    }
+  };
+
   const submitButtonTranslateY = drawingStatus === 'submitting' ? '-2rem' : drawingStatus === 'error' || drawingStatus === 'success' ? '-4rem' : '0';
   const startingCol = 7 - (drawings.length % 8) + 1;
 
   return (
-    <div className="mx-auto max-w-[1024px]">
+    <div className="mx-auto my-2 max-w-[1024px]">
       {isCanvasVisible && (
-        <div className="animate-in fade-in mx-auto my-16 w-max duration-500">
+        <div
+          className={`animate-in fade-in fade-out animation-fill-forward mx-auto w-max overflow-hidden transition-[max-height,margin] duration-700 ${drawingStatus === 'success' ? 'animate-out my-0 max-h-0 delay-1000' : 'my-14 max-h-[400px]'}`}
+        >
           <div className={`fill-mode-forwards fade-out flex w-max gap-4`}>
             <canvas
               id="canvas"
@@ -339,10 +373,11 @@ export default function Guestbook() {
         </div>
       )}
       <div className="grid grid-cols-8 items-stretch gap-2 px-8">
-        <div className="relative overflow-clip" style={{ gridColumnStart: startingCol.toString() }}>
+        <div className="relative" style={{ gridColumnStart: startingCol.toString() }}>
+          {drawingStatus === 'complete' && <div className="aspect-square w-full rounded-sm shadow-sm" />}
           {drawingStatus !== null && (
             <canvas
-              className={`absolute inset-0 aspect-square w-full transition duration-500 ${drawingStatus !== 'success' && drawingStatus !== 'complete' ? 'blur-xs' : ''}`}
+              className={`absolute inset-0 aspect-square w-full rounded-sm transition duration-500 ${drawingStatus !== 'success' && drawingStatus !== 'complete' ? 'blur-xs' : ''}`}
               width={300}
               height={300}
               ref={previewCanvasRef}
@@ -351,7 +386,7 @@ export default function Guestbook() {
           {drawingStatus !== 'complete' && (
             <div
               id="new-drawing"
-              className={`bg-bkg fade-out fill-mode-forwards flex aspect-square h-full w-full cursor-pointer items-center justify-center transition-opacity duration-500 hover:bg-gray-100 dark:hover:bg-gray-800 ${drawingStatus === 'success' || drawingStatus === 'complete' ? 'animate-out' : ''}`}
+              className={`bg-bkg fade-out fill-mode-forwards flex aspect-square h-full w-full cursor-pointer items-center justify-center rounded-sm shadow-sm transition-opacity duration-500 hover:bg-gray-100 dark:hover:bg-gray-800 ${drawingStatus === 'success' ? 'animate-out' : ''}`}
               style={{
                 opacity: drawingStatus !== null ? 0.6 : 1,
               }}
@@ -361,9 +396,19 @@ export default function Guestbook() {
             </div>
           )}
         </div>
-        {drawingImages.map(({ id, image }) => (
-          <div className="bg-bkg aspect-square" key={id}>
-            <img src={image} alt={`Drawing ${id}`} className="object-cover" />
+        {drawingImages.map(({ id, image }, index) => (
+          <div className="bg-bkg relative aspect-square rounded-sm" key={id}>
+            <img src={image} className="absolute inset-0 -z-10 rounded-sm object-cover blur-xs" />
+            <img src={image} alt={`Drawing ${id}`} className="rounded-sm object-cover" />
+            {guestbookKey && drawingStatus !== 'complete' && (
+              <button
+                onClick={() => handleDeleteDrawing(index)}
+                className="absolute top-1 right-1 rounded-full bg-red-500 p-1 text-white transition-colors hover:bg-red-700"
+                aria-label="Delete drawing"
+              >
+                <Trash2 size={12} />
+              </button>
+            )}
           </div>
         ))}
       </div>

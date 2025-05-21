@@ -9,17 +9,23 @@ const app = express();
 const server = http.createServer(app);
 
 const drawingsFilePath = path.join(__dirname, '../drawings.bin');
-const drawingsFileHandle = fs.promises.open(drawingsFilePath, 'a+');
 const delimiter = new Uint8Array([255]);
+
 const saveDrawing = async (drawing: Uint8Array) => {
-  await fs.promises.appendFile(await drawingsFileHandle, drawing);
-  await fs.promises.appendFile(await drawingsFileHandle, delimiter);
+  // Ensure drawings.bin exists, create if not (appendFile does this)
+  await fs.promises.appendFile(drawingsFilePath, drawing);
+  await fs.promises.appendFile(drawingsFilePath, delimiter);
 }
 
 const submitDrawing = async (req: express.Request, res: express.Response) => {
-  const drawing: Uint8Array = await req.body;
-  await saveDrawing(drawing);
-  res.status(200).send('Drawing received');
+  try {
+    const drawing: Uint8Array = await req.body;
+    await saveDrawing(drawing);
+    res.status(200).send('Drawing received');
+  } catch (error) {
+    console.error('Error saving drawing:', error);
+    res.status(500).send('Error saving drawing');
+  }
 }
 
 const getDrawings = async (req: express.Request, res: express.Response) => {
@@ -34,8 +40,92 @@ const getDrawings = async (req: express.Request, res: express.Response) => {
   }
 }
 
+const deleteDrawing = async (req: express.Request, res: express.Response) => {
+  const clientKey = req.headers['secret-key'] as string;
+  const drawingIndexToDelete = parseInt(req.headers['drawing-index'] as string, 10);
+
+  if (!clientKey || isNaN(drawingIndexToDelete) || drawingIndexToDelete < 0) {
+    return res.status(400).send('Missing or invalid secret key or drawing index.');
+  }
+
+  const serverKey = process.env.GUESTBOOK_SECRET_KEY;
+  if (!serverKey) {
+    console.error('GUESTBOOK_SECRET_KEY is not set on the server.');
+    return res.status(500).send('Server configuration error.');
+  }
+
+  if (clientKey !== serverKey) {
+    return res.status(403).send('Invalid secret key.');
+  }
+
+  try {
+    let fileContent;
+    try {
+      fileContent = await fs.promises.readFile(drawingsFilePath);
+    } catch (readError: any) {
+      if (readError.code === 'ENOENT') {
+        return res.status(404).send('No drawings found to delete.');
+      }
+      throw readError; // Re-throw other read errors
+    }
+
+    if (fileContent.length === 0) {
+      return res.status(404).send('Drawings file is empty.');
+    }
+
+    const drawingsData: Uint8Array[] = [];
+    let startIndex = 0;
+    for (let i = 0; i < fileContent.length; i++) {
+      if (fileContent[i] === delimiter[0]) {
+        if (i > startIndex) { // Ensure non-empty drawing
+          drawingsData.push(fileContent.slice(startIndex, i));
+        }
+        startIndex = i + 1;
+      }
+    }
+    // Check for any data after the last delimiter, though saveDrawing should prevent this
+    // if (startIndex < fileContent.length) {
+    // drawingsData.push(fileContent.slice(startIndex));
+    // }
+
+    // Drawings are stored chronologically. Frontend displays newest first.
+    // So, reverse to match frontend, remove, then reverse back for storage.
+    const displayedDrawings = drawingsData.reverse();
+
+    if (drawingIndexToDelete >= displayedDrawings.length) {
+      return res.status(400).send('Drawing index out of bounds.');
+    }
+
+    displayedDrawings.splice(drawingIndexToDelete, 1);
+
+    const newRawDrawings = displayedDrawings.reverse(); // Reverse back to chronological order
+
+    if (newRawDrawings.length === 0) {
+      // If all drawings are deleted, write an empty file or delete the file.
+      // Writing an empty file is simpler.
+      await fs.promises.writeFile(drawingsFilePath, new Uint8Array(0));
+    } else {
+      const newFileContentParts: Uint8Array[] = [];
+      newRawDrawings.forEach((drawing, index) => {
+        newFileContentParts.push(drawing);
+        if (index < newRawDrawings.length) { // Add delimiter after each drawing
+          newFileContentParts.push(delimiter);
+        }
+      });
+      const finalNewContent = Buffer.concat(newFileContentParts);
+      await fs.promises.writeFile(drawingsFilePath, finalNewContent);
+    }
+
+    res.status(200).send('Drawing deleted successfully.');
+  } catch (error) {
+    console.error('Error deleting drawing:', error);
+    res.status(500).send('Error deleting drawing.');
+  }
+};
+
 app.post('/api/guestbook', express.raw({ type: 'application/octet-stream' }), submitDrawing);
 app.get('/api/guestbook', express.raw({ type: 'application/octet-stream' }), getDrawings);
+app.delete('/api/guestbook', deleteDrawing);
 
 if (process.env.NODE_ENV === "development") {
   const httpProxy = require("http-proxy");
