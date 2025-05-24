@@ -1,4 +1,5 @@
 // @ts-check
+import cloudflare from '@astrojs/cloudflare';
 import mdx from '@astrojs/mdx';
 import preact from '@astrojs/preact';
 import tailwindcss from '@tailwindcss/vite';
@@ -8,7 +9,7 @@ import rehypeCallouts from 'rehype-callouts';
 import remarkBreaks from 'remark-breaks';
 import remarkGFM from 'remark-gfm';
 
-import remarkSectionize from './src/utils/remark/sectionize';
+import remarkSectionize from './src/utils/remark/sectionize.js';
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,9 +21,11 @@ export default defineConfig({
       GISCUS_CATEGORY_ID: envField.string({ context: 'client', access: 'public' }),
     },
   },
+
   vite: {
     plugins: [tailwindcss()],
   },
+
   markdown: {
     remarkPlugins: [remarkGFM, remarkSectionize, remarkBreaks],
     rehypePlugins: [rehypeCallouts],
@@ -34,6 +37,7 @@ export default defineConfig({
       defaultColor: false,
     },
   },
+
   experimental: {
     fonts: [
       {
@@ -59,5 +63,7 @@ export default defineConfig({
       },
     ],
   },
+
   integrations: [icon(), mdx(), preact({ compat: true })],
+  adapter: cloudflare(),
 });
