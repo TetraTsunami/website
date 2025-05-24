@@ -22,7 +22,7 @@ const fadeUpDelay = (i: number) => {
 
 <section
   id="home"
-  class="relative container mx-auto flex h-[70vh] flex-col items-center justify-center p-8 text-center"
+  class="relative container mx-auto flex max-h-[60vh] flex-col items-center justify-center p-8 text-center"
   data-textstyle={textStyles.animateFadeUp}
 >
   <h2 class="text-4xl font-semibold">
@@ -31,15 +31,15 @@ const fadeUpDelay = (i: number) => {
   </h2>
   <h1 class={`text-8xl font-extrabold text-transparent ${textStyles.gradientTitleText}`}>
     <span class="header-word motion-safe:opacity-0" style={fadeUpDelay(5)}> I'm </span>
-    <span class="header-word motion-safe:opacity-0" style={fadeUpDelay(6)}> Sam! </span>
+    <span class="header-word motion-safe:opacity-0" style={fadeUpDelay(6)}> Tsuni! </span>
   </h1>
 
   <IconButtonRow2
     buttons={[
       {
         iconName: 'lucide:mail',
-        href: 'mailto:sam@[this domain]',
-        title: 'sam@[this domain]',
+        href: 'mailto:tsuni@[this domain]',
+        title: 'tsuni@[this domain]',
       },
       {
         iconName: 'simple-icons:github',

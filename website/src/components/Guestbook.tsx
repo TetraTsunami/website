@@ -1,7 +1,8 @@
 import { Check, CircleX, LoaderCircle, RefreshCw, Send, Trash2 } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 
 import colors from '@/assets/dnot-froget.hex?raw';
+import { drawingReducer } from '@/reducers/drawing';
 
 export default function Guestbook() {
   const colorList = colors
@@ -10,24 +11,28 @@ export default function Guestbook() {
     .filter(line => line.length > 0)
     .map(line => `#${line}`);
 
-  // Canvas state
+  // Constants
+  const GRID_SIZE = 8;
+  const CELL_SIZE = 300 / GRID_SIZE; // Canvas is 300x300
+  // Canvas refs
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const previewCanvasRef = useRef<HTMLCanvasElement>(null);
   const offscreenCanvasRef = useRef<HTMLCanvasElement | null>(null);
-  // Current drawing
+  // Drawing state
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
   const [grid, setGrid] = useState<number[]>([]);
-  const [isDrawing, setIsDrawing] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [drawingStatus, setDrawingStatus] = useState<null | 'drawing' | 'submitting' | 'success' | 'error' | 'complete'>(null);
-  const [isCanvasVisible, setIsCanvasVisible] = useState(false);
-  // Submitted drawings
+  const [drawingState, dispatch] = useReducer(drawingReducer, { state: 'closed', error: false });
   const [drawings, setDrawings] = useState<{ id: string; data: Uint8Array }[]>([]);
+  const [isDrawing, setIsDrawing] = useState(false);
+  // Guestbook images state
   const [drawingImages, setDrawingImages] = useState<{ id: string; image: string }[]>([]);
   const [guestbookKey, setGuestbookKey] = useState<string | null>(null);
-
-  const GRID_SIZE = 8;
-  const CELL_SIZE = 300 / GRID_SIZE; // Canvas is 300x300
+  // Computed states
+  const state = drawingState.state;
+  const didSubmissionError = drawingState.error;
+  const isSubmitting = state === 'submitting';
+  const isCanvasVisible = state !== 'closed' && state !== 'complete';
+  const isClosing = state === 'closing' || state === 'closingSuccess';
 
   // Initialize the grid with a random color
   const initializeGrid = () => {
@@ -45,7 +50,6 @@ export default function Guestbook() {
     const ctx = canvas.getContext('2d');
     const previewCtx = previewCanvas?.getContext('2d');
     if (!ctx) return;
-    setDrawingStatus('drawing');
     for (let y = 0; y < GRID_SIZE; y++) {
       for (let x = 0; x < GRID_SIZE; x++) {
         const index = y * GRID_SIZE + x;
@@ -89,11 +93,9 @@ export default function Guestbook() {
   // Handle mouse/touch drawing events
   const handleDrawStart = (e: MouseEvent | TouchEvent) => {
     setIsDrawing(true);
-
     // Get position from event
     const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
     const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
-
     const cell = getCellFromPosition(clientX, clientY);
     if (cell) {
       const index = cell.y * GRID_SIZE + cell.x;
@@ -106,18 +108,13 @@ export default function Guestbook() {
 
   const handleDrawMove = (e: MouseEvent | TouchEvent) => {
     if (!isDrawing) return;
-
     // Prevent scrolling on touch devices
     if ('touches' in e) e.preventDefault();
-
-    // Get position from event
     const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
     const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
-
     const cell = getCellFromPosition(clientX, clientY);
     if (cell) {
       const index = cell.y * GRID_SIZE + cell.x;
-
       // Only update if the color is different
       if (grid[index] !== selectedColorIndex) {
         const newGrid = [...grid];
@@ -126,10 +123,6 @@ export default function Guestbook() {
         drawGrid(newGrid);
       }
     }
-  };
-
-  const handleDrawEnd = () => {
-    setIsDrawing(false);
   };
 
   // Clear the canvas to a random color
@@ -141,13 +134,10 @@ export default function Guestbook() {
 
   // Submit the drawing
   const handleSubmit = async () => {
-    setIsSubmitting(true);
-    setDrawingStatus('submitting');
-
+    dispatch('SUBMIT');
     try {
       // Convert grid to Uint8Array
       const drawingData = new Uint8Array(grid);
-
       // Send to backend
       const response = await fetch('/api/guestbook', {
         method: 'POST',
@@ -156,41 +146,42 @@ export default function Guestbook() {
           'Content-Type': 'application/octet-stream',
         },
       });
-
       if (response.ok) {
-        setDrawingStatus('success');
-        // Clear the canvas after successful submission
-        setTimeout(() => {
-          handleClear();
-          setDrawingStatus('complete');
-          setIsCanvasVisible(false);
-        }, 2000);
+        dispatch('SUBMIT_SUCCESS');
       } else {
-        setDrawingStatus('error');
+        dispatch('SUBMIT_ERROR');
+        console.error('Error submitting drawing:', response.statusText);
       }
     } catch (error) {
-      setDrawingStatus('error');
+      dispatch('SUBMIT_ERROR');
       console.error('Error submitting drawing:', error);
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
-  // Initialize canvas when it becomes visible
+  // Handle animation end
+  const handleAnimationEnd = (e: AnimationEvent) => {
+    if (e.target === e.currentTarget) {
+      dispatch('ANIMATION_COMPLETE');
+    }
+  };
+
+  // Handle state change side effects
+  // Clear the canvas & scroll to it when it becomes visible
   useEffect(() => {
-    canvasRef.current?.scrollIntoView({ behavior: 'smooth' });
     if (isCanvasVisible) {
       handleClear();
-    } else {
-      setDrawingStatus(cur => (cur !== 'complete' ? null : cur));
+      setTimeout(() => {
+        canvasRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 300);
     }
   }, [isCanvasVisible]);
-  // Initialize preview when it becomes visible
+
   useEffect(() => {
-    if (drawingStatus === 'drawing' && previewCanvasRef.current) {
+    // Update preview when it becomes visible
+    if (state === 'drawing' && previewCanvasRef.current) {
       drawGrid(grid);
     }
-  }, [drawingStatus]);
+  }, [state]);
 
   // Update canvas when grid changes
   useEffect(() => {
@@ -221,6 +212,7 @@ export default function Guestbook() {
         console.error('Error fetching drawings:', err);
       });
   };
+
   // Fetch drawings on component mount
   useEffect(() => {
     fetchDrawings();
@@ -236,19 +228,19 @@ export default function Guestbook() {
   const drawingToImageUrl = (drawingData: Uint8Array): string => {
     if (!offscreenCanvasRef.current) {
       offscreenCanvasRef.current = document.createElement('canvas');
-      offscreenCanvasRef.current.width = GRID_SIZE * CELL_SIZE;
-      offscreenCanvasRef.current.height = GRID_SIZE * CELL_SIZE;
+      offscreenCanvasRef.current.width = 8;
+      offscreenCanvasRef.current.height = 8;
     }
     const canvas = offscreenCanvasRef.current;
     const ctx = canvas.getContext('2d');
     if (!ctx) return '';
     // Draw the grid to the offscreen canvas
-    for (let y = 0; y < GRID_SIZE; y++) {
-      for (let x = 0; x < GRID_SIZE; x++) {
-        const index = y * GRID_SIZE + x;
+    for (let y = 0; y < 8; y++) {
+      for (let x = 0; x < 8; x++) {
+        const index = y * 8 + x;
         const colorIndex = drawingData[index];
         ctx.fillStyle = colorList[colorIndex];
-        ctx.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
+        ctx.fillRect(x, y, 1, 1);
       }
     }
 
@@ -288,109 +280,114 @@ export default function Guestbook() {
     }
   };
 
-  const submitButtonTranslateY = drawingStatus === 'submitting' ? '-2rem' : drawingStatus === 'error' || drawingStatus === 'success' ? '-4rem' : '0';
+  const submitButtonTranslateY = state === 'submitting' ? '-2rem' : didSubmissionError || state === 'closingSuccess' ? '-4rem' : '0';
   const startingCol = 7 - (drawings.length % 8) + 1;
 
   return (
     <div className="mx-auto my-2 max-w-[1024px]">
-      {isCanvasVisible && (
-        <div
-          className={`animate-in fade-in fade-out animation-fill-forward mx-auto w-max overflow-hidden transition-[max-height,margin] duration-700 ${drawingStatus === 'success' ? 'animate-out my-0 max-h-0 delay-1000' : 'my-14 max-h-[400px]'}`}
-        >
-          <div className={`fill-mode-forwards fade-out flex w-max gap-4`}>
-            <canvas
-              id="canvas"
-              ref={canvasRef}
-              width="300"
-              height="300"
-              className="border-content cursor-crosshair rounded-md border-2"
-              onMouseDown={handleDrawStart}
-              onMouseMove={handleDrawMove}
-              onMouseUp={handleDrawEnd}
-              onMouseLeave={handleDrawEnd}
-              onTouchStart={handleDrawStart}
-              onTouchMove={handleDrawMove}
-              onTouchEnd={handleDrawEnd}
-            ></canvas>
+      <div
+        className={`animate-in fade-in fade-out animation-fill-forward mx-auto w-max overflow-hidden transition-[max-height,margin] duration-700 ${state === 'closingSuccess' && 'delay-300'} ${isClosing || !isCanvasVisible ? 'animate-out my-0 max-h-0' : 'my-14 max-h-[400px]'}`}
+        onAnimationEnd={handleAnimationEnd}
+        onMouseLeave={() => {
+          setIsDrawing(false);
+        }}
+        onTouchCancel={() => {
+          setIsDrawing(false);
+        }}
+        onMouseUp={() => {
+          setIsDrawing(false);
+        }}
+      >
+        <div className={`fill-mode-forwards fade-out flex w-max gap-4`}>
+          <canvas
+            id="canvas"
+            ref={canvasRef}
+            width="300"
+            height="300"
+            className="border-content cursor-crosshair rounded-md border-2"
+            onMouseDown={handleDrawStart}
+            onMouseMove={handleDrawMove}
+            onTouchStart={handleDrawStart}
+            onTouchMove={handleDrawMove}
+          ></canvas>
 
-            <div className="flex flex-col justify-center gap-2">
-              <button
-                className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
-                onClick={handleClear}
-                disabled={isSubmitting}
-              >
-                <RefreshCw size={16} className="transition-transform duration-300" style={{ rotate: `${clearAngle}deg` }} />
-              </button>
-              {colorList.map((color, index) => (
-                <button
-                  key={color}
-                  className={`h-8 w-8 cursor-pointer rounded-full border-2 ${selectedColorIndex === index ? 'border-black dark:border-white' : 'border-transparent'}`}
-                  style={{ backgroundColor: color }}
-                  onClick={() => setSelectedColorIndex(index)}
-                  aria-label={`Select color ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-          <button
-            className="group relative mx-auto mt-4 block h-8"
-            style={{ gridColumnStart: startingCol.toString() }}
-            onClick={handleSubmit}
-            disabled={isSubmitting}
-          >
-            <div className="bg-accent absolute inset-0 h-8 w-full rounded-full" />
-            <div
-              className={`bg-accent relative h-8 w-max cursor-pointer items-center overflow-clip rounded-full text-white transition-transform active:translate-y-0 disabled:bg-violet-300 ${drawingStatus === null && 'hover:-translate-y-1.5 hover:bg-violet-600'}`}
+          <div className="flex flex-col justify-center gap-2">
+            <button
+              className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
+              onClick={handleClear}
+              disabled={isSubmitting}
             >
-              <div
-                className="grid place-items-center gap-2 px-4 py-1 transition-transform"
-                style={{ transform: `translateY(${submitButtonTranslateY})` }}
-              >
-                <div className="flex items-center gap-2">
-                  <Send size={16} />
-                  Submit
-                </div>
-                <div className="flex items-center gap-2">
-                  <LoaderCircle size={16} className="animate-spin" />
-                  Loading
-                </div>
-                <div className="flex items-center gap-2">
-                  {drawingStatus === 'success' ? (
-                    <>
-                      <Check size={16} />
-                      Success!
-                    </>
-                  ) : (
-                    <>
-                      <CircleX size={16} />
-                      Error
-                    </>
-                  )}
-                </div>
+              <RefreshCw size={16} className="transition-transform duration-300" style={{ rotate: `${clearAngle}deg` }} />
+            </button>
+            {colorList.map((color, index) => (
+              <button
+                key={color}
+                className={`h-8 w-8 cursor-pointer rounded-full border-2 ${selectedColorIndex === index ? 'border-black dark:border-white' : 'border-transparent'}`}
+                style={{ backgroundColor: color }}
+                onClick={() => setSelectedColorIndex(index)}
+                aria-label={`Select color ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+        <button
+          className="group relative mx-auto mt-4 block h-8"
+          style={{ gridColumnStart: startingCol.toString() }}
+          onClick={handleSubmit}
+          disabled={isSubmitting}
+        >
+          <div className="bg-accent absolute inset-0 h-8 w-full rounded-full" />
+          <div
+            className={`bg-accent relative h-8 w-max cursor-pointer items-center overflow-clip rounded-full text-white transition-transform active:translate-y-0 disabled:bg-violet-300 ${state === 'drawing' && 'hover:-translate-y-1.5 hover:bg-violet-600'}`}
+          >
+            <div
+              className="grid place-items-center gap-2 px-4 py-1 transition-transform"
+              style={{ transform: `translateY(${submitButtonTranslateY})` }}
+            >
+              <div className="flex items-center gap-2">
+                <Send size={16} />
+                Submit
+              </div>
+              <div className="flex items-center gap-2">
+                <LoaderCircle size={16} className="animate-spin" />
+                Loading
+              </div>
+              <div className="flex items-center gap-2">
+                {state === 'closingSuccess' ? (
+                  <>
+                    <Check size={16} />
+                    Success!
+                  </>
+                ) : (
+                  <>
+                    <CircleX size={16} />
+                    Error
+                  </>
+                )}
               </div>
             </div>
-          </button>
-        </div>
-      )}
+          </div>
+        </button>
+      </div>
       <div className="grid grid-cols-8 items-stretch gap-2 px-8">
         <div className="relative" style={{ gridColumnStart: startingCol.toString() }}>
-          {drawingStatus === 'complete' && <div className="aspect-square w-full rounded-sm shadow-sm" />}
-          {drawingStatus !== null && (
+          {state === 'complete' && <div className="aspect-square w-full rounded-sm shadow-sm" />}
+          {state !== 'closed' && (
             <canvas
-              className={`absolute inset-0 aspect-square w-full rounded-sm transition duration-500 ${drawingStatus !== 'success' && drawingStatus !== 'complete' ? 'blur-xs' : ''}`}
+              className={`fade-out animation-fill-forward absolute inset-0 aspect-square w-full rounded-sm transition duration-500 ${state !== 'closingSuccess' && state !== 'complete' ? 'blur-xs' : ''} ${state === 'closing' ? 'animate-out' : ''}`}
               width={300}
               height={300}
               ref={previewCanvasRef}
             />
           )}
-          {drawingStatus !== 'complete' && (
+          {state !== 'complete' && (
             <div
               id="new-drawing"
-              className={`bg-bkg fade-out fill-mode-forwards flex aspect-square h-full w-full cursor-pointer items-center justify-center rounded-sm shadow-sm transition-opacity duration-500 hover:bg-gray-100 dark:hover:bg-gray-800 ${drawingStatus === 'success' ? 'animate-out' : ''}`}
+              className={`bg-bkg fade-out fill-mode-forwards flex aspect-square h-full w-full cursor-pointer items-center justify-center rounded-sm shadow-sm transition-opacity duration-500 hover:bg-gray-100 dark:hover:bg-gray-800 ${state === 'closingSuccess' ? 'animate-out' : ''}`}
               style={{
-                opacity: drawingStatus !== null ? 0.6 : 1,
+                opacity: state !== 'closed' ? 0.6 : 1,
               }}
-              onClick={() => setIsCanvasVisible(cur => !cur)}
+              onClick={() => dispatch('TOGGLE_CANVAS')}
             >
               <span className="text-2xl font-bold">+</span>
             </div>
@@ -398,9 +395,9 @@ export default function Guestbook() {
         </div>
         {drawingImages.map(({ id, image }, index) => (
           <div className="bg-bkg relative aspect-square rounded-sm" key={id}>
-            <img src={image} className="absolute inset-0 -z-10 rounded-sm object-cover blur-xs" />
-            <img src={image} alt={`Drawing ${id}`} className="rounded-sm object-cover" />
-            {guestbookKey && drawingStatus !== 'complete' && (
+            <img src={image} className="absolute inset-0 -z-10 w-full rounded-sm object-cover blur-xs" />
+            <img src={image} alt={`Drawing ${id}`} className="pixelated h-full w-full rounded-sm object-cover" />
+            {guestbookKey && state !== 'complete' && (
               <button
                 onClick={() => handleDeleteDrawing(index)}
                 className="absolute top-1 right-1 rounded-full bg-red-500 p-1 text-white transition-colors hover:bg-red-700"
